@@ -3,17 +3,18 @@ import ResourceLinks from 'gatsby-theme-carbon/src/components/LeftNav/ResourceLi
 
 const links = [
   {
-    title: 'Github',
-    href: 'https://github.com/carbon-design-system/gatsby-theme-carbon',
-  },
-  {
-    title: 'Carbon',
-    href: 'https://www.carbondesignsystem.com',
-  },
-  {
-    title: 'Configuration guide',
+    title: 'About ThisIsCode ',
     href: '/guides/configuration',
   },
+  {
+    title: 'Craft Academy',
+    href: 'https://craftacademy.co',
+  },
+  {
+    title: 'Learn at CA',
+    href: 'https://learn.craftacademy.co',
+  },
+
 ];
 
 // shouldOpenNewTabs: true if outbound links should open in a new tab
