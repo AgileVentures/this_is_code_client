@@ -3,10 +3,6 @@ import ResourceLinks from 'gatsby-theme-carbon/src/components/LeftNav/ResourceLi
 
 const links = [
   {
-    title: 'About ThisIsCode ',
-    href: '/guides/configuration',
-  },
-  {
     title: 'Craft Academy',
     href: 'https://craftacademy.co',
   },

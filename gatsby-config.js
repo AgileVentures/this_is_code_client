@@ -1,24 +1,28 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Theme Carbon',
+    title: 'This Is Code',
   },
   plugins: [
     'gatsby-theme-carbon',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        repository: {
-          baseUrl: 'https://github.com/carbon-design-system/gatsby-theme-carbon',
-          subDirectory: '/packages/example',
-          branch: 'master',
-        },
-        name: 'Carbon Design Gatsby Theme',
-        short_name: 'Gatsby Theme Carbon',
+        
+        name: 'C´This Is Code',
+        short_name: 'This Is Code',
         start_url: '/',
-        background_color: '#ffffff',
+        background_color: '#f28e24',
         theme_color: '#0062ff',
         display: 'browser',
       },
     },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /images\/svg/ // See below to configure properly
+        }
+      }
+    }
   ],
 };

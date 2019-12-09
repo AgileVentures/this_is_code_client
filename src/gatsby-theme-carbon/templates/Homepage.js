@@ -1,19 +1,28 @@
 import React from 'react';
 import { HomepageBanner, HomepageCallout } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
-import { calloutLink } from './Homepage.module.scss';
+import Video from 'gatsby-theme-carbon/src/components/Video'
 
-
-const FirstLeftText = () => <p>This IS Code!</p>;
+const FirstLeftText = () => <h3>This IS Code!</h3>;
 
 const FirstRightText = () => (
-  <p>
-    Learning happen everywhere. And it does. Every day, in project work, in a hallway conversation, over coffe with a collegue, or on the commute - listening to a podcast or reading a blog post.
-    Our curiosity is brought to life wherever we are and we all have a strong desire to know or learn new skills. Here's where continious learning happens.
-  </p>
+  <>
+    <p>
+      Learning happen everywhere. And it does so every day.
+    </p>
+    <p>
+      In project work, in a hallway conversation, over coffe with a collegue, or on the commute - listening to a podcast or reading a blog post.
+    </p>
+    <p>
+      Our curiosity is brought to life wherever we are and we all have a strong desire to know or learn new skills.
+    </p>
+    <p>
+      Here's where continious learning happens.
+    </p>
+  </>
 );
 
-const SecondLeftText = () => <p>Share what you excel in</p>;
+const SecondLeftText = () => <h3>Share what you excel in</h3>;
 
 const SecondRightText = () => (
   <>
@@ -27,16 +36,24 @@ const SecondRightText = () => (
 
 const BannerText = () => (
   <>
-    <h1>Learning CONTINUES Here</h1>
+
   </>
 );
 
 const customProps = {
-  Banner: <HomepageBanner renderText={BannerText} image={'https://github.com/CraftAcademy/craft-assets/blob/gh-pages/images/backgrounds/splash_3.jpg?raw=true'} />,
+  Banner:
+    <Video
+      src="/videos/tic_animated_logo_2_medium.mov"
+      poster="/images/tic_poster.png"
+      autoPlay
+      muted
+      playsinline
+      loop />,
+  // <HomepageBanner renderText={BannerText} image={'https://github.com/CraftAcademy/craft-assets/blob/gh-pages/images/backgrounds/splash_3.jpg?raw=true'} />,
   FirstCallout: (
     <HomepageCallout
-      backgroundColor="#f28e24"
-      color="white"
+      backgroundColor="white"
+      color="darkgrey"
       leftText={FirstLeftText}
       rightText={FirstRightText}
     />
@@ -45,8 +62,8 @@ const customProps = {
     <HomepageCallout
       leftText={SecondLeftText}
       rightText={SecondRightText}
-      color="white"
-      backgroundColor="#f28e24"
+      color="darkgrey"
+      backgroundColor="white"
     />
   ),
 };
