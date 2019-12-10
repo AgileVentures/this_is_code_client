@@ -1,8 +1,8 @@
 import React from 'react';
-import { HomepageBanner, HomepageCallout } from 'gatsby-theme-carbon';
+import { HomepageCallout } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 import Video from 'gatsby-theme-carbon/src/components/Video'
-
+// import Courses from '../components/Courses'
 const FirstLeftText = () => <h3>This IS Code!</h3>;
 
 const FirstRightText = () => (
@@ -18,6 +18,7 @@ const FirstRightText = () => (
     <p style={{ marginBottom: '10px' }}>
       Here's where continuous learning happens
     </p>
+    {/* <Courses /> */}
   </>
 );
 
