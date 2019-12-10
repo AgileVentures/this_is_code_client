@@ -3,7 +3,6 @@ import { HomepageCallout } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 import Video from 'gatsby-theme-carbon/src/components/Video'
 import FeatureCard from 'gatsby-theme-carbon/src/components/FeatureCard'
-// import Courses from '../components/Courses'
 const FirstLeftText = () => <h3>This IS Code!</h3>;
 
 const FirstRightText = () => (
@@ -19,7 +18,6 @@ const FirstRightText = () => (
     <p style={{ marginBottom: '10px' }}>
       Here's where continuous learning happens
     </p>
-    {/* <Courses /> */}
   </>
 );
 
@@ -49,11 +47,10 @@ const BannerText = () => (
 const customProps = {
   Banner:
     <FeatureCard
-      subTitle="With subtitle"
-      title="Title"
+      subTitle="Level Up with"
+      title="Micro Sessions"
       actionIcon="arrowRight"
-      href="/"
-      disabled
+      href="/getting-started/the-mission"
       color="dark"
     >
       <Video

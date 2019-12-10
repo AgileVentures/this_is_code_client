@@ -21,12 +21,16 @@ class Courses extends Component {
         <Column colMd={6} colLg={6} >
           <ArticleCard
             key={course.id}
+            subTitle='Micro Session'
             title={course.title}
-            subTitle={`${course.owner.firstName} ${course.owner.lastName}`}
+            author={`Host: ${course.owner.firstName} ${course.owner.lastName}`}
             date={course.startDate}
             readTime={`${course.events.length} instructor led session${course.events.length != 1 ? 's' : ''}`}
           >
-            <img src={`https://source.unsplash.com/collection/8807226/${course.id}600X300`} />
+            <img 
+            style={{ width: '100%', maxHeight: '230px', objectFit: 'cover'}}
+            src={`https://source.unsplash.com/collection/8807226/${course.id}600X300`} 
+            />
           </ArticleCard>
         </Column>
 

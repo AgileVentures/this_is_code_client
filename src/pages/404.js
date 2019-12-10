@@ -2,9 +2,9 @@ import React from 'react';
 import { FourOhFour } from 'gatsby-theme-carbon';
 
 const links = [
-  { href: '/components/markdown', text: 'Markdown' },
-  { href: '/components/Aside', text: 'Aside' },
-  { href: '/components/demo', text: 'Demo' },
+  { href: '/navigation/enroll-in-a-session', text: 'Enroll in a session' },
+  { href: '/navigation/request-a-session', text: 'Aside' },
+
 ];
 
 const Custom404 = () => <FourOhFour links={links} />;
