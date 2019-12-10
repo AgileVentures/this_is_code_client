@@ -2,6 +2,7 @@ import React from 'react';
 import { HomepageCallout } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 import Video from 'gatsby-theme-carbon/src/components/Video'
+import FeatureCard from 'gatsby-theme-carbon/src/components/FeatureCard'
 // import Courses from '../components/Courses'
 const FirstLeftText = () => <h3>This IS Code!</h3>;
 
@@ -28,7 +29,7 @@ const SecondRightText = () => (
   <>
     <p style={{ marginBottom: '10px' }}>
       <strong>
-      If you are good at what you do and would like to share as well as monetize on your talent, join our community of instructors!
+        If you are good at what you do and would like to share as well as monetize on your talent, join our community of instructors!
       </strong>
     </p>
     <p style={{ marginBottom: '10px' }}>
@@ -47,13 +48,23 @@ const BannerText = () => (
 
 const customProps = {
   Banner:
-    <Video
-      src="/videos/tic_animated_logo_2_medium.mov"
-      poster="/images/tic_poster.png"
-      autoPlay
-      muted
-      playsinline
-      loop />,
+    <FeatureCard
+      subTitle="With subtitle"
+      title="Title"
+      actionIcon="arrowRight"
+      href="/"
+      disabled
+      color="dark"
+    >
+      <Video
+        src="/videos/tic_animated_logo_2_medium.mov"
+        poster="/images/tic_poster.png"
+        autoPlay
+        muted
+        playsinline
+        loop />
+    </FeatureCard>
+  ,
   // <HomepageBanner renderText={BannerText} image={'https://github.com/CraftAcademy/craft-assets/blob/gh-pages/images/backgrounds/splash_3.jpg?raw=true'} />,
   FirstCallout: (
     <HomepageCallout
