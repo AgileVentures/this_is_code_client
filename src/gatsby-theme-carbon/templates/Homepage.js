@@ -7,17 +7,16 @@ const FirstLeftText = () => <h3>This IS Code!</h3>;
 
 const FirstRightText = () => (
   <>
-    <p>
-      Learning happen everywhere. And it does so every day.
+    <p style={{ marginBottom: '10px' }}>
+      <strong>Learning can occur everywhere. And it does so every day.</strong>
     </p>
-    <p>
-      In project work, in a hallway conversation, over coffe with a collegue, or on the commute - listening to a podcast or reading a blog post.
+    <p style={{ marginBottom: '10px' }}>
+      In project work, in a hallway conversation, over coffee with a colleague, or on the commute - listening to a podcast or reading a blog post.
     </p>
-    <p>
-      Our curiosity is brought to life wherever we are and we all have a strong desire to know or learn new skills.
-    </p>
-    <p>
-      Here's where continious learning happens.
+    <p style={{ marginBottom: '10px' }}>
+      Our curiosity is brought to life wherever we are and we all have a strong desire to know or learn new skills.    </p>
+    <p style={{ marginBottom: '10px' }}>
+      Here's where continuous learning happens
     </p>
   </>
 );
@@ -26,9 +25,14 @@ const SecondLeftText = () => <h3>Share what you excel in</h3>;
 
 const SecondRightText = () => (
   <>
-    <p>
+    <p style={{ marginBottom: '10px' }}>
+      <strong>
       If you are good at what you do and would like to share as well as monetize on your talent, join our community of instructors!
-      The TIC will help you every step of the way to provide an engaging way to present your topic of choice to developers eager to level up,
+      </strong>
+    </p>
+    <p style={{ marginBottom: '10px' }}>
+
+      The TIC team will help you every step of the way to provide an engaging way to present your topic of choice to developers eager to level up,
       making you an industry star and a valued member of an incredible community.
     </p>
   </>

@@ -6,14 +6,12 @@ const Content = () => (
   <>
     <TICLogo />
     <p>
-      Learning happen everywhere. And it does. Every day, in project work, in a hallway conversation, over coffe with a collegue, or on the commute - listening to a podcast or reading a blog post.
-    </p>
+      Learning can occur everywhere. And it does so every day.
+        </p>
     <p>
-      Our curiosity is brought to life wherever we are and we all have a strong desire to know or learn new skills.
-    </p>
+      Our curiosity is brought to life wherever we are and we all have a strong desire to know or learn new skills.    </p>
     <p>
-      At TIS is where continious learning happens.
-
+      Here at TIS is where continuous learning happens.
     </p>
   </>
 );

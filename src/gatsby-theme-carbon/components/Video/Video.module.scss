@@ -4,7 +4,6 @@
 
 .video-container {
   overflow: hidden;
-  display: block;
   height: 460px;
   // display: table;
   // position: relative;
@@ -13,7 +12,7 @@
 }
 
 div.video-button {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   background-color: $blue-60;
