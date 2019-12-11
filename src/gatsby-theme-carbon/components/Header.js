@@ -21,8 +21,9 @@ import {
 } from 'gatsby-theme-carbon/src/components/Header/Header.module.scss';
 
 import TICLogo from '../../images/svg/tic_logo.svg'
+import { connect } from 'react-redux'
 
-const Header = ({ children }) => {
+const Header = (props) => {
   const {
     leftNavIsOpen,
     toggleNavState,
@@ -49,8 +50,11 @@ const Header = ({ children }) => {
           })}
           to="/"
         >
-          {children}
+          {props.children}
         </Link>
+        <h2>
+          {props.message}
+        </h2>
         <HeaderGlobalBar>
           {isSearchEnabled && <GlobalSearch />}
 
@@ -68,4 +72,8 @@ Header.defaultProps = {
   children: <DefaultHeaderText />,
 };
 
-export default Header;
+const mapStateToProps = (state) => (
+  { message: state.message }
+)
+
+export default connect(mapStateToProps)(Header);
