@@ -3,6 +3,10 @@ import { HomepageCallout } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 import Video from 'gatsby-theme-carbon/src/components/Video'
 import FeatureCard from 'gatsby-theme-carbon/src/components/FeatureCard'
+import AuthForm from '../components/AuthForm'
+import { connect } from 'react-redux'
+
+
 const FirstLeftText = () => <h3>This IS Code!</h3>;
 
 const FirstRightText = () => (
@@ -82,8 +86,23 @@ const customProps = {
 };
 
 // spreading the original props gives us props.children (mdx content)
-function ShadowedHomepage(props) {
-  return <HomepageTemplate {...props} {...customProps} />;
+const ShadowedHomepage = (props) => {
+  return (
+    <>
+      {props.displayAuthModal ?
+        <AuthForm />
+        :
+        <HomepageTemplate {...props} {...customProps} />
+      }
+    </>
+  )
 }
 
-export default ShadowedHomepage;
+const mapStateToProps = (state) => (
+  {
+    user: state.user,
+    displayAuthModal: state.displayAuthModal
+  }
+)
+
+export default connect(mapStateToProps)(ShadowedHomepage);

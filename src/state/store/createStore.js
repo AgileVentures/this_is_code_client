@@ -1,7 +1,6 @@
 import { createStore as reduxCreateStore } from "redux"
-import { basicReducer as rootReducer } from '../reducers/basicReducer'
-
-const initialState = { message: 'Hello ThisIsCode!' }
+import { fakeAuthReducer as rootReducer } from '../reducers/basicReducer'
+import initialState from './initialState'
 
 
 const createStore = () => reduxCreateStore(rootReducer, initialState)

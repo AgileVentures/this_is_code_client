@@ -18,9 +18,8 @@ class Courses extends Component {
   render() {
     let courseListContent = this.state.courses.map(course => {
       return (
-        <Column colMd={6} colLg={6} >
+        <Column colMd={6} colLg={6} key={course.id}>
           <ArticleCard
-            key={course.id}
             subTitle='Micro Session'
             title={course.title}
             author={`Host: ${course.owner.firstName} ${course.owner.lastName}`}
