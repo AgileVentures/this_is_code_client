@@ -1,8 +1,18 @@
 import React, { useState } from "react";
 import { Modal, Form, FormGroup, TextInput } from "carbon-components-react";
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 const AuthForm = (props) => {
+  const loginHandler = () => {
+    // axios.post('https://hooks.slack.com/services/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', 
+    // { text: "Somebody just logged in to ThisIsCode" })
+    //   .then(() => {
+    //   }).catch((error)=>{
+    //     debugger
+    //   })
+    props.dispatch({ type: 'LOGIN' })
+  }
   return (
     <>
       <Modal
@@ -17,8 +27,8 @@ const AuthForm = (props) => {
         primaryButtonText='Log in'
         secondaryButtonText="Cancel"
         primaryButtonDisabled={false}
-        onRequestClose={() => props.dispatch({type: 'HIDE_AUTH_MODAL'})}      
-        onRequestSubmit={() => props.dispatch({type: 'LOGIN'})}
+        onRequestClose={() => props.dispatch({ type: 'HIDE_AUTH_MODAL' })}
+        onRequestSubmit={() => loginHandler()}
         selectorPrimaryFocus="input"
       >
         <h2>We will log you in as Kalle ;-)</h2>
