@@ -41,16 +41,16 @@ const CustomResources = (props) => {
 
         </> :
         <SideNavLink
-            children='Login'
-            onClick={() => { props.dispatch({ type: 'DISPLAY_AUTH_MODAL' }) }} />
-          }
-          <ResourceLinks shouldOpenNewTabs links={links} />
-        </>
+          children='Login'
+          onClick={() => { props.dispatch({ type: 'DISPLAY_AUTH_MODAL' }) }} />
+      }
+      <ResourceLinks shouldOpenNewTabs links={links} />
+    </>
   )
-    }
-    
-    
-    const mapStateToProps = (state) => (
-  {user: state.user }
-    )
-    export default connect(mapStateToProps)(CustomResources);
+}
+
+
+const mapStateToProps = (state) => (
+  { user: state.user }
+)
+export default connect(mapStateToProps)(CustomResources);

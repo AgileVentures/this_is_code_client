@@ -42,12 +42,6 @@ const SecondRightText = () => (
   </>
 );
 
-const BannerText = () => (
-  <>
-
-  </>
-);
-
 const customProps = {
   Banner:
     <FeatureCard
@@ -62,7 +56,7 @@ const customProps = {
         poster="/images/tic_poster.png"
         autoPlay
         muted
-        playsinline
+        playsInLine
         loop />
     </FeatureCard>
   ,
@@ -90,7 +84,7 @@ const ShadowedHomepage = (props) => {
   return (
     <>
       {props.displayAuthModal ?
-        <AuthForm />
+        <AuthForm fields={['email', 'password', 'passwordConfirmation']}/>
         :
         <HomepageTemplate {...props} {...customProps} />
       }
