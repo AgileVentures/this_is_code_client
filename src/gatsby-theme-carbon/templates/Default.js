@@ -17,7 +17,6 @@ const ShadowedDefault = (props) => {
 
 const mapStateToProps = (state) => (
   {
-    user: state.user,
     displayAuthModal: state.displayAuthModal
   }
 )

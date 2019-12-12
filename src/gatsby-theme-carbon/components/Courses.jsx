@@ -24,9 +24,10 @@ class Courses extends Component {
             title={course.title}
             author={`Host: ${course.owner.firstName} ${course.owner.lastName}`}
             date={course.startDate}
-            readTime={`${course.events.length} instructor led session${course.events.length != 1 ? 's' : ''}`}
+            readTime={`${course.events.length} instructor led session${course.events.length !== 1 ? 's' : ''}`}
           >
             <img 
+            alt='Card cover'
             style={{ width: '100%', maxHeight: '230px', objectFit: 'cover'}}
             src={`https://source.unsplash.com/collection/8807226/${course.id}600X300`} 
             />
