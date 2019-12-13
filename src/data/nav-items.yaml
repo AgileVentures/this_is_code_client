@@ -9,3 +9,7 @@
 - title: Usage
   pages:
     - path: /guides/navigation/enroll-in-a-session
+- title: Community Events
+  pages:
+    - path: /community-events
+
