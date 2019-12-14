@@ -32,7 +32,7 @@ const Header = (props) => {
 
   return (
     <>
-      <ShellHeader aria-label="Header" className={header}>
+      <ShellHeader aria-label="Header" className={header} >
         <SkipToContent className={skipToContent} />
         <HeaderMenuButton
           className={cx('bx--header__action--menu', headerButton)}

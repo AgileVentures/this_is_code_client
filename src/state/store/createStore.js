@@ -1,5 +1,5 @@
 import { createStore as reduxCreateStore } from "redux"
-import { fakeAuthReducer as rootReducer } from '../reducers/basicReducer'
+import { authReducer as rootReducer } from '../reducers/basicReducer'
 import initialState from './initialState'
 
 

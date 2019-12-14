@@ -1,16 +1,19 @@
-const fakeAuthReducer = (state, action) => {
+const authReducer = (state, action) => {
   switch (action.type) {
+    case 'NOTIFY':
+      return (
+        {
+          ...state,
+          notification: action.payload,
+        }
+      )
     case 'LOGIN':
       return (
         {
           ...state,
-          user:
-          {
-            userName: 'Kalle',
-            loggedIn: true,
-          },
-          displayAuthModal: false
-
+          user: { ...action.payload.user, loggedIn: true },
+          displayAuthModal: false,
+          notification: `Welcome ${action.payload.user.firstName}!`
         }
       )
     case 'LOGOUT':
@@ -30,14 +33,16 @@ const fakeAuthReducer = (state, action) => {
       return (
         {
           ...state,
-          displayAuthModal: true
+          displayAuthModal: true,
+          notification: null
         }
       )
     case 'HIDE_AUTH_MODAL':
       return (
         {
           ...state,
-          displayAuthModal: false
+          displayAuthModal: false,
+          notification: null
         }
       )
     default:
@@ -45,5 +50,5 @@ const fakeAuthReducer = (state, action) => {
   }
 }
 
-export { fakeAuthReducer }
+export { authReducer }
 

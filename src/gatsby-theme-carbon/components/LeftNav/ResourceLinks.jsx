@@ -31,7 +31,7 @@ const CustomResources = (props) => {
     <>
       {props.user.loggedIn ?
         <>
-          <SideNavMenu title={`Hello ${props.user.userName}`}>
+          <SideNavMenu title={`Hello ${props.user.firstName}`}>
             <SideNavMenuItem
               element={SideNavLink}
 

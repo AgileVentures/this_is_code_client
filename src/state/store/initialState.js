@@ -1,7 +1,7 @@
 const initialState = { 
-  displayAuthModal: false, 
-  user: { 
-    userName: null, 
+  displayAuthModal: false,
+  notification: null, 
+  user: {  
     loggedIn: false } 
   }
 
