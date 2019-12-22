@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Modal, TextInput } from "carbon-components-react";
 import { connect } from 'react-redux'
-import { fieldTypes, auth, LocalStorageMock, isSSR } from '../modules/authUtils'
+import { fieldTypes, auth } from '../modules/authUtils'
 
-if (isSSR) {
-  global.localStorage = new LocalStorageMock
-}
+// if (isSSR) {
+//   localStorage = new LocalStorageMock
+// }
 
 const AuthForm = (props) => {
   const intitialFormData = {};
@@ -34,7 +34,7 @@ const AuthForm = (props) => {
 
   const formFields = fieldsToRender.map(formItem => {
     return (
-      <>
+      <div key={formItem.id}>
         <TextInput
           disabled={false}
           helperText=""
@@ -51,7 +51,7 @@ const AuthForm = (props) => {
           pattern={() => formItem.type === 'password' && "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"}
         />
         <br />
-      </>
+      </div>
     )
   })
 

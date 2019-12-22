@@ -56,7 +56,7 @@ const customProps = {
         poster="/images/tic_poster.png"
         autoPlay
         muted
-        playsInLine
+        playsInline
         loop />
     </FeatureCard>
   ,

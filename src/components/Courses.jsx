@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ArticleCard from 'gatsby-theme-carbon/src/components/ArticleCard'
 import { Row, Column } from 'gatsby-theme-carbon/src/components/Grid'
 import Moment from 'react-moment'
+import reactToString from 'react-to-string';
+
 
 
 import axios from 'axios'
@@ -18,15 +20,14 @@ class Courses extends Component {
 
   render() {
     const calendarStrings = {
-      lastDay : '[Yesterday at] LT',
-      sameDay : '[Today at] LT',
-      nextDay : '[Tomorrow at] LT',
-      lastWeek : '[last] dddd [at] LT',
-      nextWeek : 'dddd [at] LT',
-      sameElse : 'LLLL'
-  };
+      lastDay: '[Yesterday at] LT',
+      sameDay: '[Today at] LT',
+      nextDay: '[Tomorrow at] LT',
+      lastWeek: '[last] dddd [at] LT',
+      nextWeek: 'dddd [at] LT',
+      sameElse: 'LLLL'
+    };
     let courseListContent = this.state.courses.map(course => {
-      console.table(course)
       return (
         <Column colMd={6} colLg={6} key={course.id}>
           <ArticleCard
@@ -36,10 +37,10 @@ class Courses extends Component {
             date={<Moment date={course.startDate} calendar={calendarStrings} />}
             readTime={`${course.events.length} instructor led session${course.events.length !== 1 ? 's' : ''}`}
           >
-            <img 
-            alt='Card cover'
-            style={{ width: 'auto', minHeight: '50%', objectFit: 'cover'}}
-            src={course.coverImage} 
+            <img
+              alt='Card cover'
+              style={{ width: 'auto', minHeight: '50%', objectFit: 'cover' }}
+              src={course.coverImage}
             />
           </ArticleCard>
         </Column>
