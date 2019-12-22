@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Modal, TextInput } from "carbon-components-react";
 import { connect } from 'react-redux'
-import { fieldTypes, auth } from './fieldTypes'
+import { fieldTypes, auth, LocalStorageMock, isSSR } from '../modules/authUtils'
+
+
+global.localStorage = isSSR ? new LocalStorageMock : window.localStorage
 
 const AuthForm = (props) => {
   const intitialFormData = {};
