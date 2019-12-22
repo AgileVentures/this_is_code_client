@@ -2,15 +2,20 @@ import JtockAuth from 'j-tockauth'
 
 const isSSR = typeof window === "undefined"
 
-const auth = () => {
-  if (!isSSR) {
-    return new JtockAuth({
-      host: "https://this-is-code-staging.herokuapp.com/",
-      // host: 'http://localhost:3000',
-      debug: false
-    });
-  } 
-}
+// const auth = () => {
+//   if (!isSSR) {
+//     return new JtockAuth({
+//       host: "https://this-is-code-staging.herokuapp.com/",
+//       // host: 'http://localhost:3000',
+//       debug: false
+//     });
+//   } 
+// }
+
+const auth = new JtockAuth({
+  host: "https://this-is-code-staging.herokuapp.com/",
+  debug: false
+});
 
 class LocalStorageMock {
   constructor() {
@@ -28,12 +33,11 @@ class LocalStorageMock {
   setItem(key, value) {
     this.store[key] = value.toString();
   }
-
+  
   removeItem(key) {
     delete this.store[key];
   }
 };
-
 
 
 const fieldTypes = {
