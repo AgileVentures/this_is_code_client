@@ -3,7 +3,8 @@ import { HomepageCallout } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 import Video from 'gatsby-theme-carbon/src/components/Video'
 import FeatureCard from 'gatsby-theme-carbon/src/components/FeatureCard'
-import AuthForm from '../../components/AuthForm'
+import AuthLinks from '../../components/AuthLinks'
+
 import { connect } from 'react-redux'
 
 
@@ -83,8 +84,8 @@ const customProps = {
 const ShadowedHomepage = (props) => {
   return (
     <>
-      {props.displayAuthModal ?
-        <AuthForm fields={['email', 'password']} />
+      {props.displaySignUpModal || props.displayLoginModal ?
+        <AuthLinks />
         :
         <HomepageTemplate {...props} {...customProps} />
       }
@@ -95,7 +96,8 @@ const ShadowedHomepage = (props) => {
 const mapStateToProps = (state) => (
   {
     user: state.user,
-    displayAuthModal: state.displayAuthModal,
+    displayLoginModal: state.displayLoginModal,
+    displaySignUpModal: state.displaySignUpModal,
     notification: state.notification
   }
 )

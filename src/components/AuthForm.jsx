@@ -3,16 +3,16 @@ import { Modal, TextInput } from "carbon-components-react";
 import { connect } from 'react-redux'
 import { fieldTypes, auth } from '../modules/authUtils'
 
-// if (isSSR) {
-//   localStorage = new LocalStorageMock
-// }
 
 const AuthForm = (props) => {
   const intitialFormData = {};
+
   props.fields.forEach(formElement => {
     intitialFormData[formElement.name] = "";
   });
+
   const [formValues, setFormValues] = useState(intitialFormData);
+
   const handleFieldValueChange = (event) => {
     const formDataCopy = { ...formValues };
     formDataCopy[event.target.name] = event.target.value;
@@ -20,14 +20,41 @@ const AuthForm = (props) => {
   }
 
   const formSubmitHandler = () => {
-    auth
-      .signIn(formValues.email, formValues.password)
-      .then(user => {
-        props.dispatch({ type: 'LOGIN', payload: user })
-      })
-      .catch(error => {
-        props.dispatch({ type: 'NOTIFY', payload: error.response.data.errors.toString() })
-      });
+    switch (props.variant) {
+      case 'login':
+        auth
+          .signIn(formValues.email, formValues.password)
+          .then(user => {
+            props.dispatch({ type: 'AUTHENTICATE', payload: user })
+          })
+          .catch(error => {
+            props.dispatch({ type: 'NOTIFY', payload: error.response.data.errors.toString() })
+          });
+      case 'register':
+        let values = {
+          email: formValues.email,
+          password: formValues.password,
+          password_confirmation: formValues.passwordConfirmation,
+          first_name: formValues.firstName,
+          last_name: formValues.lastName
+        }
+        auth
+          .signUp(values)
+          .then(response => {
+            props.dispatch({ type: 'AUTHENTICATE', payload: response })
+          })
+          .catch(error => {
+            let errorMessage
+            try {
+              errorMessage = error.response.data.errors.full_messages.toString()
+            } catch {
+              errorMessage = error.message
+            }  
+            props.dispatch({ type: 'NOTIFY', payload: errorMessage })
+          });
+      default:
+        return
+    }
   }
 
   const fieldsToRender = props.fields.map(item => (fieldTypes[item]))
@@ -48,7 +75,7 @@ const AuthForm = (props) => {
           placeholder={formItem.placeholder}
           type={formItem.type}
           required={formItem.required}
-          pattern={() => formItem.type === 'password' && "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"}
+          pattern={() => formItem.type === ('password' || 'passwordConfirmation') && "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"}
         />
         <br />
       </div>
@@ -61,11 +88,11 @@ const AuthForm = (props) => {
       <Modal
         focusTrap={true}
         iconDescription="Close"
-        modalHeading='Log in'
+        modalHeading={props.header}
         open
         passiveModal={false}
-        modalAriaLabel='Log in'
-        primaryButtonText='Log in'
+        modalAriaLabel={props.variant}
+        primaryButtonText={props.header}
         secondaryButtonText="Cancel"
         primaryButtonDisabled={false}
         onRequestClose={() => props.dispatch({ type: 'HIDE_AUTH_MODAL' })}

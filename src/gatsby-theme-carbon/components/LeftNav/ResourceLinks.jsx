@@ -26,23 +26,28 @@ const CustomResources = (props) => {
   if (props.message) {
     links.push({ title: props.message, href: '#' })
   }
-
   return (
     <>
       {props.user.loggedIn ?
+
+        <SideNavMenu id="user-links" title={`Hello ${props.user.firstName}`}>
+          <SideNavMenuItem
+            element={SideNavLink}
+
+            children='Sign out'
+            onClick={() => { props.dispatch({ type: 'LOGOUT' }) }} />
+        </SideNavMenu>
+        :
         <>
-          <SideNavMenu title={`Hello ${props.user.firstName}`}>
-            <SideNavMenuItem
-              element={SideNavLink}
-
-              children='Sign out'
-              onClick={() => { props.dispatch({ type: 'LOGOUT' }) }} />
-          </SideNavMenu>
-
-        </> :
-        <SideNavLink
-          children='Login'
-          onClick={() => { props.dispatch({ type: 'DISPLAY_AUTH_MODAL' }) }} />
+          <SideNavLink
+            name='login'
+            children='Login'
+            onClick={() => { props.dispatch({ type: 'DISPLAY_AUTH_MODAL', variant: 'LOGIN' }) }} />
+          <SideNavLink
+            name='register'
+            children='Register'
+            onClick={() => { props.dispatch({ type: 'DISPLAY_AUTH_MODAL', variant: 'SIGN_UP' }) }} />
+        </>
       }
       <ResourceLinks shouldOpenNewTabs links={links} />
     </>

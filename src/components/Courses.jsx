@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ArticleCard from 'gatsby-theme-carbon/src/components/ArticleCard'
 import { Row, Column } from 'gatsby-theme-carbon/src/components/Grid'
 import Moment from 'react-moment'
-import reactToString from 'react-to-string';
 
 
 

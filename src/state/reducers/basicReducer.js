@@ -7,13 +7,14 @@ const authReducer = (state, action) => {
           notification: action.payload,
         }
       )
-    case 'LOGIN':
+    case 'AUTHENTICATE':
       return (
         {
           ...state,
-          user: { ...action.payload.user, loggedIn: true },
-          displayAuthModal: false,
-          notification: `Welcome ${action.payload.user.firstName}!`
+          user: { ...action.payload.data.data, loggedIn: true },
+          displayLoginModal: false,
+          displaySignUpModal: false,
+          notification: `Welcome ${action.payload.data.data.firstName}!`
         }
       )
     case 'LOGOUT':
@@ -25,23 +26,35 @@ const authReducer = (state, action) => {
             userName: null,
             loggedIn: false,
           },
-          displayAuthModal: false
-
+          displayLoginModal: false
         }
       )
     case 'DISPLAY_AUTH_MODAL':
-      return (
-        {
-          ...state,
-          displayAuthModal: true,
-          notification: null
-        }
-      )
+      switch (action.variant) {
+        case 'LOGIN':
+          return (
+            {
+              ...state,
+              displayLoginModal: true,
+              notification: null
+            }
+          )
+        case 'SIGN_UP':
+          return (
+            {
+              ...state,
+              displaySignUpModal: true,
+              notification: null
+            }
+          )
+      }
+
     case 'HIDE_AUTH_MODAL':
       return (
         {
           ...state,
-          displayAuthModal: false,
+          displayLoginModal: false,
+          displaySignUpModal: false,
           notification: null
         }
       )

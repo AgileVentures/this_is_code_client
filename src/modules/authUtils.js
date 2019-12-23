@@ -1,7 +1,8 @@
 import JtockAuth from 'j-tockauth'
 
 const auth = new JtockAuth({
-  host: "https://this-is-code-staging.herokuapp.com/",
+  host: "https://this-is-code-staging.herokuapp.com",
+  // host: "http://localhost:3000",
   debug: false
 });
 
@@ -26,6 +27,22 @@ const fieldTypes = {
     type: "password",
     name: "passwordConfirmation",
     text: "Password Confirmation",
+    required: true
+  },
+  firstName: {
+    type: "text",
+    name: "firstName",
+    id: 'first_name',
+    text: "First name",
+    placeholder: "Jack",
+    required: true
+  },
+  lastName: {
+    type: "text",
+    name: "lastName",
+    id: 'last_name',
+    text: "Last name",
+    placeholder: "Doe",
     required: true
   },
 

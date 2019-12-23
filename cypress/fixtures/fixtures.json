@@ -1,0 +1,16 @@
+[
+  {
+    "url": "https://this-is-code-staging.herokuapp.com/auth",
+    "method": "POST",
+    "data": {
+      "data": {
+        "id": 1,
+        "email": "john-doe@craft.se",
+        "role": "student",
+        "firstName": "John",
+        "lastName": "Doe",
+        "courses": []
+      }
+    }
+  }
+]

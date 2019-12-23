@@ -1,13 +1,15 @@
 import React from 'react';
 import DefaultTemplate from 'gatsby-theme-carbon/src/templates/Default';
 import AuthForm from '../../components/AuthForm'
+import AuthLinks from '../../components/AuthLinks'
+
 import { connect } from 'react-redux'
 
 const ShadowedDefault = (props) => {
   return (
     <>
-      {props.displayAuthModal ?
-        <AuthForm fields={['email', 'password']}/>
+      {props.displaySignUpModal || props.displayLoginModal ?
+        <AuthLinks />
         :
         <DefaultTemplate {...props} />
       }
@@ -17,7 +19,8 @@ const ShadowedDefault = (props) => {
 
 const mapStateToProps = (state) => (
   {
-    displayAuthModal: state.displayAuthModal
+    displayLoginModal: state.displayLoginModal,
+    displaySignUpModal: state.displaySignUpModal
   }
 )
 
