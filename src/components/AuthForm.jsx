@@ -24,12 +24,13 @@ const AuthForm = (props) => {
       case 'login':
         auth
           .signIn(formValues.email, formValues.password)
-          .then(user => {
-            props.dispatch({ type: 'AUTHENTICATE', payload: user })
+          .then(response => {
+            props.dispatch({ type: 'AUTHENTICATE', payload: response.user })
           })
           .catch(error => {
             props.dispatch({ type: 'NOTIFY', payload: error.response.data.errors.toString() })
           });
+        break;
       case 'register':
         let values = {
           email: formValues.email,
@@ -41,7 +42,7 @@ const AuthForm = (props) => {
         auth
           .signUp(values)
           .then(response => {
-            props.dispatch({ type: 'AUTHENTICATE', payload: response })
+            props.dispatch({ type: 'AUTHENTICATE', payload: response.data.data })
           })
           .catch(error => {
             let errorMessage
@@ -49,9 +50,10 @@ const AuthForm = (props) => {
               errorMessage = error.response.data.errors.full_messages.toString()
             } catch {
               errorMessage = error.message
-            }  
+            }
             props.dispatch({ type: 'NOTIFY', payload: errorMessage })
           });
+        break;
       default:
         return
     }

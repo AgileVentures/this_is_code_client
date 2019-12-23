@@ -1,5 +1,5 @@
 /// <reference types="Cypress" />
-describe("User Can Register", () => {
+describe("User Can Authenticate", () => {
   const requestData = [];
 
   beforeEach(() => {
@@ -42,28 +42,43 @@ describe("User Can Register", () => {
       cy.writeFile(path, requestData);
     }
   });
-  it("On Mobile Device", () => {
-    cy.viewport('iphone-x')
-    cy.get('.bx--header__action--menu').click()
-    cy.get('[name="register"]').click()
-    cy.get('[name="email"]').type('john-doe@craft.se')
-    cy.get('[name="firstName"]').type('John')
-    cy.get('[name="lastName"]').type('Doe')
-    cy.get('[name="password"]').type('password')
-    cy.get('[name="passwordConfirmation"]').type('password')
-    cy.get('button').contains('Register').click()
-    cy.get('[aria-label="Side navigation"]').should('contain', 'Hello John')
-  })
 
-  it("On Desktop", () => {
-    cy.viewport('macbook-15')
-    cy.get('[name="register"]').click()
-    cy.get('[name="email"]').type('john-doe@craft.se')
-    cy.get('[name="firstName"]').type('John')
-    cy.get('[name="lastName"]').type('Doe')
-    cy.get('[name="password"]').type('password')
-    cy.get('[name="passwordConfirmation"]').type('password')
-    cy.get('button').contains('Register').click()
-    cy.get('[aria-label="Side navigation"]').should('contain', 'Hello John')
-  })
+  xdescribe('Sign up', () => {
+    it("On Mobile Device", () => {
+      cy.viewport('iphone-x')
+      cy.get('.bx--header__action--menu').click()
+      cy.get('[name="register"]').click()
+      cy.get('[name="email"]').type('john-doe@craft.se')
+      cy.get('[name="firstName"]').type('John')
+      cy.get('[name="lastName"]').type('Doe')
+      cy.get('[name="password"]').type('password')
+      cy.get('[name="passwordConfirmation"]').type('password')
+      cy.get('button').contains('Register').click()
+      cy.get('[aria-label="Side navigation"]').should('contain', 'Hello John')
+    })
+
+    it("On Desktop", () => {
+      cy.viewport('macbook-15')
+      cy.get('[name="register"]').click()
+      cy.get('[name="email"]').type('john-doe@craft.se')
+      cy.get('[name="firstName"]').type('John')
+      cy.get('[name="lastName"]').type('Doe')
+      cy.get('[name="password"]').type('password')
+      cy.get('[name="passwordConfirmation"]').type('password')
+      cy.get('button').contains('Register').click()
+      cy.get('[aria-label="Side navigation"]').should('contain', 'Hello John')
+    })
+  });
+
+
+  describe('Login', () => {
+    it("On Desktop", () => {
+      cy.viewport('macbook-15')
+      cy.get('[name="login"]').click()
+      cy.get('[name="email"]').type('thomas@craftacademy.se')
+      cy.get('[name="password"]').type('password')
+      cy.get('button').contains('Log in').click()
+      cy.get('[aria-label="Side navigation"]').should('contain', 'Hello John')
+    })
+  });
 })

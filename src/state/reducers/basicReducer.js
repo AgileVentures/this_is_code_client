@@ -11,10 +11,10 @@ const authReducer = (state, action) => {
       return (
         {
           ...state,
-          user: { ...action.payload.data.data, loggedIn: true },
+          user: { ...action.payload, loggedIn: true },
           displayLoginModal: false,
           displaySignUpModal: false,
-          notification: `Welcome ${action.payload.data.data.firstName}!`
+          notification: `Welcome ${action.payload.firstName}!`
         }
       )
     case 'LOGOUT':
