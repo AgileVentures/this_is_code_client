@@ -36,7 +36,6 @@ describe("User Can Authenticate", () => {
   })
 
   after(() => {
-    // In record mode, save gathered XHR data to local JSON file
     if (Cypress.env('RECORD')) {
       const path = './cypress/fixtures/fixtures.json';
       cy.writeFile(path, requestData);
