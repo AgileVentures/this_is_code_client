@@ -28,7 +28,7 @@ const AuthForm = (props) => {
             props.dispatch({ type: 'AUTHENTICATE', payload: response.user })
           })
           .catch(error => {
-            props.dispatch({ type: 'NOTIFY', payload: error.response.data.errors.toString() })
+            props.dispatch({ type: 'NOTIFY', payload: { title: 'Error', caption: error.response.data.errors.toString() } })
           });
         break;
       case 'register':
@@ -51,7 +51,7 @@ const AuthForm = (props) => {
             } catch {
               errorMessage = error.message
             }
-            props.dispatch({ type: 'NOTIFY', payload: errorMessage })
+            props.dispatch({ type: 'NOTIFY', payload: { title: 'Error', caption: errorMessage } })
           });
         break;
       default:

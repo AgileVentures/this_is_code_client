@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { connect } from 'react-redux'
+
 import { Link } from 'gatsby';
 import {
   Header as ShellHeader,
@@ -19,6 +21,7 @@ import {
   collapsed,
   headerButton,
 } from 'gatsby-theme-carbon/src/components/Header/Header.module.scss';
+import Notification from '../../components/Notification'
 
 import TICLogo from '../../images/svg/tic_logo.svg'
 
@@ -29,11 +32,16 @@ const Header = (props) => {
     searchIsOpen,
   } = useContext(NavContext);
   const { isSearchEnabled } = useMetadata();
-
   return (
     <>
       <ShellHeader aria-label="Header" className={header} >
+        {props.notification &&
+          <Notification
+            caption={props.notification.caption}
+            title={props.notification.title}
+          />}
         <SkipToContent className={skipToContent} />
+
         <HeaderMenuButton
           className={cx('bx--header__action--menu', headerButton)}
           aria-label="Open menu"
@@ -70,6 +78,10 @@ Header.defaultProps = {
   children: <DefaultHeaderText />,
 };
 
+const mapStateToProps = (state) => (
+  {
+    notification: state.notification
+  }
+)
 
-
-export default Header;
+export default connect(mapStateToProps)(Header);

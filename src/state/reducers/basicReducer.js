@@ -14,7 +14,7 @@ const authReducer = (state, action) => {
           user: { ...action.payload, loggedIn: true },
           displayLoginModal: false,
           displaySignUpModal: false,
-          notification: `Welcome ${action.payload.firstName}!`
+          notification: {title: 'Welcome', caption: `Nice to see you ${action.payload.firstName}!`}
         }
       )
     case 'LOGOUT':
@@ -26,7 +26,9 @@ const authReducer = (state, action) => {
             userName: null,
             loggedIn: false,
           },
-          displayLoginModal: false
+          displayLoginModal: false,
+          notification: {title: 'Good bye', caption: `Your session has been terminated`}
+
         }
       )
     case 'DISPLAY_AUTH_MODAL':
