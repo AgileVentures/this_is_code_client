@@ -42,7 +42,7 @@ describe("User Can Authenticate", () => {
     }
   });
 
-  xdescribe('Sign up', () => {
+  describe('Sign up', () => {
     it("On Mobile Device", () => {
       cy.viewport('iphone-x')
       cy.get('.bx--header__action--menu').click()
@@ -54,6 +54,7 @@ describe("User Can Authenticate", () => {
       cy.get('[name="passwordConfirmation"]').type('password')
       cy.get('button').contains('Register').click()
       cy.get('[aria-label="Side navigation"]').should('contain', 'Hello John')
+      cy.get('.bx--toast-notification').should('contain', 'Nice to see you John!')
     })
 
     it("On Desktop", () => {
@@ -66,6 +67,8 @@ describe("User Can Authenticate", () => {
       cy.get('[name="passwordConfirmation"]').type('password')
       cy.get('button').contains('Register').click()
       cy.get('[aria-label="Side navigation"]').should('contain', 'Hello John')
+      cy.get('.bx--toast-notification').should('contain', 'Nice to see you John!')
+
     })
   });
 
@@ -78,6 +81,7 @@ describe("User Can Authenticate", () => {
       cy.get('[name="password"]').type('password')
       cy.get('button').contains('Log in').click()
       cy.get('[aria-label="Side navigation"]').should('contain', 'Hello John')
+      cy.get('.bx--toast-notification').should('contain', 'Nice to see you John!')
     })
   });
 })

@@ -1,7 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
-
 import { ToastNotification } from "carbon-components-react"
 
 const Notification = (props) => {

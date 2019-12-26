@@ -1,23 +1,49 @@
+import {
+  NOTIFY,
+  AUTHENTICATE,
+  LOGOUT,
+  LOGIN,
+  SIGN_UP,
+  DISPLAY_AUTH_MODAL,
+  HIDE_AUTH_MODAL
+} from '../actions/actionTypes'
+
 const authReducer = (state, action) => {
   switch (action.type) {
-    case 'NOTIFY':
+    case 'DISPLAY_COURSE_DETAILS':
+      return {
+        ...state,
+        displayCourse: {
+          state: true,
+          displayCourseInstance: action.payload
+        }
+      }
+
+    case 'HIDE_COURSE_DETAILS':
+      return {
+        ...state,
+        displayCourse: {
+          displayCourse: false, displayCourseInstance: {}
+        }
+      }
+    case NOTIFY:
       return (
         {
           ...state,
           notification: action.payload,
         }
       )
-    case 'AUTHENTICATE':
+    case AUTHENTICATE:
       return (
         {
           ...state,
           user: { ...action.payload, loggedIn: true },
           displayLoginModal: false,
           displaySignUpModal: false,
-          notification: {title: 'Welcome', caption: `Nice to see you ${action.payload.firstName}!`}
+          notification: { title: 'Welcome', caption: `Nice to see you ${action.payload.firstName}!` }
         }
       )
-    case 'LOGOUT':
+    case LOGOUT:
       return (
         {
           ...state,
@@ -27,13 +53,13 @@ const authReducer = (state, action) => {
             loggedIn: false,
           },
           displayLoginModal: false,
-          notification: {title: 'Good bye', caption: `Your session has been terminated`}
+          notification: { title: 'Good bye', caption: `Your session has been terminated` }
 
         }
       )
-    case 'DISPLAY_AUTH_MODAL':
+    case DISPLAY_AUTH_MODAL:
       switch (action.variant) {
-        case 'LOGIN':
+        case LOGIN:
           return (
             {
               ...state,
@@ -41,7 +67,7 @@ const authReducer = (state, action) => {
               notification: null
             }
           )
-        case 'SIGN_UP':
+        case SIGN_UP:
           return (
             {
               ...state,
@@ -51,7 +77,7 @@ const authReducer = (state, action) => {
           )
       }
 
-    case 'HIDE_AUTH_MODAL':
+    case HIDE_AUTH_MODAL:
       return (
         {
           ...state,

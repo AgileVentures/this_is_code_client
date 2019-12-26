@@ -22,6 +22,7 @@ import {
   headerButton,
 } from 'gatsby-theme-carbon/src/components/Header/Header.module.scss';
 import Notification from '../../components/Notification'
+import CourseDetails from '../../components/CourseDetails'
 
 import TICLogo from '../../images/svg/tic_logo.svg'
 
@@ -40,6 +41,11 @@ const Header = (props) => {
             caption={props.notification.caption}
             title={props.notification.title}
           />}
+
+        {props.displayCourse.state &&
+          <CourseDetails course={props.displayCourse.displayCourseInstance} />
+        }
+
         <SkipToContent className={skipToContent} />
 
         <HeaderMenuButton
@@ -80,7 +86,8 @@ Header.defaultProps = {
 
 const mapStateToProps = (state) => (
   {
-    notification: state.notification
+    notification: state.notification,
+    displayCourse: state.displayCourse
   }
 )
 
