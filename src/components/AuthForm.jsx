@@ -112,7 +112,7 @@ const AuthForm = (props) => {
         selectorPrimaryFocus="input"
       >
         {props.notification &&
-          <h1>{props.notification}</h1>
+          <h1 style={{color: 'red'}}>{props.notification.caption}</h1>
         }
         {formFields}
       </Modal>
