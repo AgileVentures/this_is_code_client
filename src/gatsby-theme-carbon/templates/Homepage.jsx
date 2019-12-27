@@ -4,6 +4,11 @@ import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 import Video from 'gatsby-theme-carbon/src/components/Video'
 import FeatureCard from 'gatsby-theme-carbon/src/components/FeatureCard'
 import AuthLinks from '../../components/AuthLinks'
+import TICcover from '../../images/tic_poster.png'
+import {
+  BrowserView,
+  MobileView
+} from "react-device-detect";
 
 import { connect } from 'react-redux'
 
@@ -20,9 +25,9 @@ const FirstRightText = () => (
     </p>
     <p style={{ marginBottom: '10px' }}>
       Our curiosity is brought to life wherever we are and we all have a strong desire to know or learn new skills.    </p>
-    <p style={{ marginBottom: '10px' }}>
+    {/* <p style={{ marginBottom: '10px' }}>
       Here's where continuous learning happens
-    </p>
+    </p> */}
   </>
 );
 
@@ -45,21 +50,35 @@ const SecondRightText = () => (
 
 const customProps = {
   Banner:
-    <FeatureCard
-      subTitle="Level Up with"
-      title="Micro Sessions"
-      actionIcon="arrowRight"
-      href="/getting-started/the-mission"
-      color="dark"
-    >
-      <Video
-        src="/videos/tic_animated_logo_2_medium.mov"
-        poster="/images/tic_poster.png"
-        autoPlay
-        muted
-        playsInline
-        loop />
-    </FeatureCard>
+    <>
+      <MobileView>
+        <div style={{
+          height: '20vh',
+          backgroundImage: `url("${TICcover}")`,
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat'
+        }}></div>
+      </MobileView>
+      <BrowserView>
+        <FeatureCard
+          subTitle="Level Up with"
+          title="Micro Sessions"
+          actionIcon="arrowRight"
+          href="/getting-started/the-mission"
+          color="dark"
+        >
+          <Video
+            src="/videos/tic_animated_logo_2_medium.mov"
+            poster="/images/tic_poster.png"
+            autoPlay
+            muted
+            playsInline
+            loop />
+        </FeatureCard>
+      </BrowserView >
+
+    </>
   ,
   // <HomepageBanner renderText={BannerText} image={'https://github.com/CraftAcademy/craft-assets/blob/gh-pages/images/backgrounds/splash_3.jpg?raw=true'} />,
   FirstCallout: (

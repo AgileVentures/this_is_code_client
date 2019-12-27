@@ -24,6 +24,7 @@
     "j-tockauth": "tochman/j-tockauth#experiment",
     "moment": "^2.24.0",
     "react": "^16.8.6",
+    "react-device-detect": "^1.11.14",
     "react-dom": "^16.8.6",
     "react-moment": "^0.9.7",
     "react-redux": "^7.1.3",
