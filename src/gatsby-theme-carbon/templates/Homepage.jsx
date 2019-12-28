@@ -51,7 +51,7 @@ const SecondRightText = () => (
 const customProps = {
   Banner:
     <>
-      <MobileView>
+      <MobileView renderWithFragment>
         <div style={{
           height: '20vh',
           backgroundImage: `url("${TICcover}")`,
@@ -60,7 +60,7 @@ const customProps = {
           backgroundRepeat: 'no-repeat'
         }}></div>
       </MobileView>
-      <BrowserView>
+      <BrowserView renderWithFragment>
         <FeatureCard
           subTitle="Level Up with"
           title="Micro Sessions"
