@@ -12,7 +12,6 @@ import {
 
 import { connect } from 'react-redux'
 
-
 const FirstLeftText = () => <h3>This IS Code!</h3>;
 
 const FirstRightText = () => (
