@@ -7,6 +7,7 @@ import {
   DISPLAY_AUTH_MODAL,
   HIDE_AUTH_MODAL
 } from '../actions/actionTypes'
+import slackNotifier from '../../modules/slackNotifier'
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -34,6 +35,7 @@ const authReducer = (state, action) => {
         }
       )
     case AUTHENTICATE:
+        // slackNotifier({...action.payload})
       return (
         {
           ...state,
@@ -92,4 +94,3 @@ const authReducer = (state, action) => {
 }
 
 export { authReducer }
-

@@ -38,7 +38,13 @@ const AuthForm = (props) => {
             props.dispatch({ type: AUTHENTICATE, payload: response.user })
           })
           .catch(error => {
-            props.dispatch({ type: NOTIFY, payload: { title: 'Error', caption: error.response.data.errors.toString() } })
+            let errorMessage
+            try {
+              errorMessage = error.response.data.errors.toString()
+            } catch {
+              errorMessage = error.message
+            }
+            props.dispatch({ type: NOTIFY, payload: { title: 'Error', caption: errorMessage } })
           });
         break;
       case 'register':
@@ -112,7 +118,7 @@ const AuthForm = (props) => {
         selectorPrimaryFocus="input"
       >
         {props.notification &&
-          <h1 style={{color: 'red'}}>{props.notification.caption}</h1>
+          <h1 style={{ color: 'red' }}>{props.notification.caption}</h1>
         }
         {formFields}
       </Modal>
