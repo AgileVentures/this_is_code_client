@@ -7,8 +7,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        
-        name: 'C´This Is Code',
+
+        name: 'This Is Code',
         short_name: 'This Is Code',
         start_url: '/',
         background_color: '#f28e24',

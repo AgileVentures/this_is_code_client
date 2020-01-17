@@ -17,10 +17,8 @@ export default function HTML(props) {
           content="https://raw.githubusercontent.com/CraftAcademy/craft-assets/gh-pages/images/banners/tic_poster.png"
         />
         <link rel="shortcut icon" href="%PUBLIC_URL%/logo for website 2.png" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
-        />
+        <meta name="viewport" content="width=device-width,user-scalable=no" />
+
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes}>
