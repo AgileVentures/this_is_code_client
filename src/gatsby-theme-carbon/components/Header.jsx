@@ -53,7 +53,6 @@ const Header = (props) => {
           aria-label="Open menu"
           onClick={() => {
             toggleNavState('leftNavIsOpen');
-            toggleNavState('switcherIsOpen', 'close');
           }}
           isActive={leftNavIsOpen}
         />
