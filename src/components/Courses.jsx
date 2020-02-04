@@ -4,16 +4,14 @@ import ArticleCard from 'gatsby-theme-carbon/src/components/ArticleCard'
 import { Row, Column } from 'gatsby-theme-carbon/src/components/Grid'
 import Moment from 'react-moment'
 
-
-
-import axios from 'axios'
+import axios from "../helpers/axios-service"
 class Courses extends Component {
   state = {
     loading: true,
     courses: []
   }
   async componentDidMount() {
-    let response = await axios.get('https://this-is-code-staging.herokuapp.com/courses')
+    let response = await axios.getAllCourses()
     this.setState({ courses: response.data.courses, loading: false })
   }
 
