@@ -4,9 +4,13 @@ import { connect } from "react-redux";
 import { HIDE_COURSE_DETAILS } from "../state/actions/actionTypes";
 
 import { Modal, Accordion, AccordionItem } from "carbon-components-react";
+import PaymentForm from "./PaymentForm";
 
 const CourseDetails = props => {
   let { course } = props;
+  const handlePayment = price => {
+    debugger;
+  };
   return (
     <div style={{ position: "fixed", top: "0px", zIndex: "999" }}>
       <Modal
@@ -27,11 +31,18 @@ const CourseDetails = props => {
             ? `Buy Solo for $${props.course.soloPrice} `
             : "Solo purchase not Available for this course"
         }
-        primaryButtonDisabled={false}
+        primaryButtonDisabled={props.course.free}
         secondaryButtonDisabled={!props.course.soloPrice}
-        onRequestClose={() => props.hideCourseDetails()}
+        // onRequestClose={() => props.hideCourseDetails()}
+        onRequestClose
         size="lg"
         selectorPrimaryFocus="img"
+        onRequestSubmit={() => {
+          handlePayment(props.course.displayPrice);
+        }}
+        onSecondarySubmit={() => {
+          handlePayment(props.course.soloPrice);
+        }}
       >
         <img
           alt="Card cover"
@@ -73,6 +84,7 @@ const CourseDetails = props => {
             <></>
           )}
         </Accordion>
+        <PaymentForm />
       </Modal>
     </div>
   );

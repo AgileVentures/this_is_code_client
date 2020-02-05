@@ -1,20 +1,25 @@
 module.exports = {
   siteMetadata: {
-    title: 'This Is Code',
+    title: "This Is Code"
   },
   plugins: [
-    'gatsby-theme-carbon',
     {
-      resolve: 'gatsby-plugin-manifest',
+      resolve: `gatsby-plugin-stripe`,
       options: {
-
-        name: 'This Is Code',
-        short_name: 'This Is Code',
-        start_url: '/',
-        background_color: '#f28e24',
-        theme_color: '#0062ff',
-        display: 'browser',
-      },
+        async: true
+      }
+    },
+    "gatsby-theme-carbon",
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        name: "This Is Code",
+        short_name: "This Is Code",
+        start_url: "/",
+        background_color: "#f28e24",
+        theme_color: "#0062ff",
+        display: "browser"
+      }
     },
     {
       resolve: "gatsby-plugin-react-svg",
@@ -24,5 +29,5 @@ module.exports = {
         }
       }
     }
-  ],
+  ]
 };
