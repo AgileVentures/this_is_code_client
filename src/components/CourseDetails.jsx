@@ -5,14 +5,16 @@ import { Modal, Accordion, AccordionItem } from "carbon-components-react";
 import { HIDE_COURSE_DETAILS } from "../state/actions/actionTypes";
 import axios from "../helpers/axios-service";
 
-const CourseDetails = ({ course, closeCourseModal }) => {
-  const handlePayment = async price => {
-    debugger;
-    const payload = {};
-    // const response = await axios.buyCourse(payload);
+const CourseDetails = ({
+  course,
+  closeCourseModal,
+  setDisplayPaymentModal
+}) => {
+  const handlePayment = (price, type) => {
+    closeCourseModal()
+    setDisplayPaymentModal({ price: price, type: type });
   };
   return (
-    <div style={{ position: "fixed", top: "0px", zIndex: "999" }}>
       <Modal
         aria-label="Modal"
         hasScrollingContent
@@ -38,10 +40,10 @@ const CourseDetails = ({ course, closeCourseModal }) => {
         size="lg"
         selectorPrimaryFocus="img"
         onRequestSubmit={() => {
-          handlePayment(course.displayPrice);
+          handlePayment(course.displayPrice, "group");
         }}
         onSecondarySubmit={() => {
-          handlePayment(course.soloPrice);
+          handlePayment(course.soloPrice, "solo");
         }}
       >
         {/* <img
@@ -85,7 +87,6 @@ const CourseDetails = ({ course, closeCourseModal }) => {
           )}
         </Accordion>
       </Modal>
-    </div>
   );
 };
 

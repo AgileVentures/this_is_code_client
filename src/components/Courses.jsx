@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import { Modal, ModalWrapper } from "carbon-components-react";
+import { Elements } from "react-stripe-elements";
 import ArticleCard from "gatsby-theme-carbon/src/components/ArticleCard";
 import { Row, Column } from "gatsby-theme-carbon/src/components/Grid";
 import moment from "moment";
@@ -64,7 +65,13 @@ const Courses = () => {
             <CourseDetails
               course={displayCourseModal}
               closeCourseModal={setDisplayCourseModal}
+              setDisplayPaymentModal={setDisplayPaymentModal}
             />
+          )}
+          {displayPaymentModal && (
+            <Elements>
+              <PaymentForm paymentInfo={displayPaymentModal} setDisplayPaymentModal={setDisplayPaymentModal} />
+            </Elements>
           )}
         </div>
       );
