@@ -11,8 +11,7 @@ const CourseDetails = ({
   setDisplayPaymentModal
 }) => {
   const handlePayment = (price, type) => {
-    closeCourseModal()
-    setDisplayPaymentModal({ price: price, type: type });
+    setDisplayPaymentModal({ price: price, type: type, course: course });
   };
   return (
       <Modal
