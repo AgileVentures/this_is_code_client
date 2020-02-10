@@ -11,8 +11,24 @@ const defaultConfig = {
 
 const http = axios.create(defaultConfig);
 
+const secureHttp = axios.create(defaultConfig);
+
+secureHttp.interceptors.request.use(
+  config => {
+    // config.headers = getCurrentCredentials();
+    return config;
+  },
+
+  error => {
+    // return errorResponse(error);
+  }
+);
+
 export default {
   getAllCourses() {
     return http.get(`courses`);
-  }
+  },
+  buyCourse(purchaseInfo) {
+    return secureHttp.post(`/transactions`, purchaseInfo);
+  },
 };
