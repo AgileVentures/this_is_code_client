@@ -3,6 +3,7 @@ module.exports = {
     title: 'This Is Code',
   },
   plugins: [
+    `gatsby-plugin-stripe`,
     'gatsby-theme-carbon',
     {
       resolve: 'gatsby-plugin-manifest',

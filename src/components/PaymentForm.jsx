@@ -9,20 +9,6 @@ import { Modal } from "carbon-components-react";
 
 import axios from "../helpers/axios-service";
 
-export const StripeElements = ({ paymentInfo, processPayment }) => {
-  return (
-    <>
-      <label>Card number </label>
-      {/* <CardNumberElement id="card_number" />
-      <label> Expiration date</label>
-      <CardExpiryElement />
-      <label>CVC</label>
-      <CardCVCElement /> */}
-      <button onClick={() => processPayment}> Buy </button>
-    </>
-  );
-};
-
 const PaymentForm = ({ paymentInfo, setDisplayPaymentModal }) => {
   const processPayment = () => {
     setDisplayPaymentModal();
@@ -46,7 +32,12 @@ const PaymentForm = ({ paymentInfo, setDisplayPaymentModal }) => {
           setDisplayPaymentModal();
         }}
       >
-        <StripeElements paymentInfo={paymentInfo} onSubmit={processPayment} />
+        <label>Card number </label>
+        <CardNumberElement id="card_number" />
+      <label> Expiration date</label>
+      <CardExpiryElement />
+      <label>CVC</label>
+      <CardCVCElement />
       </Modal>
     </>
   );

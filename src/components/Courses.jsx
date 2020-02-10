@@ -79,7 +79,7 @@ const Courses = () => {
 
   useEffect(() => {
     fetchCourses();
-  });
+  },[]);
   return <div>{loading ? <h2>Loading</h2> : renderCourses}</div>;
 };
 
