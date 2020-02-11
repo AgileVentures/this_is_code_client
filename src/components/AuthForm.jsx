@@ -1,75 +1,74 @@
-import React, { useState } from "react"
-import { connect } from 'react-redux'
-import {
-  Modal,
-  TextInput
-} from "carbon-components-react"
-import {
-  fieldTypes,
-  auth
-} from '../modules/authUtils'
-import {
-  NOTIFY,
-  AUTHENTICATE
-} from '../state/actions/actionTypes'
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { Modal, TextInput } from "carbon-components-react";
+import { fieldTypes, auth } from "../modules/authUtils";
+import { NOTIFY, AUTHENTICATE } from "../state/actions/actionTypes";
 
-
-const AuthForm = (props) => {
-  const intitialFormData = {}
+const AuthForm = props => {
+  const intitialFormData = {};
 
   props.fields.forEach(formElement => {
-    intitialFormData[formElement.name] = ""
+    intitialFormData[formElement.name] = "";
   });
 
   const [formValues, setFormValues] = useState(intitialFormData);
 
-  const handleFieldValueChange = (event) => {
-    const formDataCopy = { ...formValues }
+  const handleFieldValueChange = event => {
+    const formDataCopy = { ...formValues };
     formDataCopy[event.target.name] = event.target.value;
     setFormValues(formDataCopy);
-  }
+  };
 
   const formSubmitHandler = () => {
     switch (props.variant) {
-      case 'login':
+      case "login":
         auth
           .signIn(formValues.email, formValues.password)
           .then(response => {
-            props.dispatch({ type: AUTHENTICATE, payload: response.user })
+            props.dispatch({ type: AUTHENTICATE, payload: response.user });
           })
           .catch(error => {
-            props.dispatch({ type: NOTIFY, payload: { title: 'Error', caption: error.response.data.errors.toString() } })
+            props.dispatch({
+              type: NOTIFY,
+              payload: {
+                title: "Error",
+                caption: error.response.data.errors.toString()
+              }
+            });
           });
         break;
-      case 'register':
+      case "register":
         let values = {
           email: formValues.email,
           password: formValues.password,
           password_confirmation: formValues.passwordConfirmation,
           first_name: formValues.firstName,
           last_name: formValues.lastName
-        }
+        };
         auth
           .signUp(values)
           .then(response => {
-            props.dispatch({ type: AUTHENTICATE, payload: response.data.data })
+            props.dispatch({ type: AUTHENTICATE, payload: response.data.data });
           })
           .catch(error => {
-            let errorMessage
+            let errorMessage;
             try {
-              errorMessage = error.response.data.errors.full_messages.toString()
+              errorMessage = error.response.data.errors.full_messages.toString();
             } catch {
-              errorMessage = error.message
+              errorMessage = error.message;
             }
-            props.dispatch({ type: NOTIFY, payload: { title: 'Error', caption: errorMessage } })
+            props.dispatch({
+              type: NOTIFY,
+              payload: { title: "Error", caption: errorMessage }
+            });
           });
         break;
       default:
-        return
+        return;
     }
-  }
+  };
 
-  const fieldsToRender = props.fields.map(item => (fieldTypes[item]))
+  const fieldsToRender = props.fields.map(item => fieldTypes[item]);
 
   const formFields = fieldsToRender.map(formItem => {
     return (
@@ -87,13 +86,15 @@ const AuthForm = (props) => {
           placeholder={formItem.placeholder}
           type={formItem.type}
           required={formItem.required}
-          pattern={() => formItem.type === ('password' || 'passwordConfirmation') && "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"}
+          pattern={() =>
+            formItem.type === ("password" || "passwordConfirmation") &&
+            "(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+          }
         />
         <br />
       </div>
-    )
-  })
-
+    );
+  });
 
   return (
     <>
@@ -107,24 +108,22 @@ const AuthForm = (props) => {
         primaryButtonText={props.header}
         secondaryButtonText="Cancel"
         primaryButtonDisabled={false}
-        onRequestClose={() => props.dispatch({ type: 'HIDE_AUTH_MODAL' })}
+        onRequestClose={() => props.dispatch({ type: "HIDE_AUTH_MODAL" })}
         onRequestSubmit={() => formSubmitHandler()}
         selectorPrimaryFocus="input"
       >
-        {props.notification &&
-          <h1 style={{color: 'red'}}>{props.notification.caption}</h1>
-        }
+        {props.notification && (
+          <h1 style={{ color: "red" }}>{props.notification.caption}</h1>
+        )}
         {formFields}
       </Modal>
     </>
-  )
-}
+  );
+};
 
-const mapStateToProps = (state) => (
-  {
-    user: state.user,
-    notification: state.notification
-  }
-)
+const mapStateToProps = state => ({
+  user: state.user,
+  notification: state.notification
+});
 
-export default connect(mapStateToProps)(AuthForm)
+export default connect(mapStateToProps)(AuthForm);

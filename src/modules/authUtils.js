@@ -1,9 +1,13 @@
 import JtockAuth from 'j-tockauth'
 
 const auth = new JtockAuth({
-  host: "https://this-is-code-staging.herokuapp.com",
-  // host: "http://localhost:3000",
-  debug: false
+  // host: "https://this-is-code-staging.herokuapp.com",
+  host: process.env.NODE_ENV === "development"
+  ? "http://localhost:3000"
+  : "https://this-is-code-staging.herokuapp.com",
+  debug: false,
+  mode: 'session'
+
 });
 
 

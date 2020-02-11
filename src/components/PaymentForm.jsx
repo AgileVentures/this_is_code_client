@@ -9,8 +9,20 @@ import { Modal } from "carbon-components-react";
 
 import axios from "../helpers/axios-service";
 
-const PaymentForm = ({ paymentInfo, setDisplayPaymentModal }) => {
-  const processPayment = () => {
+const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
+  const getStripeToken = async () => {
+    const response = await stripe.createToken();
+    return response.token.id;
+  };
+  const processPayment = async () => {
+    const token = await getStripeToken();
+    const solo = paymentInfo.type === "solo" ? "solo: true" : "";
+    const payload = {
+      course_id: paymentInfo.course.id,
+      stripe_token: token
+    };
+    const response = await axios.buyCourse(payload);
+    debugger;
     setDisplayPaymentModal();
   };
   return (
@@ -32,12 +44,14 @@ const PaymentForm = ({ paymentInfo, setDisplayPaymentModal }) => {
           setDisplayPaymentModal();
         }}
       >
+        
         <label>Card number </label>
         <CardNumberElement id="card_number" />
-      <label> Expiration date</label>
-      <CardExpiryElement />
-      <label>CVC</label>
-      <CardCVCElement />
+        <label> Expiration date</label>
+        <CardExpiryElement />
+        <label>CVC</label>
+        <CardCVCElement />
+        
       </Modal>
     </>
   );

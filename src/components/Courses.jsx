@@ -1,13 +1,15 @@
-import React, { Component, useState, useEffect } from "react";
-import { Modal, ModalWrapper } from "carbon-components-react";
+import React, { useState, useEffect } from "react";
 import { Elements } from "react-stripe-elements";
+import { StripeProvider } from "react-stripe-elements";
 import ArticleCard from "gatsby-theme-carbon/src/components/ArticleCard";
 import { Row, Column } from "gatsby-theme-carbon/src/components/Grid";
 import moment from "moment";
 import PaymentForm from "./PaymentForm";
+import { auth } from "../modules/authUtils";
 
 import axios from "../helpers/axios-service";
 import CourseDetails from "./CourseDetails";
+import { setCurrentCredentials } from "../helpers/localstorageHelper";
 
 const Courses = () => {
   const [courses, setCourses] = useState();
@@ -15,6 +17,10 @@ const Courses = () => {
   const [displayCourseModal, setDisplayCourseModal] = useState();
   const [displayPaymentModal, setDisplayPaymentModal] = useState(false);
 
+  const setHeaders = () => {
+    const headers = auth.tokenHeaders();
+    headers && setCurrentCredentials(auth.tokenHeaders());
+  };
   const handleCourseClick = course => {
     setDisplayCourseModal(course);
   };
@@ -70,7 +76,10 @@ const Courses = () => {
           )}
           {displayPaymentModal && (
             <Elements>
-              <PaymentForm paymentInfo={displayPaymentModal} setDisplayPaymentModal={setDisplayPaymentModal} />
+              <PaymentForm
+                paymentInfo={displayPaymentModal}
+                setDisplayPaymentModal={setDisplayPaymentModal}
+              />
             </Elements>
           )}
         </div>
@@ -79,7 +88,8 @@ const Courses = () => {
 
   useEffect(() => {
     fetchCourses();
-  },[]);
+    setHeaders();
+  }, []);
   return <div>{loading ? <h2>Loading</h2> : renderCourses}</div>;
 };
 

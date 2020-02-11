@@ -8,7 +8,7 @@ const wrapWithProvider = ({ element }) => {
   const store = createStore();
 
   return (
-    <StripeProvider apiKey={`${process.env.GATSBY_STRIPE_API_KEY}`} >
+    <StripeProvider apiKey={process.env.GATSBY_STRIPE_KEY} >
       <Provider store={store}>{element}</Provider>
     </StripeProvider>
   );
