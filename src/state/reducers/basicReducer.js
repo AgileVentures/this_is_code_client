@@ -52,6 +52,7 @@ const authReducer = (state, action) => {
         }
       };
     case LOGOUT:
+      localStorage.clear();
       return {
         ...state,
         user: {

@@ -6,12 +6,12 @@ import {
 } from "react-stripe-elements";
 import { injectStripe } from "react-stripe-elements";
 import { Modal } from "carbon-components-react";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 
 import axios from "../helpers/axios-service";
 
 const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const getStripeToken = async () => {
     const response = await stripe.createToken();
     return response.token.id;
@@ -22,22 +22,21 @@ const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
       course_id: paymentInfo.course.id,
       stripe_token: token
     };
-    payload = paymentInfo.type === "solo" ? {...payload, "solo" : true} : {...payload}
-    
+    payload =
+      paymentInfo.type === "solo" ? { ...payload, solo: true } : { ...payload };
+
     try {
-      
       const response = await axios.buyCourse(payload);
-      dispatch({type: 'COURSE_PURCHASED',payload: paymentInfo.course})
+      dispatch({ type: "COURSE_PURCHASED", payload: paymentInfo.course });
     } catch (error) {
       dispatch({
-        type: 'NOTIFY',
+        type: "NOTIFY",
         payload: {
           title: "Payment failed",
           caption: "Something went wrong while processing your payment"
         }
-      })
+      });
     }
-    
     setDisplayPaymentModal();
   };
   return (
@@ -59,14 +58,12 @@ const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
           setDisplayPaymentModal();
         }}
       >
-        
         <label>Card number </label>
         <CardNumberElement id="card_number" />
         <label> Expiration date</label>
         <CardExpiryElement />
         <label>CVC</label>
         <CardCVCElement />
-        
       </Modal>
     </>
   );
