@@ -24,6 +24,10 @@ const authReducer = (state, action) => {
         user: {
           ...state.user,
           boughtCourses: [...state.user.boughtCourses, action.payload]
+        },
+        notification: {
+          title: "Purchase successful",
+          caption: `You have successfully purchased ${action.payload.title}!`
         }
       };
 
