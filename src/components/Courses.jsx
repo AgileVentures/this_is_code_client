@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Elements } from "react-stripe-elements";
-import { StripeProvider } from "react-stripe-elements";
+import { useSelector } from "react-redux";
 import ArticleCard from "gatsby-theme-carbon/src/components/ArticleCard";
 import { Row, Column } from "gatsby-theme-carbon/src/components/Grid";
 import moment from "moment";
@@ -16,7 +16,7 @@ const Courses = () => {
   const [loading, setLoading] = useState(true);
   const [displayCourseModal, setDisplayCourseModal] = useState();
   const [displayPaymentModal, setDisplayPaymentModal] = useState(false);
-
+  const currentUser = useSelector(state => state.user);
   const setHeaders = () => {
     const headers = auth.tokenHeaders();
     headers && setCurrentCredentials(auth.tokenHeaders());
@@ -55,7 +55,7 @@ const Courses = () => {
                   course.events.length !== 1 ? "s" : ""
                 }`}
               >
-                {/* <img
+                <img
                   alt="Card cover"
                   style={{
                     width: "auto",
@@ -63,7 +63,11 @@ const Courses = () => {
                     objectFit: "cover"
                   }}
                   src={course.coverImage}
-                /> */}
+                />
+                {currentUser.loggedIn &&
+                  currentUser.boughtCourses.filter(
+                    myCourse => myCourse.id === course.id
+                  ).length > 0 && <h4>You have purchased this course</h4>}
               </ArticleCard>
             </div>
           </Column>
