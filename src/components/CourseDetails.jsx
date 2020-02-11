@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import moment from "moment";
 import { Modal, Accordion, AccordionItem } from "carbon-components-react";
 
@@ -10,30 +11,44 @@ const CourseDetails = ({
   const handlePayment = (price, type) => {
     setDisplayPaymentModal({ price: price, type: type, course: course });
   };
+  const currentUser = useSelector(state => state.user);
+  const primaryButtonText = course.soloPrice
+    ? `Get solo access for $${course.soloPrice} `
+    : "Solo access not available for this course";
+  const secondaryButtonText =
+    course.displayPrice > 0
+      ? `Buy a group membership for $${course.displayPrice}`
+      : "This course is FREE to attend!";
+  const onRequestSubmit =
+    currentUser.loggedIn &&
+    (() => {
+      course.soloPrice && handlePayment(course.soloPrice, "solo");
+    });
+  const onSecondarySubmit =
+    currentUser.loggedIn &&
+    (() => {
+      handlePayment(course.displayPrice, "group");
+    });
   const modalProps = {
     "aria-label": "Modal",
     hasScrollingContent: true,
     modalHeading: course.title,
     iconDescription: "Close",
     modalAriaLabel: course.title,
-    secondaryButtonText:
-      course.displayPrice > 0
-        ? `Buy a group membership for $${course.displayPrice}`
-        : "This course is FREE to attend!",
-    primaryButtonText: course.soloPrice
-      ? `Get solo access for $${course.soloPrice} `
-      : "Solo access not available for this course",
+    secondaryButtonText: currentUser.loggedIn
+      ? secondaryButtonText
+      : "You need to be logged in to purchase a course",
+
+    primaryButtonText: currentUser.loggedIn
+      ? primaryButtonText
+      : "You need to be logged in to purchase a course",
     primaryButtonDisabled: !course.soloPrice,
     size: "lg",
     selectorPrimaryFocus: "title",
-    onRequestSubmit: () => {
-      course.soloPrice && handlePayment(course.soloPrice, "solo");
-    },
+    onRequestSubmit: onRequestSubmit,
     open: true,
     onRequestClose: () => closeCourseModal(),
-    onSecondarySubmit: () => {
-      handlePayment(course.displayPrice, "group");
-    }
+    onSecondarySubmit: onSecondarySubmit
   };
   return (
     <Modal {...modalProps}>
@@ -76,6 +91,9 @@ const CourseDetails = ({
           <></>
         )}
       </Accordion>
+      {!currentUser.loggedIn && (
+        <p>You need to be logged in to purchase a course</p>
+      )}
     </Modal>
   );
 };
