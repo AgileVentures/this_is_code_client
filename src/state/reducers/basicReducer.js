@@ -51,7 +51,7 @@ const authReducer = (state, action) => {
           caption: `Nice to see you ${action.payload.firstName}!`
         }
       };
-    case LOGOUT:
+    case "LOGOUT":
       localStorage.clear();
       return {
         ...state,

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Modal, TextInput } from "carbon-components-react";
 import { fieldTypes, auth } from "../modules/authUtils";
 import { NOTIFY, AUTHENTICATE } from "../state/actions/actionTypes";
+import { setCurrentCredentials } from "../helpers/localstorageHelper";
 
 const AuthForm = props => {
   const intitialFormData = {};
@@ -25,9 +26,11 @@ const AuthForm = props => {
         auth
           .signIn(formValues.email, formValues.password)
           .then(response => {
+            setCurrentCredentials(auth.tokenHeaders());
             props.dispatch({ type: AUTHENTICATE, payload: response.user });
           })
           .catch(error => {
+            debugger;
             props.dispatch({
               type: NOTIFY,
               payload: {
@@ -48,6 +51,7 @@ const AuthForm = props => {
         auth
           .signUp(values)
           .then(response => {
+            setCurrentCredentials(auth.tokenHeaders());
             props.dispatch({ type: AUTHENTICATE, payload: response.data.data });
           })
           .catch(error => {
