@@ -12,9 +12,9 @@ const CourseDetails = ({
     setDisplayPaymentModal({ price: price, type: type, course: course });
   };
   const currentUser = useSelector(state => state.user);
-  const isCoursePurchased =  currentUser?.boughtCourses.filter(
-    myCourse => myCourse.id === course.id
-  ).length > 0
+  const isCoursePurchased =
+    currentUser?.boughtCourses?.filter(myCourse => myCourse.id === course.id)
+      .length > 0;
   const primaryButtonText = course.soloPrice
     ? `Get solo access for $${course.soloPrice} `
     : "Solo access not available for this course";
@@ -39,11 +39,15 @@ const CourseDetails = ({
     iconDescription: "Close",
     modalAriaLabel: course.title,
     secondaryButtonText: currentUser.loggedIn
-      ? isCoursePurchased ? "You have already purchased this course":secondaryButtonText
+      ? isCoursePurchased
+        ? "You have already purchased this course"
+        : secondaryButtonText
       : "You need to be logged in to purchase a course",
 
     primaryButtonText: currentUser.loggedIn
-      ? isCoursePurchased ? "You have already purchased this course":primaryButtonText
+      ? isCoursePurchased
+        ? "You have already purchased this course"
+        : primaryButtonText
       : "You need to be logged in to purchase a course",
     primaryButtonDisabled: !course.soloPrice,
     size: "lg",
@@ -56,10 +60,10 @@ const CourseDetails = ({
   return (
     <Modal {...modalProps}>
       <img
-          alt="Card cover"
-          style={{ width: "auto", minHeight: "50%", objectFit: "cover" }}
-          src={course.coverImage}
-        />
+        alt="Card cover"
+        style={{ width: "auto", minHeight: "50%", objectFit: "cover" }}
+        src={course.coverImage}
+      />
 
       <p className="bx--modal-content__text">
         <strong>Note:</strong> Enrollment opens up in January 2020. Stay tuned.

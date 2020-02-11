@@ -6,23 +6,38 @@ import {
 } from "react-stripe-elements";
 import { injectStripe } from "react-stripe-elements";
 import { Modal } from "carbon-components-react";
+import { useDispatch } from 'react-redux'
 
 import axios from "../helpers/axios-service";
 
 const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
+  const dispatch = useDispatch()
   const getStripeToken = async () => {
     const response = await stripe.createToken();
     return response.token.id;
   };
   const processPayment = async () => {
     const token = await getStripeToken();
-    const solo = paymentInfo.type === "solo" ? "solo: true" : "";
-    const payload = {
+    let payload = {
       course_id: paymentInfo.course.id,
       stripe_token: token
     };
-    const response = await axios.buyCourse(payload);
-    debugger;
+    payload = paymentInfo.type === "solo" ? {...payload, "solo" : true} : {...payload}
+    
+    try {
+      
+      const response = await axios.buyCourse(payload);
+      dispatch({type: 'COURSE_PURCHASED',payload: paymentInfo.course})
+    } catch (error) {
+      dispatch({
+        type: 'NOTIFY',
+        payload: {
+          title: "Payment failed",
+          caption: "Something went wrong while processing your payment"
+        }
+      })
+    }
+    
     setDisplayPaymentModal();
   };
   return (
