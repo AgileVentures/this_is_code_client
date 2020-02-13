@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { StripeProvider } from "react-stripe-elements";
+import { StripeProvider } from "react-stripe-elements-universal";
 import createStore from "./src/state/store/createStore";
 
 // eslint-disable-next-line react/display-name,react/prop-types

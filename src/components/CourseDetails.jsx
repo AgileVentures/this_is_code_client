@@ -1,22 +1,23 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import { Modal, Accordion, AccordionItem } from "carbon-components-react";
 
 const CourseDetails = ({
   course,
   closeCourseModal,
-  setDisplayPaymentModal
+  // setDisplayPaymentModal
 }) => {
-  const handlePayment = (price, type) => {
-    setDisplayPaymentModal({ price: price, type: type, course: course });
-  };
   const currentUser = useSelector(state => state.user);
+  const dispatch = useDispatch()
+  const handlePayment = (price, type) => {
+    dispatch({type: 'DISPLAY_PAYMENT_MODAL', payload :{ price: price, type: type, course: course } })
+  };
   const isCoursePurchased =
     currentUser?.boughtCourses?.filter(myCourse => myCourse.id === course.id)
       .length > 0;
   const primaryButtonText = course.soloPrice
-    ? `Get solo access for $${course.soloPrice} `
+    ? `Get solo access for $${course.soloPrice}`
     : "Solo access not available for this course";
   const secondaryButtonText =
     course.displayPrice > 0
@@ -34,7 +35,7 @@ const CourseDetails = ({
     });
   const modalProps = {
     "aria-label": "Modal",
-    hasScrollingContent: true,
+    // hasScrollingContent: true,
     modalHeading: course.title,
     iconDescription: "Close",
     modalAriaLabel: course.title,
@@ -51,13 +52,14 @@ const CourseDetails = ({
       : "You need to be logged in to purchase a course",
     primaryButtonDisabled: !course.soloPrice,
     size: "lg",
-    selectorPrimaryFocus: "title",
+    selectorPrimaryFocus: "close",
     onRequestSubmit: onRequestSubmit,
     open: true,
     onRequestClose: () => closeCourseModal(),
     onSecondarySubmit: onSecondarySubmit
   };
   return (
+    <div style={{ position: "fixed", top: "0px", zIndex: "999" }}>
     <Modal {...modalProps}>
       <img
         alt="Card cover"
@@ -102,6 +104,7 @@ const CourseDetails = ({
         <p>You need to be logged in to purchase a course</p>
       )}
     </Modal>
+    </div>
   );
 };
 

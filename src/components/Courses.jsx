@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Elements } from "react-stripe-elements";
-import { useSelector } from "react-redux";
+import { Elements } from "react-stripe-elements-universal";
+import { useSelector, useDispatch } from "react-redux";
 import ArticleCard from "gatsby-theme-carbon/src/components/ArticleCard";
 import { Row, Column } from "gatsby-theme-carbon/src/components/Grid";
 import moment from "moment";
-import PaymentForm from "./PaymentForm";
 
 import axios from "../helpers/axios-service";
-import CourseDetails from "./CourseDetails";
 
 const Courses = () => {
   const [courses, setCourses] = useState();
   const [loading, setLoading] = useState(true);
-  const [displayCourseModal, setDisplayCourseModal] = useState();
-  const [displayPaymentModal, setDisplayPaymentModal] = useState(false);
   const currentUser = useSelector(state => state.user);
+  const dispatch = useDispatch();
   const handleCourseClick = course => {
-    setDisplayCourseModal(course);
+    dispatch({ type: "DISPLAY_COURSE", payload: course });
   };
 
   const fetchCourses = async () => {
@@ -65,21 +62,6 @@ const Courses = () => {
               </ArticleCard>
             </div>
           </Column>
-          {displayCourseModal && (
-            <CourseDetails
-              course={displayCourseModal}
-              closeCourseModal={setDisplayCourseModal}
-              setDisplayPaymentModal={setDisplayPaymentModal}
-            />
-          )}
-          {displayPaymentModal && (
-            <Elements>
-              <PaymentForm
-                paymentInfo={displayPaymentModal}
-                setDisplayPaymentModal={setDisplayPaymentModal}
-              />
-            </Elements>
-          )}
         </div>
       );
     });

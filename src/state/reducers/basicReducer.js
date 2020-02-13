@@ -18,6 +18,16 @@ const authReducer = (state, action) => {
           displayCourseInstance: action.payload
         }
       };
+    case "DISPLAY_COURSE":
+      return {
+        ...state,
+        displayCourseModal: action.payload
+      };
+    case "DISPLAY_PAYMENT_MODAL":
+      return {
+        ...state,
+        displayPaymentModal: action.payload
+      };
     case "COURSE_PURCHASED":
       return {
         ...state,

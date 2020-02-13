@@ -47,7 +47,7 @@ describe("User Can Authenticate", () => {
       cy.viewport('iphone-x')
       cy.get('.bx--header__action--menu').click()
       cy.get('[name="register"]').click()
-      cy.get('[name="email"]').type('john-doe@craft.se')
+      cy.get('[name="email"]').type('john-doe1@craft.se')
       cy.get('[name="firstName"]').type('John')
       cy.get('[name="lastName"]').type('Doe')
       cy.get('[name="password"]').type('password')
@@ -60,7 +60,7 @@ describe("User Can Authenticate", () => {
     it("On Desktop", () => {
       cy.viewport('macbook-15')
       cy.get('[name="register"]').click()
-      cy.get('[name="email"]').type('john-doe@craft.se')
+      cy.get('[name="email"]').type('john-doe2@craft.se')
       cy.get('[name="firstName"]').type('John')
       cy.get('[name="lastName"]').type('Doe')
       cy.get('[name="password"]').type('password')
@@ -75,13 +75,19 @@ describe("User Can Authenticate", () => {
 
   describe('Login', () => {
     it("On Desktop", () => {
+      cy.route({
+        method: "GET",
+        url: "http://localhost:3000/auth/validate_token",
+        status: 200,
+        response: "fixture:validate-token.json"
+      });
       cy.viewport('macbook-15')
       cy.get('[name="login"]').click()
-      cy.get('[name="email"]').type('thomas@craftacademy.se')
+      cy.get('[name="email"]').type('student@mail.com')
       cy.get('[name="password"]').type('password')
       cy.get('button').contains('Log in').click()
-      cy.get('[aria-label="Side navigation"]').should('contain', 'Hello John')
-      cy.get('.bx--toast-notification').should('contain', 'Nice to see you John!')
+      cy.get('[aria-label="Side navigation"]').should('contain', 'Hello Student')
+      cy.get('.bx--toast-notification').should('contain', 'Nice to see you Student!')
     })
   });
 })

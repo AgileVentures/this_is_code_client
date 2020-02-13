@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
+import { Elements } from "react-stripe-elements-universal";
 
 import { Link } from "gatsby";
 import {
@@ -23,6 +24,7 @@ import {
 } from "gatsby-theme-carbon/src/components/Header/Header.module.scss";
 import Notification from "../../components/Notification";
 import CourseDetails from "../../components/CourseDetails";
+import PaymentForm from "../../components/PaymentForm"
 import { getCurrentCredentials } from "../../helpers/localstorageHelper";
 import { auth } from "../../modules/authUtils";
 
@@ -34,6 +36,8 @@ const Header = props => {
   );
   const { isSearchEnabled } = useMetadata();
   const currentUser = useSelector(state => state.user);
+  const displayCourseModal = useSelector(state => state.displayCourseModal)
+  const displayPaymentModal= useSelector(state => state.displayPaymentModal)
   const dispatch = useDispatch();
   const verifyUserCredentials = async () => {
     if (
@@ -61,8 +65,20 @@ const Header = props => {
           />
         )}
 
-        {props.displayCourse.state && (
-          <CourseDetails course={props.displayCourse.displayCourseInstance} />
+        {displayCourseModal && (
+          <CourseDetails
+            course={displayCourseModal}
+            closeCourseModal={() => dispatch({type: "DISPLAY_COURSE", payload: ""})}
+            // setDisplayPaymentModal={setDisplayPaymentModal}
+          />
+        )}
+        {displayPaymentModal && (
+          <Elements>
+            <PaymentForm
+              paymentInfo={displayPaymentModal}
+              setDisplayPaymentModal={()=>dispatch({type : 'DISPLAY_PAYMENT_MODAL', payload: false})}
+            />
+          </Elements>
         )}
 
         <SkipToContent className={skipToContent} />

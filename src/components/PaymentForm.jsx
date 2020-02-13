@@ -3,8 +3,8 @@ import {
   CardNumberElement,
   CardExpiryElement,
   CardCVCElement
-} from "react-stripe-elements";
-import { injectStripe } from "react-stripe-elements";
+} from "react-stripe-elements-universal";
+import { injectStripe } from "react-stripe-elements-universal";
 import { Modal } from "carbon-components-react";
 import { useDispatch } from "react-redux";
 
@@ -38,6 +38,7 @@ const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
       });
     }
     setDisplayPaymentModal();
+    dispatch({ type: "DISPLAY_PAYMENT_MODAL", payload: false });
   };
   return (
     <>
@@ -59,11 +60,26 @@ const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
         }}
       >
         <label>Card number </label>
-        <CardNumberElement id="card_number" />
+        <div
+          style={{ padding: 10, marginBottom: 5 }}
+          className="bx--text-input bx--text__input"
+        >
+          <CardNumberElement id="card_number" />
+        </div>
         <label> Expiration date</label>
-        <CardExpiryElement />
+        <div
+          style={{ padding: 10, marginBottom: 5 }}
+          className="bx--text-input bx--text__input"
+        >
+          <CardExpiryElement />
+        </div>
         <label>CVC</label>
-        <CardCVCElement />
+        <div
+          style={{ padding: 10, marginBottom: 5 }}
+          className="bx--text-input bx--text__input"
+        >
+          <CardCVCElement />
+        </div>
       </Modal>
     </>
   );
