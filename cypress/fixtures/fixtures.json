@@ -1,87 +1,223 @@
 [
   {
-    "url": "https://this-is-code-staging.herokuapp.com/auth",
+    "url": "http://localhost:3000/auth",
     "method": "POST",
     "data": {
       "data": {
-        "id": 1,
-        "email": "john-doe@craft.se",
+        "id": 87,
+        "email": "john-doe1@craft.se",
         "role": "student",
+        "bio": null,
+        "avatar": "https://this-is-code.s3.eu-north-1.amazonaws.com/68XhVsPupdu9bTcAPpmCqhiD?response-content-disposition=inline%3B%20filename%3D%22cover_87.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_87.jpg&response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20200213T091052Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=865c1c867d0c320f6942feef47efb84fe04e025d62033c24a2266440cb6a44f6",
         "firstName": "John",
         "lastName": "Doe",
-        "courses": []
+        "boughtCourses": []
       }
     }
   },
   {
-    "url": "https://this-is-code-staging.herokuapp.com/auth/sign_in",
+    "url": "http://localhost:3000/auth",
     "method": "POST",
     "data": {
       "data": {
-        "id": 1,
-        "email": "john-doe@craft.se",
+        "id": 88,
+        "email": "john-doe2@craft.se",
         "role": "student",
+        "bio": null,
+        "avatar": "https://this-is-code.s3.eu-north-1.amazonaws.com/GY3Xe1mmqap7BgVN274YJSqi?response-content-disposition=inline%3B%20filename%3D%22cover_88.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_88.jpg&response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20200213T091058Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=5a3c20448b77f9fa54c04bf37f3070622a29b40284d36e11576dad373b94da15",
         "firstName": "John",
         "lastName": "Doe",
-        "courses": []
+        "boughtCourses": []
       }
     }
   },
   {
-    "url": "**/auth/validate_token",
-    "method": "GET",
+    "url": "http://localhost:3000/auth/sign_in",
+    "method": "POST",
     "data": {
-      "user": {
-        "id": 1,
-        "email": "john-doe@craft.se",
+      "data": {
+        "id": 83,
+        "email": "student@mail.com",
         "role": "student",
-        "firstName": "John",
-        "lastName": "Doe",
-        "courses": []
-      }
-    }
-  },
-  {
-    "url": "**/courses",
-    "method": "GET",
-    "data": {
-      "courses": [
-        {
-          "id": 84,
-          "title": "Work The Web - The Beginnings",
-          "description": "Code Basics Workshop | HTML/CSS/JavaScript \u0026 How the Web Works. We'll be covering basics of HTML, CSS, and JavaScript, and by the end of the session, you'll see the big picture of how internet applications are structured and how you can Work The Web - not only consume it.",
-          "price": 25.0,
-          "classification": "featured",
-          "owner": {
-            "id": 22,
-            "email": "thomas@craftacademy.se",
-            "role": "teacher",
-            "firstName": "Thomas",
-            "lastName": "Ochman",
-            "birthDay": 12,
-            "birthMonth": 12,
-            "birthYear": 1990,
-            "stripeVerified": false
+        "bio": null,
+        "avatar": "https://this-is-code.s3.eu-north-1.amazonaws.com/akdUAjofpREHYsRem14qJwxw?response-content-disposition=inline%3B%20filename%3D%22cover_83.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_83.jpg&response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20200213T091101Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=a2c38eae4573cbc2c5635279bc084575767cfe5ec762dcedf60558dbd115e411",
+        "firstName": "Student",
+        "lastName": "John",
+        "boughtCourses": [
+          {
+            "id": 76,
+            "title": "Programming GJ",
+            "description": "I'll connect the digital RSS feed, that should hard drive the SAS monitor!",
+            "classification": "standard",
+            "owner": {
+              "id": 80,
+              "provider": "email",
+              "uid": "teacher@mail.com",
+              "allow_password_change": false,
+              "email": "teacher@mail.com",
+              "created_at": "2020-02-13T09:09:28.320Z",
+              "updated_at": "2020-02-13T09:10:20.856Z",
+              "first_name": "Teacher",
+              "last_name": "Jack",
+              "role": "teacher",
+              "birth_day": 12,
+              "birth_month": 12,
+              "birth_year": 1990,
+              "stripe_account": "acct_1FZCX1LGPZofXG1m",
+              "stripe_verified": false,
+              "last_4_digit_of_cc": null,
+              "stripe_customer_id": "cus_Gj5tWihlnCIXUK",
+              "bio": null
+            },
+            "buyers": [
+              {
+                "id": 83,
+                "provider": "email",
+                "uid": "student@mail.com",
+                "allow_password_change": false,
+                "email": "student@mail.com",
+                "created_at": "2020-02-13T09:09:29.835Z",
+                "updated_at": "2020-02-13T09:11:01.806Z",
+                "first_name": "Student",
+                "last_name": "John",
+                "role": "student",
+                "birth_day": null,
+                "birth_month": null,
+                "birth_year": null,
+                "stripe_account": null,
+                "stripe_verified": false,
+                "last_4_digit_of_cc": null,
+                "stripe_customer_id": "cus_Gj5txKnsd8pMWp",
+                "bio": null
+              }
+            ],
+            "free": false,
+            "price": 45,
+            "startDate": "Wed, 12 Feb 2020 23:00:00 +0000",
+            "endDate": "Thu, 27 Feb 2020 23:59:59 +0000",
+            "displayPrice": 124.2,
+            "teacherFee": 108,
+            "platformFee": 27,
+            "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/LY2jaaZqVAu4dmVgYWJj2tBH?response-content-disposition=inline%3B%20filename%3D%22cover_76.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_76.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20200213T091101Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=37f314b7fa22f50067fefe248399ab05f81920ef1757c2910c8d3c69c214b90a",
+            "enrollmentStatus": "open",
+            "events": [
+              {
+                "id": 106,
+                "title": "Programming GJ - part 1",
+                "description": "I'll connect the digital RSS feed, that should hard drive the SAS monitor!",
+                "startDate": "Thu, 13 Feb 2020 09:59:59 +0000",
+                "endDate": "Thu, 13 Feb 2020 10:29:59 +0000",
+                "conferenceLink": "https://hangouts.google.com/call",
+                "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/Tse2AsVFm7A43yHrmGs26Qiw?response-content-disposition=inline%3B%20filename%3D%22cover_106.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_106.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20200213T091101Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=8758cab96f4b842fc3c4f65f2b53f4b28c70e71fae56b91e6e194ac080eaca8c"
+              },
+              {
+                "id": 107,
+                "title": "Programming GJ - part 2",
+                "description": "I'll connect the digital RSS feed, that should hard drive the SAS monitor!",
+                "startDate": "Fri, 14 Feb 2020 09:59:59 +0000",
+                "endDate": "Fri, 14 Feb 2020 10:29:59 +0000",
+                "conferenceLink": "https://hangouts.google.com/call",
+                "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/z7eLtAa1fG9mNPD5oYK45L4n?response-content-disposition=inline%3B%20filename%3D%22cover_107.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_107.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20200213T091101Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=e3b5a80d810bf56ac8613f320bff9e7c4f9f851a9a8723c3a17e84330139374c"
+              },
+              {
+                "id": 108,
+                "title": "Programming GJ - part 3",
+                "description": "I'll connect the digital RSS feed, that should hard drive the SAS monitor!",
+                "startDate": "Sat, 15 Feb 2020 09:59:59 +0000",
+                "endDate": "Sat, 15 Feb 2020 10:29:59 +0000",
+                "conferenceLink": "https://hangouts.google.com/call",
+                "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/nCx6ZdtxNvJiDqxX1pruCcug?response-content-disposition=inline%3B%20filename%3D%22cover_108.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_108.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20200213T091101Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=317db2ca1cc017c8818d4c29fe43b2f6b30f5ffdb8d6f040bea23dda186f995d"
+              }
+            ]
           },
-          "buyers": [],
-          "startDate": "Sat, 11 Jan 2020 00:00:00 +0000",
-          "endDate": "Sun, 05 Jan 2020 23:59:59 +0000",
-          "displayPrice": 25.0,
-          "teacherFee": 0.0,
-          "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/DLGgNAdDni8GihEyS53petAn?response-content-disposition=inline%3B%20filename%3D%22highres_476658546.jpeg%22%3B%20filename%2A%3DUTF-8%27%27highres_476658546.jpeg\u0026response-content-type=image%2Fpng\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20191224%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20191224T092929Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=9b5a711dbe7b658fa0d905940183760b36c6c6d5f2332d5bf48c8c8d6517934f",
-          "events": [
-            {
-              "id": 43,
-              "title": "Work The Web - The Beginnings part 1",
-              "description": "HTML/CSS/JavaScript \u0026 How the Web Works.",
-              "startDate": "Sun, 22 Dec 2019 00:00:00 +0000",
-              "endDate": "Sun, 22 Dec 2019 00:45:00 +0000",
-              "conferenceLink": "https://hangouts.google.com/hangouts/_/calendar/dGhpc2lzY29kZUB0aGlzLWlzLWNvZGUuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20.gbs3qe6bqdnu20je0he30j94j4",
-              "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/Xt21fA8svUosLPdTWZpDspFJ?response-content-disposition=inline%3B%20filename%3D%22highres_476658546.jpeg%22%3B%20filename%2A%3DUTF-8%27%27highres_476658546.jpeg\u0026response-content-type=image%2Fpng\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20191224%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20191224T092929Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=58afa1120d3dd889e66c02f5ba8fdf01555aa469034245b6b72f8eae184180c8"
-            }
-          ]
-        }
-      ]
+          {
+            "id": 77,
+            "title": "Hacking POP-11",
+            "description": "If we synthesize the transmitter, we can get to the PCI bandwidth through the back-end XSS hard drive!",
+            "classification": "standard",
+            "owner": {
+              "id": 80,
+              "provider": "email",
+              "uid": "teacher@mail.com",
+              "allow_password_change": false,
+              "email": "teacher@mail.com",
+              "created_at": "2020-02-13T09:09:28.320Z",
+              "updated_at": "2020-02-13T09:10:20.856Z",
+              "first_name": "Teacher",
+              "last_name": "Jack",
+              "role": "teacher",
+              "birth_day": 12,
+              "birth_month": 12,
+              "birth_year": 1990,
+              "stripe_account": "acct_1FZCX1LGPZofXG1m",
+              "stripe_verified": false,
+              "last_4_digit_of_cc": null,
+              "stripe_customer_id": "cus_Gj5tWihlnCIXUK",
+              "bio": null
+            },
+            "buyers": [
+              {
+                "id": 83,
+                "provider": "email",
+                "uid": "student@mail.com",
+                "allow_password_change": false,
+                "email": "student@mail.com",
+                "created_at": "2020-02-13T09:09:29.835Z",
+                "updated_at": "2020-02-13T09:11:01.806Z",
+                "first_name": "Student",
+                "last_name": "John",
+                "role": "student",
+                "birth_day": null,
+                "birth_month": null,
+                "birth_year": null,
+                "stripe_account": null,
+                "stripe_verified": false,
+                "last_4_digit_of_cc": null,
+                "stripe_customer_id": "cus_Gj5txKnsd8pMWp",
+                "bio": null
+              }
+            ],
+            "free": false,
+            "price": 45,
+            "startDate": "Thu, 13 Feb 2020 23:00:00 +0000",
+            "endDate": "Fri, 28 Feb 2020 23:59:59 +0000",
+            "displayPrice": 124.2,
+            "teacherFee": 108,
+            "platformFee": 27,
+            "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/C8jiTg4WbSAqxwmnizULyu6C?response-content-disposition=inline%3B%20filename%3D%22cover_77.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_77.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20200213T091101Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=eb3ee9b5996bab2d30cf2df6dcd5ca805a4e26c2d99e8505de47c08f6f76deb2",
+            "enrollmentStatus": "open",
+            "events": [
+              {
+                "id": 109,
+                "title": "Hacking POP-11 - part 1",
+                "description": "If we synthesize the transmitter, we can get to the PCI bandwidth through the back-end XSS hard drive!",
+                "startDate": "Fri, 14 Feb 2020 09:59:59 +0000",
+                "endDate": "Fri, 14 Feb 2020 10:29:59 +0000",
+                "conferenceLink": "https://hangouts.google.com/call",
+                "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/yRVonKp5D17UU1PR35n28SF3?response-content-disposition=inline%3B%20filename%3D%22cover_109.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_109.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20200213T091101Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=899c29b7af5cf6333ddc8659f56edd8519e32ae1907551f98969b2d6cdb87cb8"
+              },
+              {
+                "id": 110,
+                "title": "Hacking POP-11 - part 2",
+                "description": "If we synthesize the transmitter, we can get to the PCI bandwidth through the back-end XSS hard drive!",
+                "startDate": "Sat, 15 Feb 2020 09:59:59 +0000",
+                "endDate": "Sat, 15 Feb 2020 10:29:59 +0000",
+                "conferenceLink": "https://hangouts.google.com/call",
+                "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/BmNdhqUU8yr1W2R9UNAKYqaS?response-content-disposition=inline%3B%20filename%3D%22cover_110.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_110.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20200213T091101Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=d12fd374d54f878a0a727d57cb3b947338add6b0baf8eb0b0c593c47b03f7d99"
+              },
+              {
+                "id": 111,
+                "title": "Hacking POP-11 - part 3",
+                "description": "If we synthesize the transmitter, we can get to the PCI bandwidth through the back-end XSS hard drive!",
+                "startDate": "Sun, 16 Feb 2020 09:59:59 +0000",
+                "endDate": "Sun, 16 Feb 2020 10:29:59 +0000",
+                "conferenceLink": "https://hangouts.google.com/call",
+                "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/v1nW7dobQ2Ds1QhfK5dRDtdK?response-content-disposition=inline%3B%20filename%3D%22cover_111.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_111.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20200213T091101Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=09cdb86710a4095dace0bffe37cff883f89417b328581bc4e684e3288c1de1f7"
+              }
+            ]
+          }
+        ]
+      }
     }
   }
 ]

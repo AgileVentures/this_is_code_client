@@ -3,6 +3,8 @@ module.exports = {
     title: 'This Is Code',
   },
   plugins: [
+    `gatsby-plugin-netlify`,
+    `gatsby-plugin-stripe`,
     'gatsby-theme-carbon',
     {
       resolve: 'gatsby-plugin-manifest',

@@ -21,6 +21,7 @@
       "startDate": "Sat, 11 Jan 2020 00:00:00 +0000",
       "endDate": "Sun, 05 Jan 2020 23:59:59 +0000",
       "displayPrice": 25.0,
+      "soloPrice": 100.0,
       "teacherFee": 0.0,
       "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/DLGgNAdDni8GihEyS53petAn?response-content-disposition=inline%3B%20filename%3D%22highres_476658546.jpeg%22%3B%20filename%2A%3DUTF-8%27%27highres_476658546.jpeg\u0026response-content-type=image%2Fpng\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20191224%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20191224T092929Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=9b5a711dbe7b658fa0d905940183760b36c6c6d5f2332d5bf48c8c8d6517934f",
       "events": [
