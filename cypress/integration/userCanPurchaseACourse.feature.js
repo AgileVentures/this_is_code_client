@@ -60,17 +60,13 @@ describe("User can buy a course", () => {
       "contain.text",
       "Work The Web - The Beginnings"
     );
-    cy.get(".bx--btn--secondary").should(
-      "have.text",
-      "You need to be logged in to purchase a course"
-    );
+    cy.get(".bx--btn--secondary").should("have.text", "Cancel");
     cy.get(".bx--btn--primary").should(
       "have.text",
       "You need to be logged in to purchase a course"
     );
   });
   it("Logged in User can buy a course", () => {
-    
     cy.visit("/getting-started/student");
     cy.get(".bx--article-card")
       .first()
@@ -88,10 +84,16 @@ describe("User can buy a course", () => {
       .last()
       .should("have.text", "Buy Work The Web - The Beginnings for $25")
       .click();
-    cy.wait(1000);
-    cy.get(".bx--btn--primary")
-      .last()
-      .should("have.text", "You have already purchased this course");
+    cy.get(".bx--inline-notification").should("contain", "Payment successful");
+    cy.wait(5000);
+    cy.get(".bx--article-card")
+      .first()
+      .click();
+    cy.get(".bx--modal-header__heading").should(
+      "contain.text",
+      "Work The Web - The Beginnings"
+    );
+    cy.get(".bx--btn--primary").should("have.text", "You have already purchased this course").and("be.disabled")
   });
   it("Logged in User can buy a solo course", () => {
     cy.visit("/getting-started/student");
@@ -109,15 +111,19 @@ describe("User can buy a course", () => {
     cy.get(".bx--btn--primary")
       .should("have.text", "Get solo access for $100")
       .click();
-
     fillInStripeForm();
     cy.get(".bx--btn--primary")
       .last()
       .should("have.text", "Buy Work The Web - The Beginnings for $100")
       .click();
-    cy.wait(1000);
-    cy.get(".bx--btn--primary")
-      .last()
-      .should("have.text", "You have already purchased this course");
+      cy.wait(5000);
+      cy.get(".bx--article-card")
+        .first()
+        .click();
+      cy.get(".bx--modal-header__heading").should(
+        "contain.text",
+        "Work The Web - The Beginnings"
+      );
+      cy.get(".bx--btn--primary").should("have.text", "You have already purchased this course");
   });
 });
