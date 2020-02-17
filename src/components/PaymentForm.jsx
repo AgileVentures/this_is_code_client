@@ -17,6 +17,7 @@ const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
     return response.token.id;
   };
   const processPayment = async () => {
+    dispatch({type:'TOGGLE_LOADER',payload: true})
     const token = await getStripeToken();
     let payload = {
       course_id: paymentInfo.course.id,
@@ -27,8 +28,10 @@ const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
 
     try {
       const response = await axios.buyCourse(payload);
+      dispatch({type:'TOGGLE_LOADER',payload: false})
       dispatch({ type: "COURSE_PURCHASED", payload: paymentInfo.course });
     } catch (error) {
+      dispatch({type:'TOGGLE_LOADER',payload: false})
       dispatch({
         type: "NOTIFY",
         payload: {

@@ -17,8 +17,10 @@ const Courses = () => {
   };
 
   const fetchCourses = async () => {
+    dispatch({ type: "TOGGLE_LOADER", payload: true });
     const response = await axios.getAllCourses();
     setCourses(response.data.courses);
+    dispatch({ type: "TOGGLE_LOADER", payload: false });
     setLoading(false);
   };
   const calendarStrings = {
@@ -41,7 +43,9 @@ const Courses = () => {
                 subTitle="Micro Session"
                 title={course.title}
                 author={`Host: ${course.owner.firstName} ${course.owner.lastName}`}
-                // date={<Moment date={course.startDate} calendar={calendarStrings} />}
+                // date={
+                //   <Moment date={course.startDate} calendar={calendarStrings} />
+                // }
                 readTime={`${course.events.length} instructor led session${
                   course.events.length !== 1 ? "s" : ""
                 }`}

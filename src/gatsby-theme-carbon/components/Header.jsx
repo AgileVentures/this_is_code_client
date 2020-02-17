@@ -24,11 +24,12 @@ import {
 } from "gatsby-theme-carbon/src/components/Header/Header.module.scss";
 import Notification from "../../components/Notification";
 import CourseDetails from "../../components/CourseDetails";
-import PaymentForm from "../../components/PaymentForm"
+import PaymentForm from "../../components/PaymentForm";
 import { getCurrentCredentials } from "../../helpers/localstorageHelper";
 import { auth } from "../../modules/authUtils";
 
 import TICLogo from "../../images/svg/tic_logo.svg";
+import Loader from "../../components/Loader";
 
 const Header = props => {
   const { leftNavIsOpen, toggleNavState, searchIsOpen } = useContext(
@@ -36,8 +37,9 @@ const Header = props => {
   );
   const { isSearchEnabled } = useMetadata();
   const currentUser = useSelector(state => state.user);
-  const displayCourseModal = useSelector(state => state.displayCourseModal)
-  const displayPaymentModal= useSelector(state => state.displayPaymentModal)
+  const displayCourseModal = useSelector(state => state.displayCourseModal);
+  const displayPaymentModal = useSelector(state => state.displayPaymentModal);
+  const displayLoader = useSelector(state => state.displayLoader);
   const dispatch = useDispatch();
   const verifyUserCredentials = async () => {
     if (
@@ -65,10 +67,14 @@ const Header = props => {
           />
         )}
 
+        {displayLoader && <Loader />}
+
         {displayCourseModal && (
           <CourseDetails
             course={displayCourseModal}
-            closeCourseModal={() => dispatch({type: "DISPLAY_COURSE", payload: ""})}
+            closeCourseModal={() =>
+              dispatch({ type: "DISPLAY_COURSE", payload: "" })
+            }
             // setDisplayPaymentModal={setDisplayPaymentModal}
           />
         )}
@@ -76,7 +82,9 @@ const Header = props => {
           <Elements>
             <PaymentForm
               paymentInfo={displayPaymentModal}
-              setDisplayPaymentModal={()=>dispatch({type : 'DISPLAY_PAYMENT_MODAL', payload: false})}
+              setDisplayPaymentModal={() =>
+                dispatch({ type: "DISPLAY_PAYMENT_MODAL", payload: false })
+              }
             />
           </Elements>
         )}

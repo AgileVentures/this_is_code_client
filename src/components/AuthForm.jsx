@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { connect,useDispatch } from "react-redux";
 import { Modal, TextInput } from "carbon-components-react";
 import { fieldTypes, auth } from "../modules/authUtils";
 import { NOTIFY, AUTHENTICATE } from "../state/actions/actionTypes";
@@ -13,6 +13,7 @@ const AuthForm = props => {
   });
 
   const [formValues, setFormValues] = useState(intitialFormData);
+  const dispatch = useDispatch()
 
   const handleFieldValueChange = event => {
     const formDataCopy = { ...formValues };
@@ -23,6 +24,7 @@ const AuthForm = props => {
   const formSubmitHandler = () => {
     switch (props.variant) {
       case "login":
+        dispatch({type:'TOGGLE_LOADER',payload: true})
         auth
           .signIn(formValues.email, formValues.password)
           .then(response => {
@@ -39,6 +41,7 @@ const AuthForm = props => {
               }
             });
           });
+          dispatch({type:'TOGGLE_LOADER',payload: false})
         break;
       case "register":
         let values = {
@@ -48,6 +51,7 @@ const AuthForm = props => {
           first_name: formValues.firstName,
           last_name: formValues.lastName
         };
+        dispatch({type:'TOGGLE_LOADER',payload: true})
         auth
           .signUp(values)
           .then(response => {
@@ -66,6 +70,7 @@ const AuthForm = props => {
               payload: { title: "Error", caption: errorMessage }
             });
           });
+          dispatch({type:'TOGGLE_LOADER',payload: false})
         break;
       default:
         return;
