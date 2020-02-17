@@ -1,0 +1,4 @@
+.bx--loading__stroke circle {
+  stroke: black;
+  stroke-offset: 40;
+}
