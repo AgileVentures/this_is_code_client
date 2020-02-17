@@ -40,10 +40,7 @@ describe("User Can View Course Details", () => {
       "have.text",
       "Buy a group membership for $25"
     );
-    cy.get(".bx--btn--primary").should(
-      "have.text",
-      "Get solo access for $100"
-    );
+    cy.get(".bx--btn--primary").should("have.text", "Get solo access for $100");
   });
   it("User get log in warning if not logged in", () => {
     cy.visit("/getting-started/student");
@@ -65,10 +62,7 @@ describe("User Can View Course Details", () => {
         `Work The Web - The Beginnings part ${index + 1}`
       );
     });
-    cy.get(".bx--btn--secondary").should(
-      "have.text",
-      "You need to be logged in to purchase a course"
-    );
+    cy.get(".bx--btn--secondary").should("have.text", "Cancel");
     cy.get(".bx--btn--primary").should(
       "have.text",
       "You need to be logged in to purchase a course"

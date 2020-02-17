@@ -1,17 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CardNumberElement,
   CardExpiryElement,
   CardCVCElement
 } from "react-stripe-elements-universal";
 import { injectStripe } from "react-stripe-elements-universal";
-import { Modal } from "carbon-components-react";
+import { Modal, InlineNotification } from "carbon-components-react";
 import { useDispatch } from "react-redux";
 
 import axios from "../helpers/axios-service";
 
 const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
+  const [notification, setNotification] = useState();
   const dispatch = useDispatch();
+  const handlePayment = error => {
+    if (error) {
+      setNotification({
+        iconDescription: "describes the close button",
+        kind: "error",
+        notificationType: "inline",
+        role: "alert",
+        title: "Something went wrong!",
+        subtitle: `Please try again after some time`
+      });
+    } else {
+      setNotification({
+        iconDescription: "describes the close button",
+        kind: "success",
+        notificationType: "inline",
+        role: "alert",
+        title: <h5>Payment successful!</h5>,
+        subtitle: <p>Redirecting you to list of courses...</p>
+      });
+    }
+    setTimeout(function() {
+      dispatch({ type: "DISPLAY_PAYMENT_MODAL", payload: false });
+      dispatch({ type: "DISPLAY_COURSE", payload: "" });
+    }, 3000);
+  };
+
   const getStripeToken = async () => {
     const response = await stripe.createToken();
     return response.token.id;
@@ -40,8 +67,7 @@ const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
         }
       });
     }
-    setDisplayPaymentModal();
-    dispatch({ type: "DISPLAY_PAYMENT_MODAL", payload: false });
+    // setDisplayPaymentModal();
   };
   return (
     <>
@@ -83,6 +109,7 @@ const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
         >
           <CardCVCElement />
         </div>
+        {notification && <InlineNotification {...notification} />}
       </Modal>
     </>
   );
