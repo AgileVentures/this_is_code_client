@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { connect,useDispatch } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { Modal, TextInput } from "carbon-components-react";
 import { fieldTypes, auth } from "../modules/authUtils";
 import { NOTIFY, AUTHENTICATE } from "../state/actions/actionTypes";
 import { setCurrentCredentials } from "../helpers/localstorageHelper";
+import Loader from "./Loader";
 
 const AuthForm = props => {
   const intitialFormData = {};
@@ -13,7 +14,8 @@ const AuthForm = props => {
   });
 
   const [formValues, setFormValues] = useState(intitialFormData);
-  const dispatch = useDispatch()
+  const [loader, setLoader] = useState(false);
+  const dispatch = useDispatch();
 
   const handleFieldValueChange = event => {
     const formDataCopy = { ...formValues };
@@ -22,9 +24,9 @@ const AuthForm = props => {
   };
 
   const formSubmitHandler = () => {
+    setLoader(true);
     switch (props.variant) {
       case "login":
-        dispatch({type:'TOGGLE_LOADER',payload: true})
         auth
           .signIn(formValues.email, formValues.password)
           .then(response => {
@@ -32,7 +34,6 @@ const AuthForm = props => {
             props.dispatch({ type: AUTHENTICATE, payload: response.user });
           })
           .catch(error => {
-            debugger;
             props.dispatch({
               type: NOTIFY,
               payload: {
@@ -41,7 +42,7 @@ const AuthForm = props => {
               }
             });
           });
-          dispatch({type:'TOGGLE_LOADER',payload: false})
+
         break;
       case "register":
         let values = {
@@ -51,7 +52,7 @@ const AuthForm = props => {
           first_name: formValues.firstName,
           last_name: formValues.lastName
         };
-        dispatch({type:'TOGGLE_LOADER',payload: true})
+
         auth
           .signUp(values)
           .then(response => {
@@ -70,7 +71,7 @@ const AuthForm = props => {
               payload: { title: "Error", caption: errorMessage }
             });
           });
-          dispatch({type:'TOGGLE_LOADER',payload: false})
+        setLoader(false);
         break;
       default:
         return;
@@ -125,6 +126,7 @@ const AuthForm = props => {
           <h1 style={{ color: "red" }}>{props.notification.caption}</h1>
         )}
         {formFields}
+        {loader && <Loader />}
       </Modal>
     </>
   );
