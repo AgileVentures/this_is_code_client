@@ -98,6 +98,11 @@ const authReducer = (state, action) => {
         displaySignUpModal: false,
         notification: null
       };
+    case "TOGGLE_LOADER":
+      return {
+        ...state,
+        displayLoader: action.payload
+      };
     default:
       return state;
   }

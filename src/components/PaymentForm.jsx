@@ -7,13 +7,17 @@ import {
 import { injectStripe } from "react-stripe-elements-universal";
 import { Modal, InlineNotification } from "carbon-components-react";
 import { useDispatch } from "react-redux";
+import Loader from "../components/Loader";
+
 
 import axios from "../helpers/axios-service";
 
 const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
   const [notification, setNotification] = useState();
+  const [loader, setLoader] = useState(false)
   const dispatch = useDispatch();
   const handlePayment = error => {
+    setLoader(false)
     if (error) {
       setNotification({
         iconDescription: "describes the close button",
@@ -44,6 +48,7 @@ const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
     return response.token.id;
   };
   const processPayment = async () => {
+    setLoader(true)
     const token = await getStripeToken();
     let payload = {
       course_id: paymentInfo.course.id,
@@ -54,19 +59,18 @@ const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
 
     try {
       const response = await axios.buyCourse(payload);
-      handlePayment();
+      handlePayment()
       dispatch({ type: "COURSE_PURCHASED", payload: paymentInfo.course });
     } catch (error) {
-      handlePayment(error);
-      // dispatch({
-      //   type: "NOTIFY",
-      //   payload: {
-      //     title: "Payment failed",
-      //     caption: "Something went wrong while processing your payment"
-      //   }
-      // });
+      handlePayment(error)
+      dispatch({
+        type: "NOTIFY",
+        payload: {
+          title: "Payment failed",
+          caption: "Something went wrong while processing your payment"
+        }
+      });
     }
-    // setDisplayPaymentModal();
   };
   return (
     <>
@@ -109,6 +113,7 @@ const PaymentForm = ({ paymentInfo, setDisplayPaymentModal, stripe }) => {
           <CardCVCElement />
         </div>
         {notification && <InlineNotification {...notification} />}
+        {loader && <Loader/>}
       </Modal>
     </>
   );
