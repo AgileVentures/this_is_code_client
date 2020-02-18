@@ -14,7 +14,7 @@ const CourseDetails = ({ course, closeCourseModal }) => {
   };
   const isCoursePurchased =
     currentUser?.boughtCourses?.filter(myCourse => myCourse.id === course.id)
-      .length > 0 || false
+      .length > 0 || false;
   const primaryButtonText = course.soloPrice
     ? `Get solo access for $${course.soloPrice}`
     : "Solo access not available for this course";
@@ -28,7 +28,8 @@ const CourseDetails = ({ course, closeCourseModal }) => {
       course.soloPrice && handlePayment(course.soloPrice, "solo");
     });
   const onSecondarySubmit =
-    currentUser.loggedIn && !isCoursePurchased &&
+    currentUser.loggedIn &&
+    !isCoursePurchased &&
     (() => {
       handlePayment(course.displayPrice, "group");
     });
@@ -64,12 +65,6 @@ const CourseDetails = ({ course, closeCourseModal }) => {
           style={{ width: "auto", minHeight: "50%", objectFit: "cover" }}
           src={course.coverImage}
         />
-
-        <p className="bx--modal-content__text">
-          <strong>Note:</strong> Enrollment opens up in January 2020. Stay
-          tuned.
-        </p>
-
         <p className="bx--modal-content__text">{course.description}</p>
         <p className="bx--modal-content__text">
           {`Host: ${course.owner.firstName} ${course.owner.lastName}`}
