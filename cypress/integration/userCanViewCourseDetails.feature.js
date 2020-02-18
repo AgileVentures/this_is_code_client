@@ -27,7 +27,7 @@ describe("User Can View Course Details", () => {
     );
     cy.get(".bx--modal-content__text").should(
       "contain.text",
-      "Note: Enrollment opens up in January 2020. Stay tuned.Code Basics Workshop | HTML/CSS/JavaScript & How the Web Works. We'll be covering basics of HTML, CSS, and JavaScript, and by the end of the session, you'll see the big picture of how internet applications are structured and how you can Work The Web - not only consume it.Host: Thomas Ochman1 instructor led session"
+      "Code Basics Workshop | HTML/CSS/JavaScript & How the Web Works. We'll be covering basics of HTML, CSS, and JavaScript, and by the end of the session, you'll see the big picture of how internet applications are structured and how you can Work The Web - not only consume it.Host: Thomas Ochman1 instructor led session"
     );
     cy.get(".bx--accordion__title").should("have.length", 1);
     cy.get(".bx--accordion__title").each((element, index) => {
@@ -53,7 +53,7 @@ describe("User Can View Course Details", () => {
     );
     cy.get(".bx--modal-content__text").should(
       "contain.text",
-      "Note: Enrollment opens up in January 2020. Stay tuned.Code Basics Workshop | HTML/CSS/JavaScript & How the Web Works. We'll be covering basics of HTML, CSS, and JavaScript, and by the end of the session, you'll see the big picture of how internet applications are structured and how you can Work The Web - not only consume it.Host: Thomas Ochman1 instructor led session"
+      "Code Basics Workshop | HTML/CSS/JavaScript & How the Web Works. We'll be covering basics of HTML, CSS, and JavaScript, and by the end of the session, you'll see the big picture of how internet applications are structured and how you can Work The Web - not only consume it.Host: Thomas Ochman1 instructor led session"
     );
     cy.get(".bx--accordion__title").should("have.length", 1);
     cy.get(".bx--accordion__title").each((element, index) => {
