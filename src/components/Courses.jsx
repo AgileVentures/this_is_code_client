@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Elements } from "react-stripe-elements-universal";
 import { useSelector, useDispatch } from "react-redux";
 import ArticleCard from "gatsby-theme-carbon/src/components/ArticleCard";
-import { Row, Column } from "gatsby-theme-carbon/src/components/Grid";
-import moment from "moment";
+import { Column } from "gatsby-theme-carbon/src/components/Grid";
 
 import axios from "../helpers/axios-service";
 
