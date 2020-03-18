@@ -13,7 +13,7 @@ const authReducer = (state, action) => {
     case 'NODE_AUTH_OK':
       return {
         ...state,
-        user: { nodeLoggedIn: true }
+        user: {...state.user, nodeLoggedIn: true }
       }
     case 'UPDATE_EVENTS':
       return {
@@ -54,12 +54,12 @@ const authReducer = (state, action) => {
           displayCourseInstance: {}
         }
       }
-    case NOTIFY:
+    case 'NOTIFY':
       return {
         ...state,
         notification: action.payload
       }
-    case AUTHENTICATE:
+    case 'AUTHENTICATE':
       return {
         ...state,
         user: { ...action.payload, loggedIn: true },
@@ -70,7 +70,7 @@ const authReducer = (state, action) => {
           caption: `Nice to see you ${action.payload.firstName}!`
         }
       }
-    case LOGOUT:
+    case 'LOGOUT':
       localStorage.clear()
       return {
         ...state,
@@ -84,7 +84,7 @@ const authReducer = (state, action) => {
           caption: `Your session has been terminated`
         }
       }
-    case DISPLAY_AUTH_MODAL:
+    case 'DISPLAY_AUTH_MODAL':
       switch (action.variant) {
         case LOGIN:
           return {
@@ -100,7 +100,7 @@ const authReducer = (state, action) => {
           }
       }
 
-    case HIDE_AUTH_MODAL:
+    case 'HIDE_AUTH_MODAL':
       return {
         ...state,
         displayLoginModal: false,

@@ -6,7 +6,7 @@ const Notification = (props) => {
 
   setTimeout(()=> {
     props.clearNotification()
-  }, 5000)
+  }, 6000)
   return (
     <>
       <ToastNotification

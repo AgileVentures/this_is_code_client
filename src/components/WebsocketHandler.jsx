@@ -1,29 +1,33 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+// import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
+import { getCurrentCredentials } from '../helpers/localstorageHelper'
 
 const WebsocketHandler = () => {
-  const currentUser = useSelector(state => state.user)
-  const dispatch = useDispatch()
-  const [events, setEvents] = useState()
+  // const currentUser = useSelector(state => state.user)
+  // const dispatch = useDispatch()
+  console.log('rendered websockethandler')
+  // const [events, setEvents] = useState()
   const [connectionStatus, setConnectionStatus] = useState(false)
   const [wss, setWss] = useState()
   const websocketUrl = process.env.GATSBY_WEBSOCKET_API
   const nodeAxios = axios.create()
+  const [nodeAuth, setNodeAuth] = useState(false)
+  let events = []
   nodeAxios.defaults.withCredentials = true // Adds credentials to headers to manage node session
   const nodeAuthentication = async () => {
     const url = `${process.env.GATSBY_NODE_API}auth/login`
     try {
       const response = await nodeAxios.post(
         url,
-        { data: currentUser.headers },
+        { data: getCurrentCredentials() },
         { withCredentials: true }
       )
-      console.log(response, response.status)
       if (response.status === 200) {
         // const ws = new WebSocket(websocketUrl)
         // setWss(ws)
-        dispatch({ type: 'NODE_AUTH_OK' })
+        // dispatch({ type: 'NODE_AUTH_OK' })
+        setNodeAuth(true)
         handleWebsocket()
       }
     } catch (error) {
@@ -32,11 +36,9 @@ const WebsocketHandler = () => {
   }
 
   const handleWebsocket = () => {
-    
     const wss = new WebSocket(websocketUrl)
-    console.log(wss)
     wss.onopen = () => {
-      console.log('Connection open', wss)
+      console.log('Connection open')
       wss.send('connection open with client')
       setConnectionStatus(true)
       // setReload(false)
@@ -47,26 +49,42 @@ const WebsocketHandler = () => {
       console.log('connection closed')
       // history.push('/')
     }
-    wss.onerror = () => {
-      console.log('connection error')
+    wss.onerror = error => {
+      console.log('connection error', error)
       wss.close()
     }
-    wss.onmessage = event => {
+    wss.onmessage = message => {
+      let updatedEvents = JSON.parse(message.data).message.events
+      console.log(events)
+      if (JSON.stringify(updatedEvents) !== JSON.stringify(events)) {
+        // setEvents(JSON.parse(message.data).message.events)
+        events = JSON.parse(message.data).message.events
+        console.log(
+          'updated events state',
+          JSON.parse(message.data).message.events === events
+        )
+      } else {
+        console.log('no new events')
+      }
+      // console.log(JSON.parse(message.data).message)
       // check with events state, if different, update local state, update redux state else no change
       // setPayload(JSON.parse(event.data).message)
     }
   }
+
   useEffect(() => {
-    if (currentUser.nodeLoggedIn) {
+    if (nodeAuth) {
       // const ws = new WebSocket(websocketUrl)
       // setWss(ws)
-      handleWebsocket()
+      // handleWebsocket()
+      console.log('node auth true')
     } else {
       // node api login flow
+      console.log('node auth triggered')
       nodeAuthentication()
     }
   }, [])
-  useEffect(() => {}, [connectionStatus])
+  // useEffect(() => {}, [nodeAuth])
   return null
 }
 
