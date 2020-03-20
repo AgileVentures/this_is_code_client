@@ -13,11 +13,23 @@ const authReducer = (state, action) => {
     case 'NODE_AUTH_OK':
       return {
         ...state,
-        user: {...state.user, nodeLoggedIn: true }
+        user: { ...state.user, nodeLoggedIn: true }
       }
     case 'UPDATE_EVENTS':
+      // console.log(state, action.payload)
+      const updatedCourses = state.user.boughtCourses.map(course => {
+        let events = course.events.map(event => {
+          let updatedEvent = action.payload.filter(
+            receivedEvent => Number(receivedEvent.id) === Number(event.id)
+          )
+          return updatedEvent[1] ? updatedEvent[1] : updatedEvent[0]
+        })
+        course.events = events
+        return course
+      })
       return {
-        // map through payload and update each event if necessary
+        ...state,
+        user: { ...state.user, boughtCourses: updatedCourses }
       }
     case 'DISPLAY_COURSE_DETAILS':
       return {
@@ -118,6 +130,3 @@ const authReducer = (state, action) => {
 }
 
 export { authReducer }
-
-// update the response, and find and update events
-// add special state for node auth status

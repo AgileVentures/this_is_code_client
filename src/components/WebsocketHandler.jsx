@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
-// import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import { getCurrentCredentials } from '../helpers/localstorageHelper'
 
 const WebsocketHandler = () => {
   // const currentUser = useSelector(state => state.user)
-  // const dispatch = useDispatch()
-  console.log('rendered websockethandler')
-  // const [events, setEvents] = useState()
+  const dispatch = useDispatch()
   const [connectionStatus, setConnectionStatus] = useState(false)
   const [wss, setWss] = useState()
   const websocketUrl = process.env.GATSBY_WEBSOCKET_API
@@ -24,11 +22,8 @@ const WebsocketHandler = () => {
         { withCredentials: true }
       )
       if (response.status === 200) {
-        // const ws = new WebSocket(websocketUrl)
-        // setWss(ws)
-        // dispatch({ type: 'NODE_AUTH_OK' })
         setNodeAuth(true)
-        handleWebsocket()
+        !connectionStatus && handleWebsocket()
       }
     } catch (error) {
       console.log(error)
@@ -55,34 +50,17 @@ const WebsocketHandler = () => {
     }
     wss.onmessage = message => {
       let updatedEvents = JSON.parse(message.data).message.events
-      console.log(events)
       if (JSON.stringify(updatedEvents) !== JSON.stringify(events)) {
-        // setEvents(JSON.parse(message.data).message.events)
         events = JSON.parse(message.data).message.events
-        console.log(
-          'updated events state',
-          JSON.parse(message.data).message.events === events
-        )
+        dispatch({ type: 'UPDATE_EVENTS', payload: events })
       } else {
-        console.log('no new events')
+        // console.log('no new events')
       }
-      // console.log(JSON.parse(message.data).message)
-      // check with events state, if different, update local state, update redux state else no change
-      // setPayload(JSON.parse(event.data).message)
     }
   }
 
   useEffect(() => {
-    if (nodeAuth) {
-      // const ws = new WebSocket(websocketUrl)
-      // setWss(ws)
-      // handleWebsocket()
-      console.log('node auth true')
-    } else {
-      // node api login flow
-      console.log('node auth triggered')
-      nodeAuthentication()
-    }
+    !nodeAuth && nodeAuthentication()
   }, [])
   // useEffect(() => {}, [nodeAuth])
   return null
