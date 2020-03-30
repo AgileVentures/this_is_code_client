@@ -102,10 +102,10 @@ const useCourseDetails = (currentUser, course, closeCourseModal) => {
         onRequestSubmit = () => handlePayment(course.soloPrice, 'solo')
       } else {
         primaryButtonText = course.free
-          ? 'Register for free'
+          ? 'Register for FREE!'
           : 'Solo access not available for this course'
         primaryButtonDisabled = !course.free && true
-       course.free && onRequestSubmit = () => handlePayment(course.displayPrice, 'free')
+       course.free && (onRequestSubmit = () => handlePayment(course.displayPrice, 'free'))
       }
     } else {
       primaryButtonText = 'You have already purchased this course'
