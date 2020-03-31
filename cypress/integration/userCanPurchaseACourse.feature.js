@@ -2,27 +2,19 @@
 
 describe('User can buy a course', () => {
   function fillInStripeForm() {
+    const input = [
+      ['cardnumber', '4242424242424242'],
+      ['exp-date', '1220'],
+      ['cvc', '123']
+    ]
     cy.wait(1000)
-    cy.get('.__PrivateStripeElement')
-      .first()
-      .type('4242424242424242', { delay: 10 })
-    cy.get('iframe[name^="__privateStripeFrame5"]').then($iframe => {
-      const $body = $iframe.contents().find('body')
-      cy.wrap($body)
-        .find('input[name="cardnumber"]')
-        .type('4242424242424242', { delay: 10 })
-    })
-    cy.get('iframe[name^="__privateStripeFrame6"]').then($iframe => {
-      const $body = $iframe.contents().find('body')
-      cy.wrap($body)
-        .find('input[name="exp-date"]')
-        .type('1222')
-    })
-    cy.get('iframe[name^="__privateStripeFrame7"]').then($iframe => {
-      const $body = $iframe.contents().find('body')
-      cy.wrap($body)
-        .find('input[name="cvc"]')
-        .type('223')
+    cy.get('.__PrivateStripeElement > iframe').each(($element, index, list) => {
+      cy.get($element).then($iframe => {
+        const body = $iframe.contents().find('body')
+        cy.wrap(body)
+          .find(`input[name=${input[index][0]}]`)
+          .type(input[index][1], { delay: 10 })
+      })
     })
   }
   beforeEach(() => {
@@ -79,7 +71,9 @@ describe('User can buy a course', () => {
     cy.get('.bx--btn--secondary')
       .should('have.text', 'Buy a group membership for $25')
       .click()
+
     fillInStripeForm()
+
     cy.get('.bx--btn--primary')
       .last()
       .should('have.text', 'Buy Work The Web - The Beginnings for $25')
@@ -145,7 +139,7 @@ describe('User can buy a course', () => {
       'This course is FREE to attend!'
     )
     cy.get('.bx--btn--primary')
-      .should('have.text', 'Register for free')
+      .should('have.text', 'Register for FREE!')
       .click()
     cy.get('.bx--article-card')
       .last()
