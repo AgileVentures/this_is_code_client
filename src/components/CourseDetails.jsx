@@ -1,68 +1,21 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import moment from "moment";
-import { Modal, Accordion, AccordionItem } from "carbon-components-react";
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import moment from 'moment'
+import { Modal, Accordion, AccordionItem } from 'carbon-components-react'
+
+import axios from '../helpers/axios-service'
 
 const CourseDetails = ({ course, closeCourseModal }) => {
-  const currentUser = useSelector(state => state.user);
-  const dispatch = useDispatch();
-  const handlePayment = (price, type) => {
-    dispatch({
-      type: "DISPLAY_PAYMENT_MODAL",
-      payload: { price: price, type: type, course: course }
-    });
-  };
-  const isCoursePurchased =
-    currentUser?.boughtCourses?.filter(myCourse => myCourse.id === course.id)
-      .length > 0 || false;
-  const primaryButtonText = course.soloPrice
-    ? `Get solo access for $${course.soloPrice}`
-    : "Solo access not available for this course";
-  const secondaryButtonText =
-    course.displayPrice > 0
-      ? `Buy a group membership for $${course.displayPrice}`
-      : "This course is FREE to attend!";
-  const onRequestSubmit =
-    currentUser.loggedIn &&
-    (() => {
-      course.soloPrice && handlePayment(course.soloPrice, "solo");
-    });
-  const onSecondarySubmit =
-    currentUser.loggedIn &&
-    !isCoursePurchased &&
-    (() => {
-      handlePayment(course.displayPrice, "group");
-    });
-  const modalProps = {
-    "aria-label": "Modal",
-    // hasScrollingContent: true,
-    modalHeading: course.title,
-    iconDescription: "Close",
-    modalAriaLabel: course.title,
-    secondaryButtonText: currentUser.loggedIn
-      ? isCoursePurchased
-        ? "Cancel"
-        : secondaryButtonText
-      : "Cancel",
+  const currentUser = useSelector(state => state.user)
 
-    primaryButtonText: currentUser.loggedIn
-      ? isCoursePurchased
-        ? "You have already purchased this course"
-        : primaryButtonText
-      : "You need to be logged in to purchase a course",
-    primaryButtonDisabled: !course.soloPrice || isCoursePurchased,
-    size: "lg",
-    onRequestSubmit: onRequestSubmit,
-    open: true,
-    onRequestClose: () => closeCourseModal(),
-    onSecondarySubmit: onSecondarySubmit
-  };
+  const [modalProps] = useCourseDetails(currentUser, course, closeCourseModal)
+
   return (
-    <div style={{ position: "fixed", top: "0px", zIndex: "999" }}>
+    <div style={{ position: 'fixed', top: '0px', zIndex: '999' }}>
       <Modal {...modalProps}>
         <img
           alt="Card cover"
-          style={{ width: "auto", minHeight: "50%", objectFit: "cover" }}
+          style={{ width: 'auto', minHeight: '50%', objectFit: 'cover' }}
           src={course.coverImage}
         />
         <p className="bx--modal-content__text">{course.description}</p>
@@ -72,7 +25,7 @@ const CourseDetails = ({ course, closeCourseModal }) => {
 
         <p className="bx--modal-content__text">
           {`${course.events.length} instructor led session${
-            course.events.length !== 1 ? "s" : ""
+            course.events.length !== 1 ? 's' : ''
           }`}
         </p>
         <Accordion>
@@ -82,13 +35,13 @@ const CourseDetails = ({ course, closeCourseModal }) => {
                 <div>
                   <AccordionItem title={event.title}>
                     <p>
-                      Date: {moment(event.startDate).format("Do MMM HH:mm")} to{" "}
-                      {moment(event.endDate).format("Do MMM HH:mm")}
+                      Date: {moment(event.startDate).format('Do MMM HH:mm')} to{' '}
+                      {moment(event.endDate).format('Do MMM HH:mm')}
                     </p>
                     About: {event.description}
                   </AccordionItem>
                 </div>
-              );
+              )
             })
           ) : (
             <></>
@@ -99,7 +52,86 @@ const CourseDetails = ({ course, closeCourseModal }) => {
         )}
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default CourseDetails;
+export default CourseDetails
+
+const useCourseDetails = (currentUser, course, closeCourseModal) => {
+  const dispatch = useDispatch()
+
+  let onRequestSubmit, onSecondarySubmit, primaryButtonText, secondaryButtonText
+  let primaryButtonDisabled = false
+  const isCoursePurchased =
+    currentUser?.boughtCourses?.filter(myCourse => myCourse.id === course.id)
+      .length > 0 || false
+
+  const handlePayment = async (price, type) => {
+    //if course is free, don't display payment modal
+    // handle payment here itself
+    if (course.free) {
+      let payload = {
+        course_id: course.id,
+        free: true
+      }
+      const response = await axios.buyCourse(payload)
+      dispatch({ type: 'COURSE_PURCHASED', payload: course })
+      setTimeout(function() {
+        dispatch({ type: 'DISPLAY_COURSE', payload: '' })
+      }, 3000)
+    } else {
+      dispatch({
+        type: 'DISPLAY_PAYMENT_MODAL',
+        payload: { price: price, type: type, course: course }
+      })
+    }
+  }
+
+  if (currentUser.loggedIn) {
+    if (!isCoursePurchased) {
+      if (course.displayPrice > 0) {
+        secondaryButtonText = `Buy a group membership for $${course.displayPrice}`
+
+        onSecondarySubmit = () => handlePayment(course.displayPrice, 'free')
+      } else {
+        secondaryButtonText = 'This course is FREE to attend!'
+        onSecondarySubmit = () => handlePayment(course.displayPrice, 'group')
+      }
+      if (course.soloPrice) {
+        primaryButtonText = `Get solo access for $${course.soloPrice}`
+        onRequestSubmit = () => handlePayment(course.soloPrice, 'solo')
+      } else {
+        primaryButtonText = course.free
+          ? 'Register for FREE!'
+          : 'Solo access not available for this course'
+        primaryButtonDisabled = !course.free && true
+       course.free && (onRequestSubmit = () => handlePayment(course.displayPrice, 'free'))
+      }
+    } else {
+      primaryButtonText = 'You have already purchased this course'
+      primaryButtonDisabled = true
+    }
+  } else {
+    primaryButtonText = 'You need to be logged in to purchase a course'
+    secondaryButtonText = 'Cancel'
+    primaryButtonDisabled = true
+  }
+
+  const modalProps = {
+    'aria-label': 'Modal',
+    // hasScrollingContent: true,
+    modalHeading: course.title,
+    iconDescription: 'Close',
+    modalAriaLabel: course.title,
+    primaryButtonText: primaryButtonText,
+    secondaryButtonText: secondaryButtonText,
+    primaryButtonDisabled: primaryButtonDisabled,
+    size: 'lg',
+    onRequestSubmit: onRequestSubmit,
+    open: true,
+    onRequestClose: () => closeCourseModal(),
+    onSecondarySubmit: onSecondarySubmit
+  }
+
+  return [modalProps]
+}
