@@ -24,6 +24,7 @@
       "soloPrice": 100.0,
       "teacherFee": 0.0,
       "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/DLGgNAdDni8GihEyS53petAn?response-content-disposition=inline%3B%20filename%3D%22highres_476658546.jpeg%22%3B%20filename%2A%3DUTF-8%27%27highres_476658546.jpeg\u0026response-content-type=image%2Fpng\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20191224%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20191224T092929Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=9b5a711dbe7b658fa0d905940183760b36c6c6d5f2332d5bf48c8c8d6517934f",
+      "enrollmentStatus": "open",
       "events": [
         {
           "id": 43,
@@ -61,6 +62,45 @@
       "teacherFee": 0.0,
       "free" : true,
       "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/DLGgNAdDni8GihEyS53petAn?response-content-disposition=inline%3B%20filename%3D%22highres_476658546.jpeg%22%3B%20filename%2A%3DUTF-8%27%27highres_476658546.jpeg\u0026response-content-type=image%2Fpng\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20191224%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20191224T092929Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=9b5a711dbe7b658fa0d905940183760b36c6c6d5f2332d5bf48c8c8d6517934f",
+      "enrollmentStatus": "open",
+      "events": [
+        {
+          "id": 43,
+          "title": "Work The Web - Free part 1",
+          "description": "HTML/CSS/JavaScript \u0026 How the Web Works.",
+          "startDate": "Sun, 22 Dec 2019 00:00:00 +0000",
+          "endDate": "Sun, 22 Dec 2019 00:45:00 +0000",
+          "conferenceLink": "https://hangouts.google.com/hangouts/_/calendar/dGhpc2lzY29kZUB0aGlzLWlzLWNvZGUuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20.gbs3qe6bqdnu20je0he30j94j4",
+          "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/Xt21fA8svUosLPdTWZpDspFJ?response-content-disposition=inline%3B%20filename%3D%22highres_476658546.jpeg%22%3B%20filename%2A%3DUTF-8%27%27highres_476658546.jpeg\u0026response-content-type=image%2Fpng\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20191224%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20191224T092929Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=58afa1120d3dd889e66c02f5ba8fdf01555aa469034245b6b72f8eae184180c8"
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "title": "Work The Web - Full Subscription",
+      "description": "Code Basics Workshop | HTML/CSS/JavaScript \u0026 How the Web Works. We'll be covering basics of HTML, CSS, and JavaScript, and by the end of the session, you'll see the big picture of how internet applications are structured and how you can Work The Web - not only consume it.",
+      "price": 0,
+      "classification": "featured",
+      "owner": {
+        "id": 22,
+        "email": "thomas@craftacademy.se",
+        "role": "teacher",
+        "firstName": "Thomas",
+        "lastName": "Ochman",
+        "birthDay": 12,
+        "birthMonth": 12,
+        "birthYear": 1990,
+        "stripeVerified": false
+      },
+      "buyers": [],
+      "startDate": "Sat, 11 Jan 2020 00:00:00 +0000",
+      "endDate": "Sun, 05 Jan 2020 23:59:59 +0000",
+      "displayPrice": 0,
+      "soloPrice": 0,
+      "teacherFee": 0.0,
+      "free" : true,
+      "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/DLGgNAdDni8GihEyS53petAn?response-content-disposition=inline%3B%20filename%3D%22highres_476658546.jpeg%22%3B%20filename%2A%3DUTF-8%27%27highres_476658546.jpeg\u0026response-content-type=image%2Fpng\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20191224%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20191224T092929Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=9b5a711dbe7b658fa0d905940183760b36c6c6d5f2332d5bf48c8c8d6517934f",
+      "enrollmentStatus": "full",
       "events": [
         {
           "id": 43,

@@ -128,7 +128,7 @@ describe('User can buy a course', () => {
   it('Logged in User can register for a free course', () => {
     cy.visit('/getting-started/student')
     cy.get('.bx--article-card')
-      .last()
+      .eq(1)
       .click()
     cy.get('.bx--modal-header__heading').should(
       'contain.text',
@@ -142,7 +142,7 @@ describe('User can buy a course', () => {
       .should('have.text', 'Register for FREE!')
       .click()
     cy.get('.bx--article-card')
-      .last()
+      .eq(1)
       .click()
     cy.get('.bx--modal-header__heading').should(
       'contain.text',
@@ -152,5 +152,19 @@ describe('User can buy a course', () => {
       'have.text',
       'You have already purchased this course'
     )
+  })
+  it('Logged in User cannot buy a full course', () => {
+    cy.visit('/getting-started/student')
+    cy.get('.bx--article-card')
+      .last()
+      .click()
+    cy.get('.bx--modal-header__heading').should(
+      'contain.text',
+      'Work The Web - Full Subscription'
+    )
+    cy.get('.bx--btn--primary').should(
+      'have.text',
+      'This course is full'
+    ).and('be.disabled')
   })
 })
