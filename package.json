@@ -36,7 +36,9 @@
     "redux": "^4.0.4"
   },
   "devDependencies": {
+    "@lensesio/cypress-websocket-testing": "^1.0.1",
     "cypress": "^3.8.0",
+    "rxjs": "^6.5.5",
     "start-server-and-test": "^1.10.6"
   }
 }

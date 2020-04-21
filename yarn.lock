@@ -1163,6 +1163,11 @@
   dependencies:
     core-js "^2.5.7"
 
+"@lensesio/cypress-websocket-testing@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@lensesio/cypress-websocket-testing/-/cypress-websocket-testing-1.0.1.tgz#0a17ec8431b6f07110875c400ad75b2ce9a78e80"
+  integrity sha512-smZlFhxFC7ucZP302xpz94sV581MTFkWwOIvt/ica7Q0iR314ioX2RSA2V7uz9kbvspQYlrKP+4khdBst7iBNA==
+
 "@mdx-js/mdx@^1.0.20":
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/@mdx-js/mdx/-/mdx-1.5.3.tgz#d0092d4e177331d4eaa65d60fa1f37e42fb251ea"
@@ -10470,6 +10475,13 @@ rxjs@^5.0.0-beta.11:
 rxjs@^6.5.3:
   version "6.5.3"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.3.tgz#510e26317f4db91a7eb1de77d9dd9ba0a4899a3a"
+  dependencies:
+    tslib "^1.9.0"
+
+rxjs@^6.5.5:
+  version "6.5.5"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.5.tgz#c5c884e3094c8cfee31bf27eb87e54ccfc87f9ec"
+  integrity sha512-WfQI+1gohdf0Dai/Bbmk5L5ItH5tYqm3ki2c5GdWhKjalzjg93N3avFjVStyZZz+A2Em+ZxKH5bNghw9UeylGQ==
   dependencies:
     tslib "^1.9.0"
 
