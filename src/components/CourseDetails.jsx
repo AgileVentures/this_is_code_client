@@ -101,24 +101,31 @@ const useCourseDetails = (currentUser, course, closeCourseModal) => {
 
   if (currentUser.loggedIn) {
     if (!isCoursePurchased) {
-      if (course.displayPrice > 0) {
-        secondaryButtonText = `Buy a group membership for $${course.displayPrice}`
-
-        onSecondarySubmit = () => handlePayment(course.displayPrice, 'free')
-      } else {
-        secondaryButtonText = 'This course is FREE to attend!'
-        onSecondarySubmit = () => handlePayment(course.displayPrice, 'group')
+      if(course.enrollmentStatus === 'open'){
+        if (course.displayPrice > 0) {
+          secondaryButtonText = `Buy a group membership for $${course.displayPrice}`
+  
+          onSecondarySubmit = () => handlePayment(course.displayPrice, 'free')
+        } else {
+          secondaryButtonText = 'This course is FREE to attend!'
+          onSecondarySubmit = () => handlePayment(course.displayPrice, 'group')
+        }
+        if (course.soloPrice) {
+          primaryButtonText = `Get solo access for $${course.soloPrice}`
+          onRequestSubmit = () => handlePayment(course.soloPrice, 'solo')
+        } else {
+          primaryButtonText = course.free
+            ? 'Register for FREE!'
+            : 'Solo access not available for this course'
+          primaryButtonDisabled = !course.free && true
+         course.free && (onRequestSubmit = () => handlePayment(course.displayPrice, 'free'))
+        }
+      }else{
+        primaryButtonText = 'This course is full'
+        secondaryButtonText = 'Cancel'
+        primaryButtonDisabled = true
       }
-      if (course.soloPrice) {
-        primaryButtonText = `Get solo access for $${course.soloPrice}`
-        onRequestSubmit = () => handlePayment(course.soloPrice, 'solo')
-      } else {
-        primaryButtonText = course.free
-          ? 'Register for FREE!'
-          : 'Solo access not available for this course'
-        primaryButtonDisabled = !course.free && true
-       course.free && (onRequestSubmit = () => handlePayment(course.displayPrice, 'free'))
-      }
+      
     } else {
       primaryButtonText = 'You have already purchased this course'
       primaryButtonDisabled = true
