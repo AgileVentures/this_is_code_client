@@ -112,6 +112,178 @@
           "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/Xt21fA8svUosLPdTWZpDspFJ?response-content-disposition=inline%3B%20filename%3D%22highres_476658546.jpeg%22%3B%20filename%2A%3DUTF-8%27%27highres_476658546.jpeg\u0026response-content-type=image%2Fpng\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20191224%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20191224T092929Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=58afa1120d3dd889e66c02f5ba8fdf01555aa469034245b6b72f8eae184180c8"
         }
       ]
+    },
+    {
+      "id": 69,
+      "title": "Copying SystemVerilog",
+      "description": "You can't input the bandwidth without connecting the auxiliary THX matrix!",
+      "classification": "standard",
+      "owner": {
+        "id": 68,
+        "provider": "email",
+        "uid": "teacher@mail.com",
+        "allow_password_change": false,
+        "email": "teacher@mail.com",
+        "created_at": "2020-02-10T14:47:43.786Z",
+        "updated_at": "2020-02-10T14:50:30.291Z",
+        "first_name": "Teacher",
+        "last_name": "Jack",
+        "role": "teacher",
+        "birth_day": 12,
+        "birth_month": 12,
+        "birth_year": 1990,
+        "stripe_account": "acct_1FZCX1LGPZofXG1m",
+        "stripe_verified": false,
+        "last_4_digit_of_cc": null,
+        "stripe_customer_id": null,
+        "bio": null
+      },
+      "buyers": [
+        {
+          "id": 71,
+          "provider": "email",
+          "uid": "student@mail.com",
+          "allow_password_change": false,
+          "email": "student@mail.com",
+          "created_at": "2020-02-10T14:47:44.179Z",
+          "updated_at": "2020-02-12T11:21:09.486Z",
+          "first_name": "Student",
+          "last_name": "John",
+          "role": "student",
+          "birth_day": null,
+          "birth_month": null,
+          "birth_year": null,
+          "stripe_account": null,
+          "stripe_verified": false,
+          "last_4_digit_of_cc": null,
+          "stripe_customer_id": "cus_GLAH9taA6LUDx5",
+          "bio": null
+        }
+      ],
+      "free": false,
+      "price": 45.0,
+      "startDate": "Sun, 09 Feb 2020 23:00:00 +0000",
+      "endDate": "Mon, 24 Feb 2020 23:59:59 +0000",
+      "displayPrice": 124.2,
+      "teacherFee": 108.0,
+      "platformFee": 27.0,
+      "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/KufjVjegP4jKd4QfKeTAzDb2?response-content-disposition=inline%3B%20filename%3D%22cover_69.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_69.jpg\u0026response-content-type=image%2Fjpeg\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20200213T085026Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=f68a52b50406b80f9caf0ee3e56ede1cd4de4e400602b40cf1c0197edf922888",
+      "enrollmentStatus": "open",
+      "events": [
+        {
+          "id": 85,
+          "title": "Copying SystemVerilog - part 1",
+          "description": "You can't input the bandwidth without connecting the auxiliary THX matrix!",
+          "startDate": "Mon, 10 Feb 2020 14:59:59 +0000",
+          "endDate": "Mon, 10 Feb 2020 15:29:59 +0000",
+          "conferenceLink": "https://hangouts.google.com/call",
+          "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/AJQBN6b4QgHYnvnwSxscs7J5?response-content-disposition=inline%3B%20filename%3D%22cover_85.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_85.jpg\u0026response-content-type=image%2Fjpeg\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20200213T085027Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=e2ca66f829356a4c098fa84d06bb596dcb6df4a05cbd3a0e4f82a8e01074ac69"
+        },
+        {
+          "id": 86,
+          "title": "Copying SystemVerilog - part 2",
+          "description": "You can't input the bandwidth without connecting the auxiliary THX matrix!",
+          "startDate": "Tue, 11 Feb 2020 14:59:59 +0000",
+          "endDate": "Tue, 11 Feb 2020 15:29:59 +0000",
+          "conferenceLink": "https://hangouts.google.com/call",
+          "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/sRecd6vJHo8ST3nxg1AprLPf?response-content-disposition=inline%3B%20filename%3D%22cover_86.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_86.jpg\u0026response-content-type=image%2Fjpeg\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20200213T085027Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=ea9d2c0116f56fa7b857e6c4841e0a0729cb86a3959257e68bc7530d31a7e089"
+        },
+        {
+          "id": 87,
+          "title": "Copying SystemVerilog - part 3",
+          "description": "You can't input the bandwidth without connecting the auxiliary THX matrix!",
+          "startDate": "Wed, 12 Feb 2020 14:59:59 +0000",
+          "endDate": "Wed, 12 Feb 2020 15:29:59 +0000",
+          "conferenceLink": "https://hangouts.google.com/call",
+          "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/g4reSvKXqrN3Tqygi8f67L4Z?response-content-disposition=inline%3B%20filename%3D%22cover_87.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_87.jpg\u0026response-content-type=image%2Fjpeg\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20200213T085027Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=8ebdca37f9affbe79e34854b0654d302a3e26f69758830042cfa1d19560cb3ee"
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "title": "Connecting ACL2",
+      "description": "Use the mobile HTTP firewall, then you can quantify the 1080p panel!",
+      "classification": "standard",
+      "owner": {
+        "id": 68,
+        "provider": "email",
+        "uid": "teacher@mail.com",
+        "allow_password_change": false,
+        "email": "teacher@mail.com",
+        "created_at": "2020-02-10T14:47:43.786Z",
+        "updated_at": "2020-02-10T14:50:30.291Z",
+        "first_name": "Teacher",
+        "last_name": "Jack",
+        "role": "teacher",
+        "birth_day": 12,
+        "birth_month": 12,
+        "birth_year": 1990,
+        "stripe_account": "acct_1FZCX1LGPZofXG1m",
+        "stripe_verified": false,
+        "last_4_digit_of_cc": null,
+        "stripe_customer_id": null,
+        "bio": null
+      },
+      "buyers": [
+        {
+          "id": 71,
+          "provider": "email",
+          "uid": "student@mail.com",
+          "allow_password_change": false,
+          "email": "student@mail.com",
+          "created_at": "2020-02-10T14:47:44.179Z",
+          "updated_at": "2020-02-12T11:21:09.486Z",
+          "first_name": "Student",
+          "last_name": "John",
+          "role": "student",
+          "birth_day": null,
+          "birth_month": null,
+          "birth_year": null,
+          "stripe_account": null,
+          "stripe_verified": false,
+          "last_4_digit_of_cc": null,
+          "stripe_customer_id": "cus_GLAH9taA6LUDx5",
+          "bio": null
+        }
+      ],
+      "free": false,
+      "price": 45.0,
+      "startDate": "Mon, 10 Feb 2020 23:00:00 +0000",
+      "endDate": "Tue, 25 Feb 2020 23:59:59 +0000",
+      "displayPrice": 124.2,
+      "teacherFee": 108.0,
+      "platformFee": 27.0,
+      "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/FstbWrWJxSG87tcCzV9yydeR?response-content-disposition=inline%3B%20filename%3D%22cover_70.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_70.jpg\u0026response-content-type=image%2Fjpeg\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20200213T085027Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=f758363bfad74da4b8d9b182cd3caddedef13888434dc4f67a41d942f4e85c24",
+      "enrollmentStatus": "open",
+      "events": [
+        {
+          "id": 88,
+          "title": "Connecting ACL2 - part 1",
+          "description": "Use the mobile HTTP firewall, then you can quantify the 1080p panel!",
+          "startDate": "Tue, 11 Feb 2020 14:59:59 +0000",
+          "endDate": "Tue, 11 Feb 2020 15:29:59 +0000",
+          "conferenceLink": "https://hangouts.google.com/call",
+          "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/zpdcgiWFFoivQtM7qtYjkVFe?response-content-disposition=inline%3B%20filename%3D%22cover_88.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_88.jpg\u0026response-content-type=image%2Fjpeg\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20200213T085027Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=9bf48ae7000af73589dba6f27a8a8d47ec5785f6cbc4f40869856f4586e1c1ed"
+        },
+        {
+          "id": 89,
+          "title": "Connecting ACL2 - part 2",
+          "description": "Use the mobile HTTP firewall, then you can quantify the 1080p panel!",
+          "startDate": "Wed, 12 Feb 2020 14:59:59 +0000",
+          "endDate": "Wed, 12 Feb 2020 15:29:59 +0000",
+          "conferenceLink": "https://hangouts.google.com/call",
+          "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/4NUS25YRL3XueZvRF36iRDZj?response-content-disposition=inline%3B%20filename%3D%22cover_89.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_89.jpg\u0026response-content-type=image%2Fjpeg\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20200213T085027Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=d08a7f36699cc4fc4565a0d9c8628294588a79b1bca48bbdab15f21b343c1c0a"
+        },
+        {
+          "id": 90,
+          "title": "Connecting ACL2 - part 3",
+          "description": "Use the mobile HTTP firewall, then you can quantify the 1080p panel!",
+          "startDate": "Thu, 13 Feb 2020 14:59:59 +0000",
+          "endDate": "Thu, 13 Feb 2020 15:29:59 +0000",
+          "conferenceLink": "https://hangouts.google.com/call",
+          "coverImage": "https://this-is-code.s3.eu-north-1.amazonaws.com/q5Nq5F3NpxPEojcSyKG1jKT1?response-content-disposition=inline%3B%20filename%3D%22cover_90.jpg%22%3B%20filename%2A%3DUTF-8%27%27cover_90.jpg\u0026response-content-type=image%2Fjpeg\u0026X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAIKNDI6ICZXWA675Q%2F20200213%2Feu-north-1%2Fs3%2Faws4_request\u0026X-Amz-Date=20200213T085027Z\u0026X-Amz-Expires=3600\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=842af8578fe8f3984e33b88877272cde0e048673b5227507e494b6eaf64e70d0"
+        }
+      ]
     }
   ]
 }

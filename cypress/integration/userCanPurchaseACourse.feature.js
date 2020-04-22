@@ -117,7 +117,7 @@ describe('User can buy a course', () => {
   })
   it('Logged in User cannot buy a full course', () => {
     cy.visit('/getting-started/student')
-    cy.get('.bx--article-card').last().click()
+    cy.get('.bx--article-card').eq(2).click()
     
     cy.checkText('.bx--modal-header__heading', 'Work The Web - Full Subscription')
     cy.get('.bx--btn--primary')

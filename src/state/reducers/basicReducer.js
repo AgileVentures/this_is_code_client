@@ -5,7 +5,7 @@ import {
   LOGIN,
   SIGN_UP,
   DISPLAY_AUTH_MODAL,
-  HIDE_AUTH_MODAL
+  HIDE_AUTH_MODAL,
 } from '../actions/actionTypes'
 
 const authReducer = (state, action) => {
@@ -13,49 +13,48 @@ const authReducer = (state, action) => {
     case 'NODE_AUTH_OK':
       return {
         ...state,
-        user: { ...state.user, nodeLoggedIn: true }
+        user: { ...state.user, nodeLoggedIn: true },
       }
     case 'UPDATE_EVENTS':
-      // console.log(state, action.payload)
-      const updatedCourses = state.user.boughtCourses.map(course => {
-        let events = course.events.map(event => {
+      const updatedCourses = state.user.boughtCourses.map((course) => {
+        let events = course.events.map((event) => {
           let updatedEvent = action.payload.filter(
-            receivedEvent => Number(receivedEvent.id) === Number(event.id)
+            (receivedEvent) => Number(receivedEvent.id) === Number(event.id)
           )
-          return updatedEvent[1] ? updatedEvent[1] : updatedEvent[0]
+          return updatedEvent[0] ? updatedEvent[0] : event
         })
         course.events = events
         return course
       })
       return {
         ...state,
-        user: { ...state.user, boughtCourses: updatedCourses }
+        user: { ...state.user, boughtCourses: updatedCourses },
       }
     case 'DISPLAY_COURSE_DETAILS':
       return {
         ...state,
         displayCourse: {
           state: true,
-          displayCourseInstance: action.payload
-        }
+          displayCourseInstance: action.payload,
+        },
       }
     case 'DISPLAY_COURSE':
       return {
         ...state,
-        displayCourseModal: action.payload
+        displayCourseModal: action.payload,
       }
     case 'DISPLAY_PAYMENT_MODAL':
       return {
         ...state,
-        displayPaymentModal: action.payload
+        displayPaymentModal: action.payload,
       }
     case 'COURSE_PURCHASED':
       return {
         ...state,
         user: {
           ...state.user,
-          boughtCourses: [...state.user.boughtCourses, action.payload]
-        }
+          boughtCourses: [...state.user.boughtCourses, action.payload],
+        },
       }
 
     case 'HIDE_COURSE_DETAILS':
@@ -63,13 +62,13 @@ const authReducer = (state, action) => {
         ...state,
         displayCourse: {
           displayCourse: false,
-          displayCourseInstance: {}
-        }
+          displayCourseInstance: {},
+        },
       }
     case 'NOTIFY':
       return {
         ...state,
-        notification: action.payload
+        notification: action.payload,
       }
     case 'AUTHENTICATE':
       return {
@@ -79,8 +78,8 @@ const authReducer = (state, action) => {
         displaySignUpModal: false,
         notification: {
           title: 'Welcome',
-          caption: `Nice to see you ${action.payload.firstName}!`
-        }
+          caption: `Nice to see you ${action.payload.firstName}!`,
+        },
       }
     case 'LOGOUT':
       localStorage.clear()
@@ -88,13 +87,13 @@ const authReducer = (state, action) => {
         ...state,
         user: {
           userName: null,
-          loggedIn: false
+          loggedIn: false,
         },
         displayLoginModal: false,
         notification: {
           title: 'Good bye',
-          caption: `Your session has been terminated`
-        }
+          caption: `Your session has been terminated`,
+        },
       }
     case 'DISPLAY_AUTH_MODAL':
       switch (action.variant) {
@@ -102,13 +101,13 @@ const authReducer = (state, action) => {
           return {
             ...state,
             displayLoginModal: true,
-            notification: null
+            notification: null,
           }
         case SIGN_UP:
           return {
             ...state,
             displaySignUpModal: true,
-            notification: null
+            notification: null,
           }
       }
 
@@ -117,12 +116,12 @@ const authReducer = (state, action) => {
         ...state,
         displayLoginModal: false,
         displaySignUpModal: false,
-        notification: null
+        notification: null,
       }
     case 'TOGGLE_LOADER':
       return {
         ...state,
-        displayLoader: action.payload
+        displayLoader: action.payload,
       }
     default:
       return state
