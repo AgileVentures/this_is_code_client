@@ -38,6 +38,8 @@
   "devDependencies": {
     "@lensesio/cypress-websocket-testing": "^1.0.1",
     "cypress": "^3.8.0",
+    "manual-web-socket": "^2.0.1",
+    "mock-socket": "^9.0.3",
     "rxjs": "^6.5.5",
     "start-server-and-test": "^1.10.6"
   }
