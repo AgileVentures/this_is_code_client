@@ -21,7 +21,8 @@ const authReducer = (state, action) => {
           let updatedEvent = action.payload.filter(
             (receivedEvent) => Number(receivedEvent.id) === Number(event.id)
           )
-          return updatedEvent[0] ? updatedEvent[0] : event
+          event.conference_link = updatedEvent[0] ? updatedEvent[0].conference_link : event.conference_link
+          return event
         })
         course.events = events
         return course
