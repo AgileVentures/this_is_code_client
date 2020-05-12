@@ -18,46 +18,52 @@ describe('User Can View Course Details', () => {
       response: 'fixture:validate-token.json',
     })
     cy.visit('/getting-started/student')
-    cy.get('.bx--article-card').first().click()
-
+      .get('.bx--article-card')
+      .first()
+      .click()
     cy.checkText('.bx--modal-header__heading', 'Work The Web - The Beginnings')
-
-    cy.checkText(
-      '.bx--modal-content__text',
-      "Code Basics Workshop | HTML/CSS/JavaScript & How the Web Works. We'll be covering basics of HTML, CSS, and JavaScript, and by the end of the session, you'll see the big picture of how internet applications are structured and how you can Work The Web - not only consume it.Host: Thomas Ochman1 instructor led session"
-    )
-    cy.get('.bx--accordion__title').should('have.length', 1)
-    cy.get('.bx--accordion__title').each((element, index) => {
-      cy.checkText(
-        element[0],
-        `Work The Web - The Beginnings part ${index + 1}`
+      .checkText(
+        '.bx--modal-content__text',
+        "Code Basics Workshop | HTML/CSS/JavaScript & How the Web Works. We'll be covering basics of HTML, CSS, and JavaScript, and by the end of the session, you'll see the big picture of how internet applications are structured and how you can Work The Web - not only consume it.Host: Thomas Ochman1 instructor led session"
       )
-    })
+      .get('.bx--accordion__title')
+      .should('have.length', 1)
+      .get('.bx--accordion__title')
+      .each((element, index) => {
+        cy.checkText(
+          element[0],
+          `Work The Web - The Beginnings part ${index + 1}`
+        )
+      })
 
-    cy.checkText('.bx--btn--secondary', 'Buy a group membership for $25')
-    cy.checkText('.bx--btn--primary', 'Get solo access for $100')
+      .checkText('.bx--btn--secondary', 'Buy a group membership for $25')
+      .checkText('.bx--btn--primary', 'Get solo access for $100')
   })
   it('User get log in warning if not logged in', () => {
     cy.visit('/getting-started/student')
-    cy.get('.bx--article-card').first().click()
+      .get('.bx--article-card')
+      .first()
+      .click()
 
-    cy.checkText('.bx--modal-header__heading', 'Work The Web - The Beginnings')
+      .checkText('.bx--modal-header__heading', 'Work The Web - The Beginnings')
 
-    cy.checkText(
-      '.bx--modal-content__text',
-      "Code Basics Workshop | HTML/CSS/JavaScript & How the Web Works. We'll be covering basics of HTML, CSS, and JavaScript, and by the end of the session, you'll see the big picture of how internet applications are structured and how you can Work The Web - not only consume it.Host: Thomas Ochman1 instructor led session"
-    )
-    cy.get('.bx--accordion__title').should('have.length', 1)
-    cy.get('.bx--accordion__title').each((element, index) => {
-      cy.checkText(
-        element[0],
-        `Work The Web - The Beginnings part ${index + 1}`
+      .checkText(
+        '.bx--modal-content__text',
+        "Code Basics Workshop | HTML/CSS/JavaScript & How the Web Works. We'll be covering basics of HTML, CSS, and JavaScript, and by the end of the session, you'll see the big picture of how internet applications are structured and how you can Work The Web - not only consume it.Host: Thomas Ochman1 instructor led session"
       )
-    })
-    cy.checkText('.bx--btn--secondary', 'Cancel')
-    cy.checkText(
-      '.bx--btn--primary',
-      'You need to be logged in to purchase a course'
-    )
+      .get('.bx--accordion__title')
+      .should('have.length', 1)
+      .get('.bx--accordion__title')
+      .each((element, index) => {
+        cy.checkText(
+          element[0],
+          `Work The Web - The Beginnings part ${index + 1}`
+        )
+      })
+      .checkText('.bx--btn--secondary', 'Cancel')
+      .checkText(
+        '.bx--btn--primary',
+        'You need to be logged in to purchase a course'
+      )
   })
 })
