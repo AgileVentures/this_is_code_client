@@ -8,7 +8,7 @@ const WebsocketHandler = () => {
   const dispatch = useDispatch()
   const [connectionStatus, setConnectionStatus] = useState(false)
   const [wss, setWss] = useState()
-  const websocketUrl = process.env.GATSBY_WEBSOCKET_API || 'wss://tic-node-staging.herokuapp.com'
+  const websocketUrl = process.env.GATSBY_WEBSOCKET_API || 'wss://tic-node-staging.herokuapp.com/connection'
   // Adds credentials to headers to manage node session
   const nodeAxios = axios.create({ withCredentials: true })
   const [nodeAuth, setNodeAuth] = useState(false)
