@@ -9,12 +9,13 @@ const WebsocketHandler = () => {
   const [connectionStatus, setConnectionStatus] = useState(false)
   const [wss, setWss] = useState()
   const websocketUrl = process.env.GATSBY_WEBSOCKET_API
-  const nodeAxios = axios.create()
+  // Adds credentials to headers to manage node session
+  const nodeAxios = axios.create({ withCredentials: true })
   const [nodeAuth, setNodeAuth] = useState(false)
   let events = []
-  nodeAxios.defaults.withCredentials = true // Adds credentials to headers to manage node session
+  const nodeURL = process.env.GATSBY_NODE_API || 'https://tic-node-staging.herokuapp.com'
   const nodeAuthentication = async () => {
-    const url = `${process.env.GATSBY_NODE_API}auth/login`
+    const url = `${nodeURL}/auth/login`
     try {
       const response = await nodeAxios.post(
         url,
