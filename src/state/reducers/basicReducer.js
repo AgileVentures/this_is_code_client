@@ -26,7 +26,7 @@ const authReducer = (state, action) => {
           event.room = updatedEvent.length && updatedEvent[0].room
           event.password = updatedEvent.length && updatedEvent[0].password
           // event.conference_link = updatedEvent[0] ? updatedEvent[0].conference_link : event.conference_link
-          console.log(event.room && event)
+          // console.log(event.room && event)
           return event
         })
         course.events = events
