@@ -38,16 +38,16 @@ const CourseDetails = ({ course, closeCourseModal }) => {
                       Date: {moment(event.startDate).format('Do MMM HH:mm')} to{' '}
                       {moment(event.endDate).format('Do MMM HH:mm')}
                     </p>
-                    About: {event.description}
-                    {event.conference_link && (
+                    About: {event.description}{console.log(event)}
+                    {event.room && (
                       <p>
                         <a
                           style={{ textDecoration: 'none', color: 'black' }}
-                          href={event.conference_link}
+                          href={`https://meet.jit.si/${event.room}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          Join hangout Here
+                          Join Conference Here
                         </a>
                       </p>
                     )}

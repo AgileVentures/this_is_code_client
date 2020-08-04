@@ -18,10 +18,15 @@ const authReducer = (state, action) => {
     case 'UPDATE_EVENTS':
       const updatedCourses = state.user.boughtCourses.map((course) => {
         let events = course.events.map((event) => {
-          let updatedEvent = action.payload.filter(
-            (receivedEvent) => Number(receivedEvent.id) === Number(event.id)
+          // console.log(action.payload)
+          let updatedEvent = action.payload.jitsi.filter(
+            (receivedEvent) => Number(receivedEvent.eventId) === Number(event.id)
           )
-          event.conference_link = updatedEvent[0] ? updatedEvent[0].conference_link : event.conference_link
+          // console.log(updatedEvent.length && updatedEvent[0].room)
+          event.room = updatedEvent.length && updatedEvent[0].room
+          event.password = updatedEvent.length && updatedEvent[0].password
+          // event.conference_link = updatedEvent[0] ? updatedEvent[0].conference_link : event.conference_link
+          console.log(event.room && event)
           return event
         })
         course.events = events

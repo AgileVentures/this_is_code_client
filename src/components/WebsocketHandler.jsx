@@ -4,16 +4,19 @@ import axios from 'axios'
 import { getCurrentCredentials } from '../helpers/localstorageHelper'
 
 const WebsocketHandler = () => {
-  // const currentUser = useSelector(state => state.user)
+  const currentUser = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const [connectionStatus, setConnectionStatus] = useState(false)
   const [wss, setWss] = useState()
-  const websocketUrl = process.env.GATSBY_WEBSOCKET_API || 'wss://tic-node-staging.herokuapp.com/connection'
+  const websocketUrl =
+    process.env.GATSBY_WEBSOCKET_API ||
+    'wss://tic-node-staging.herokuapp.com/connection'
   // Adds credentials to headers to manage node session
   const nodeAxios = axios.create({ withCredentials: true })
   const [nodeAuth, setNodeAuth] = useState(false)
-  let events = []
-  const nodeURL = process.env.GATSBY_NODE_API || 'https://tic-node-staging.herokuapp.com'
+  let notifications = {}
+  const nodeURL =
+    process.env.GATSBY_NODE_API || 'https://tic-node-staging.herokuapp.com'
   const nodeAuthentication = async () => {
     const url = `${nodeURL}/auth/login`
     try {
@@ -50,12 +53,16 @@ const WebsocketHandler = () => {
       wss.close()
     }
     wss.onmessage = (message) => {
-      let updatedEvents = JSON.parse(message.data).message.events
-      if (JSON.stringify(updatedEvents) !== JSON.stringify(events)) {
-        events = JSON.parse(message.data).message.events
-        dispatch({ type: 'UPDATE_EVENTS', payload: events })
+      let receivedNotification = JSON.parse(message.data).message
+      if (
+        JSON.stringify(receivedNotification) !== JSON.stringify(notifications)
+      ) {
+        console.log('I am hit')
+        notifications.events = receivedNotification.events
+        notifications.jitsi = receivedNotification.jitsi
+        dispatch({ type: 'UPDATE_EVENTS', payload: notifications })
       } else {
-        // console.log('no new events')
+        console.log('no new notification')
       }
     }
   }

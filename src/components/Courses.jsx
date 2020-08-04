@@ -42,7 +42,8 @@ const Courses = () => {
               updatedEvent => Number(updatedEvent.id) === event.id
             )
             if (purchasedEvent) {
-              event.conference_link = purchasedEvent.conference_link
+              event.room = purchasedEvent.room
+              event.password = purchasedEvent.password
             }
           })
         }
