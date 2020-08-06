@@ -2,7 +2,7 @@
 
 const manualWebSocket = require('manual-web-socket')
 
-describe('Event link is updated via websocket', () => {
+describe('User is able to join Jitsi Call', () => {
   beforeEach('', () => {
     cy.server()
     cy.route({
@@ -19,13 +19,13 @@ describe('Event link is updated via websocket', () => {
     })
     cy.route({
       method: 'POST',
-      url: 'https://localhost:5000/auth/login',
+      url: 'http://localhost:5000/auth/login',
       status: 200,
       response: 'fixture:course-list.json',
     })
   })
 
-  it('Event link is updated via websocket', () => {
+  it('User is able to join Jitsi Call', () => {
     const checkArticleDetails = () => {
       cy.get('.bx--article-card').last().click()
       cy.get('.bx--modal-header__heading').should(
@@ -45,48 +45,43 @@ describe('Event link is updated via websocket', () => {
     }
     cy.visit('/getting-started/student').then(() => {
       checkArticleDetails()
-      cy.get('.bx--accordion__content').each((element, index) => {
-        cy.get(element[0]).should(
-          'not.contain.html',
-          '<a href="https://hangouts.google.com/call" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: black;">Join hangout Here</a>'
-        )
-      })
+      cy.get('body').should('not.contain.text', 'Join Conference Here')
     })
     cy.visit('/getting-started/student', {
       onBeforeLoad(win) {
         var script = win.document.createElement('script')
         script.innerText = manualWebSocket.getScript()
         win.document.head.appendChild(script)
-        win.mws.track(['wss://localhost:5000/connection'])
+        win.mws.track(['ws://localhost:5000/connection'])
       },
     }).then((win) => {
       const mws = win.mws
       const connections = mws.trackedConnections
       let trackedConnection
-      trackedConnection = connections.getByUrl(
-        'wss://localhost:5000/connection'
-      )
+      trackedConnection = connections.getByUrl('ws://localhost:5000/connection')
       trackedConnection.readyState = mws.readyState.OPEN
       const message1 = 'connection open with client'
 
       const event = {
         message: {
-          events: [
+          jitsi: [
             {
-              id: 88,
+              eventId: 88,
               title: 'Connecting ACL2 - part 1',
-
-              conference_link: 'https://hangouts.google.com/call',
+              room: 'onetwothreefour',
+              password: 'onetwothreefour',
             },
             {
               id: 89,
               title: 'Connecting ACL2 - part 2',
-              conference_link: 'https://hangouts.google.com/call',
+              room: 'onetwothreefour',
+              password: 'onetwothreefour',
             },
             {
               id: 90,
               title: 'Connecting ACL2 - part 3',
-              conference_link: 'https://hangouts.google.com/call',
+              room: 'onetwothreefour',
+              password: 'onetwothreefour',
             },
           ],
         },
@@ -102,12 +97,12 @@ describe('Event link is updated via websocket', () => {
       )
       trackedConnection.send(message1)
       checkArticleDetails()
-      cy.get('.bx--accordion__content').each((element, index) => {
-        cy.get(element[0]).should(
-          'contain.html',
-          '<a href="https://hangouts.google.com/call" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: black;">Join hangout Here</a>'
-        )
-      })
+     
+      cy.get('p').contains('Join Conference Here').click({ force: true })
+      cy.wait(2000)
+      cy.get('#jitsiConferenceFrame0').should('exist')
+      cy.get('p').contains('Close Call').click({ force: true })
+      cy.get('#jitsiConferenceFrame0').should('not.exist')
     })
   })
 })
