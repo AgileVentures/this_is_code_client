@@ -31,10 +31,10 @@ const AuthForm = props => {
           .signIn(formValues.email, formValues.password)
           .then(response => {
             setCurrentCredentials(auth.tokenHeaders());
-            props.dispatch({ type: AUTHENTICATE, payload: response.user });
+            dispatch({ type: AUTHENTICATE, payload: response.user });
           })
           .catch(error => {
-            props.dispatch({
+            dispatch({
               type: NOTIFY,
               payload: {
                 title: "Error",
@@ -57,7 +57,7 @@ const AuthForm = props => {
           .signUp(values)
           .then(response => {
             setCurrentCredentials(auth.tokenHeaders());
-            props.dispatch({ type: AUTHENTICATE, payload: response.data.data });
+            dispatch({ type: AUTHENTICATE, payload: response.data.data });
           })
           .catch(error => {
             let errorMessage;
@@ -66,7 +66,7 @@ const AuthForm = props => {
             } catch {
               errorMessage = error.message;
             }
-            props.dispatch({
+            dispatch({
               type: NOTIFY,
               payload: { title: "Error", caption: errorMessage }
             });

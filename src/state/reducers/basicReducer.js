@@ -1,12 +1,4 @@
-import {
-  NOTIFY,
-  AUTHENTICATE,
-  LOGOUT,
-  LOGIN,
-  SIGN_UP,
-  DISPLAY_AUTH_MODAL,
-  HIDE_AUTH_MODAL,
-} from '../actions/actionTypes'
+import { LOGIN, SIGN_UP } from '../actions/actionTypes'
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -20,7 +12,8 @@ const authReducer = (state, action) => {
         let events = course.events.map((event) => {
           // console.log(action.payload)
           let updatedEvent = action.payload.jitsi.filter(
-            (receivedEvent) => Number(receivedEvent.eventId) === Number(event.id)
+            (receivedEvent) =>
+              Number(receivedEvent.eventId) === Number(event.id)
           )
           // console.log(updatedEvent.length && updatedEvent[0].room)
           event.room = updatedEvent.length && updatedEvent[0].room
@@ -116,7 +109,6 @@ const authReducer = (state, action) => {
             notification: null,
           }
       }
-
     case 'HIDE_AUTH_MODAL':
       return {
         ...state,

@@ -43,24 +43,23 @@ const CourseDetails = ({ course, closeCourseModal }) => {
                       About: {event.description}
                       {event.room && (
                         <>
-                          {displayJitsi ? 
-                            (
+                          {displayJitsi ? (
                             <>
-                            <JitsiService
-                              event={event}
-                              displayJitsi={displayJitsi}
-                              setDisplayJitsi={setDisplayJitsi}
-                              user={currentUser}
-                            />
-                            <p onClick={()=>setDisplayJitsi(false)}>Close Call</p>
+                              <JitsiService
+                                event={event}
+                                displayJitsi={displayJitsi}
+                                setDisplayJitsi={setDisplayJitsi}
+                                user={currentUser}
+                              />
+                              <p onClick={() => setDisplayJitsi(false)}>
+                                Close Call
+                              </p>
                             </>
-                            )
-                            
-                           : 
-                            <p onClick={()=>setDisplayJitsi(true)}>
+                          ) : (
+                            <p onClick={() => setDisplayJitsi(true)}>
                               Join Conference Here
                             </p>
-                          }
+                          )}
                         </>
                       )}
                     </AccordionItem>

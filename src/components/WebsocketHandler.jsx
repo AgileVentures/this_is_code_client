@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import { getCurrentCredentials } from '../helpers/localstorageHelper'
 
 const WebsocketHandler = () => {
-  const currentUser = useSelector((state) => state.user)
+  
   const dispatch = useDispatch()
   const [connectionStatus, setConnectionStatus] = useState(false)
-  const [wss, setWss] = useState()
+  
   const websocketUrl =
     process.env.GATSBY_WEBSOCKET_API ||
     'wss://tic-node-staging.herokuapp.com/connection'
@@ -57,7 +57,6 @@ const WebsocketHandler = () => {
       if (
         JSON.stringify(receivedNotification) !== JSON.stringify(notifications)
       ) {
-        console.log('I am hit')
         notifications.events = receivedNotification.events
         notifications.jitsi = receivedNotification.jitsi
         dispatch({ type: 'UPDATE_EVENTS', payload: notifications })
