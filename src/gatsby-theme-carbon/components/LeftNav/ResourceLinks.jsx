@@ -8,6 +8,7 @@ import {
 
 import { connect, useDispatch } from 'react-redux'
 import { auth } from '../../../modules/authUtils'
+import axios from '../../../helpers/axios-service'
 
 import WebsocketHandler from '../../../components/WebsocketHandler'
 
@@ -31,6 +32,7 @@ const CustomResources = props => {
   const logOut = async () => {
     try {
       const response = await auth.signOut()
+      const nodeResponse = await axios.logoutFromNode()
       {
         dispatch({ type: 'LOGOUT' })
       }

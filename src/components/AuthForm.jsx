@@ -42,7 +42,7 @@ const AuthForm = props => {
               }
             });
           });
-
+          setLoader(false);
         break;
       case "register":
         let values = {

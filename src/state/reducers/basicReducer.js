@@ -91,7 +91,7 @@ const authReducer = (state, action) => {
         displayLoginModal: false,
         notification: {
           title: 'Good bye',
-          caption: `Your session has been terminated`,
+          caption: `Thank you for using This Is Code!`,
         },
       }
     case 'DISPLAY_AUTH_MODAL':

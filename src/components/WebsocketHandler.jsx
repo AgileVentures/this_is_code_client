@@ -1,30 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import axios from 'axios'
+import { connect, useDispatch, useSelector } from 'react-redux'
+import axios from '../helpers/axios-service'
 import { getCurrentCredentials } from '../helpers/localstorageHelper'
 
 const WebsocketHandler = () => {
-  
+  const currentUser = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const [connectionStatus, setConnectionStatus] = useState(false)
-  
-  const websocketUrl =
-    process.env.GATSBY_WEBSOCKET_API ||
-    'wss://tic-node-staging.herokuapp.com/connection'
+
+  const websocketUrl = process.env.GATSBY_WEBSOCKET_API
   // Adds credentials to headers to manage node session
-  const nodeAxios = axios.create({ withCredentials: true })
+
   const [nodeAuth, setNodeAuth] = useState(false)
   let notifications = {}
-  const nodeURL =
-    process.env.GATSBY_NODE_API || 'https://tic-node-staging.herokuapp.com'
+  // const nodeURL = process.env.GATSBY_NODE_API
   const nodeAuthentication = async () => {
-    const url = `${nodeURL}/auth/login`
     try {
-      const response = await nodeAxios.post(
-        url,
-        { data: getCurrentCredentials() },
-        { withCredentials: true }
-      )
+      const response = await axios.loginToNode({
+        data: getCurrentCredentials(),
+      })
       if (response.status === 200) {
         setNodeAuth(true)
         !connectionStatus && handleWebsocket()
@@ -59,7 +53,8 @@ const WebsocketHandler = () => {
       ) {
         notifications.events = receivedNotification.events
         notifications.jitsi = receivedNotification.jitsi
-        dispatch({ type: 'UPDATE_EVENTS', payload: notifications })
+        currentUser.loggedIn &&
+          dispatch({ type: 'UPDATE_EVENTS', payload: notifications })
       } else {
         console.log('no new notification')
       }
