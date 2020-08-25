@@ -10,7 +10,7 @@ import { connect, useDispatch } from 'react-redux'
 import { auth } from '../../../modules/authUtils'
 import axios from '../../../helpers/axios-service'
 
-import WebsocketHandler from '../../../components/WebsocketHandler'
+import { navigate } from "@reach/router"
 
 const links = [
   {
@@ -31,11 +31,13 @@ const CustomResources = props => {
   const dispatch = useDispatch()
   const logOut = async () => {
     try {
-      const response = await auth.signOut()
-      const nodeResponse = await axios.logoutFromNode()
+      await auth.signOut()
+      await axios.logoutFromNode()
       {
         dispatch({ type: 'LOGOUT' })
       }
+      window.location.reload()
+      // navigate('/')
     } catch (error) {
       console.error(error)
     }

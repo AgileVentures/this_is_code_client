@@ -3,7 +3,7 @@ import { connect, useDispatch, useSelector } from 'react-redux'
 import axios from '../helpers/axios-service'
 import { getCurrentCredentials } from '../helpers/localstorageHelper'
 
-const WebsocketHandler = () => {
+const WebsocketHandler = ({ login }) => {
   const currentUser = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const [connectionStatus, setConnectionStatus] = useState(false)
@@ -44,8 +44,9 @@ const WebsocketHandler = () => {
     }
     wss.onerror = (error) => {
       console.log('connection error', error)
-      wss.close()
+      // wss.close()
     }
+
     wss.onmessage = (message) => {
       let receivedNotification = JSON.parse(message.data).message
       if (
@@ -53,8 +54,8 @@ const WebsocketHandler = () => {
       ) {
         notifications.events = receivedNotification.events
         notifications.jitsi = receivedNotification.jitsi
-        currentUser.loggedIn &&
-          dispatch({ type: 'UPDATE_EVENTS', payload: notifications })
+        // currentUser.loggedIn &&
+        dispatch({ type: 'UPDATE_EVENTS', payload: notifications })
       } else {
         console.log('no new notification')
       }
@@ -64,6 +65,7 @@ const WebsocketHandler = () => {
   useEffect(() => {
     !nodeAuth && nodeAuthentication()
   }, [])
+
   return null
 }
 

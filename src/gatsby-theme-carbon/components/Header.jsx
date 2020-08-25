@@ -7,7 +7,7 @@ import {
   Header as ShellHeader,
   HeaderMenuButton,
   SkipToContent,
-  HeaderGlobalBar
+  HeaderGlobalBar,
 } from 'carbon-components-react/lib/components/UIShell'
 import cx from 'classnames'
 
@@ -20,7 +20,7 @@ import {
   skipToContent,
   headerName,
   collapsed,
-  headerButton
+  headerButton,
 } from 'gatsby-theme-carbon/src/components/Header/Header.module.scss'
 import Notification from '../../components/Notification'
 import CourseDetails from '../../components/CourseDetails'
@@ -32,13 +32,13 @@ import TICLogo from '../../images/svg/tic_logo.svg'
 import Loader from '../../components/Loader'
 import WebsocketHandler from '../../components/WebsocketHandler'
 
-const Header = props => {
+const Header = (props) => {
   const { leftNavIsOpen, toggleNavState, searchIsOpen } = useContext(NavContext)
   const { isSearchEnabled } = useMetadata()
-  const currentUser = useSelector(state => state.user)
-  const displayCourseModal = useSelector(state => state.displayCourseModal)
-  const displayPaymentModal = useSelector(state => state.displayPaymentModal)
-  const displayLoader = useSelector(state => state.displayLoader)
+  const currentUser = useSelector((state) => state.user)
+  const displayCourseModal = useSelector((state) => state.displayCourseModal)
+  const displayPaymentModal = useSelector((state) => state.displayPaymentModal)
+  const displayLoader = useSelector((state) => state.displayLoader)
   const dispatch = useDispatch()
   const verifyUserCredentials = async () => {
     if (
@@ -56,6 +56,9 @@ const Header = props => {
   useEffect(() => {
     verifyUserCredentials()
   }, [])
+  useEffect(() => {
+    console.log('header hit', currentUser.loggedIn)
+  }, [currentUser.loggedIn])
   return (
     <>
       <ShellHeader aria-label="Header" className={header}>
@@ -67,7 +70,9 @@ const Header = props => {
         )}
 
         {displayLoader && <Loader />}
-        {currentUser.loggedIn && <WebsocketHandler />} 
+        {currentUser.loggedIn && (
+          <WebsocketHandler login={currentUser.loggedIn} />
+        )}
         {displayCourseModal && (
           <CourseDetails
             course={displayCourseModal}
@@ -101,7 +106,7 @@ const Header = props => {
 
         <Link
           className={cx(headerName, {
-            [collapsed]: searchIsOpen
+            [collapsed]: searchIsOpen,
           })}
           to="/"
         >
@@ -117,12 +122,12 @@ const Header = props => {
 const DefaultHeaderText = () => <TICLogo />
 
 Header.defaultProps = {
-  children: <DefaultHeaderText />
+  children: <DefaultHeaderText />,
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   notification: state.notification,
-  displayCourse: state.displayCourse
+  displayCourse: state.displayCourse,
 })
 
 export default connect(mapStateToProps)(Header)

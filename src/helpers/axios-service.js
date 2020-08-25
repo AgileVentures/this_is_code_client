@@ -2,32 +2,31 @@ import { getCurrentCredentials } from './localstorageHelper'
 
 const axios = require('axios')
 
-const railsUrl = process.env.GATSBY_RAILS_API 
+const railsUrl = process.env.GATSBY_RAILS_API
 const nodeUrl = process.env.GATSBY_NODE_API
 // const authHeaders = getCurrentCredentials()
 
 const defaultConfig = {
-  baseURL: railsUrl
-};
+  baseURL: railsUrl,
+}
 
-const http = axios.create(defaultConfig);
+const http = axios.create(defaultConfig)
 
-const secureHttp = axios.create(defaultConfig);
+const secureHttp = axios.create(defaultConfig)
 
 secureHttp.interceptors.request.use(
-  config => {
-    config.headers = getCurrentCredentials();
-    return config;
+  (config) => {
+    config.headers = getCurrentCredentials()
+    return config
   },
 
-  error => {
-    console.log(error);
+  (error) => {
+    console.log(error)
   }
-);
+)
 
 const nodeHttp = axios.create({
-  baseURL: nodeUrl,
-  withCredentials: true,
+  baseURL: nodeUrl
 })
 
 export default {
