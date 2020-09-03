@@ -4,7 +4,7 @@ const auth = new JtockAuth({
   // host: "https://this-is-code-staging.herokuapp.com",
   host: process.env.NODE_ENV === "development"
   ? "http://localhost:3000"
-  : "https://this-is-code-staging.herokuapp.com",
+  : process.env.GATSBY_API_URL,
   debug: false,
   mode: 'session'
 
@@ -52,4 +52,4 @@ const fieldTypes = {
 
 }
 
-export  {auth, fieldTypes} 
+export  {auth, fieldTypes}

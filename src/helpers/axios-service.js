@@ -5,7 +5,7 @@ const axios = require("axios");
 const apiUrl =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000"
-    : "https://this-is-code-staging.herokuapp.com";
+    : process.env.GATSBY_API_URL;
 
 const defaultConfig = {
   baseURL: apiUrl
