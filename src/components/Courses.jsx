@@ -1,40 +1,53 @@
-import React, { useState, useEffect } from "react";
-import { Elements } from "react-stripe-elements-universal";
-import { useSelector, useDispatch } from "react-redux";
-import ArticleCard from "gatsby-theme-carbon/src/components/ArticleCard";
-import { Row, Column } from "gatsby-theme-carbon/src/components/Grid";
-import moment from "moment";
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import ArticleCard from 'gatsby-theme-carbon/src/components/ArticleCard'
+import { Column } from 'gatsby-theme-carbon/src/components/Grid'
 
-import axios from "../helpers/axios-service";
+import axios from '../helpers/axios-service'
 
 const Courses = () => {
-  const [courses, setCourses] = useState();
-  const [loading, setLoading] = useState(true);
-  const currentUser = useSelector(state => state.user);
-  const dispatch = useDispatch();
+  const [courses, setCourses] = useState()
+  const [loading, setLoading] = useState(true)
+  const currentUser = useSelector(state => state.user)
+  const dispatch = useDispatch()
   const handleCourseClick = course => {
-    dispatch({ type: "DISPLAY_COURSE", payload: course });
-  };
+    dispatch({ type: 'DISPLAY_COURSE', payload: course })
+  }
 
   const fetchCourses = async () => {
-    dispatch({ type: "TOGGLE_LOADER", payload: true });
-    const response = await axios.getAllCourses();
-    setCourses(response.data.courses);
-    dispatch({ type: "TOGGLE_LOADER", payload: false });
-    setLoading(false);
-  };
+    dispatch({ type: 'TOGGLE_LOADER', payload: true })
+    const response = await axios.getAllCourses()
+    setCourses(response.data.courses)
+    dispatch({ type: 'TOGGLE_LOADER', payload: false })
+    setLoading(false)
+  }
   const calendarStrings = {
-    lastDay: "[Yesterday at] LT",
-    sameDay: "[Today at] LT",
-    nextDay: "[Tomorrow at] LT",
-    lastWeek: "[last] dddd [at] LT",
-    nextWeek: "dddd [at] LT",
-    sameElse: "LLLL"
-  };
-
+    lastDay: '[Yesterday at] LT',
+    sameDay: '[Today at] LT',
+    nextDay: '[Tomorrow at] LT',
+    lastWeek: '[last] dddd [at] LT',
+    nextWeek: 'dddd [at] LT',
+    sameElse: 'LLLL'
+  }
   const renderCourses =
     courses &&
     courses.map(course => {
+      if (currentUser.loggedIn) {
+        const purchasedCourse = currentUser.boughtCourses.find(
+          boughtCourse => boughtCourse.id === course.id
+        )
+        if (purchasedCourse) {
+          course.events.map(event => {
+            const purchasedEvent = purchasedCourse.events.find(
+              updatedEvent => Number(updatedEvent.id) === event.id
+            )
+            if (purchasedEvent) {
+              event.room = purchasedEvent.room
+              event.password = purchasedEvent.password
+            }
+          })
+        }
+      }
       return (
         <div key={course.id}>
           <Column colMd={6} colLg={6} key={course.id}>
@@ -47,15 +60,15 @@ const Courses = () => {
                 //   <Moment date={course.startDate} calendar={calendarStrings} />
                 // }
                 readTime={`${course.events.length} instructor led session${
-                  course.events.length !== 1 ? "s" : ""
+                  course.events.length !== 1 ? 's' : ''
                 }`}
               >
                 <img
                   alt="Card cover"
                   style={{
-                    width: "auto",
-                    minHeight: "50%",
-                    objectFit: "cover"
+                    width: 'auto',
+                    minHeight: '50%',
+                    objectFit: 'cover'
                   }}
                   src={course.coverImage}
                 />
@@ -67,13 +80,13 @@ const Courses = () => {
             </div>
           </Column>
         </div>
-      );
-    });
+      )
+    })
 
   useEffect(() => {
-    fetchCourses();
-  }, []);
-  return <div>{loading ? <h2>Loading</h2> : renderCourses}</div>;
-};
+    fetchCourses()
+  }, [])
+  return <div>{loading ? <h2>Loading</h2> : renderCourses}</div>
+}
 
-export default Courses;
+export default Courses
