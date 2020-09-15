@@ -34,7 +34,7 @@ const CourseDetails = ({ course, closeCourseModal }) => {
             {course.events.length > 0 ? (
               course.events.map((event) => {
                 return (
-                  <div>
+                  <div key={event.id}>
                     <AccordionItem title={event.title}>
                       <p>
                         Date: {moment(event.startDate).format('Do MMM HH:mm')}{' '}

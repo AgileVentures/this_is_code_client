@@ -16,7 +16,7 @@ const authReducer = (state, action) => {
               Number(receivedEvent.eventId) === Number(event.id)
           )
           // console.log(updatedEvent.length && updatedEvent[0].room)
-          event.room = updatedEvent.length && updatedEvent[0].room
+          event.room = updatedEvent.length > 0 && updatedEvent[0].room
           event.password = updatedEvent.length && updatedEvent[0].password
           // event.conference_link = updatedEvent[0] ? updatedEvent[0].conference_link : event.conference_link
           // console.log(event.room && event)
