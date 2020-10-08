@@ -25,6 +25,7 @@
     "gatsby-theme-carbon": "^1.16.2",
     "j-tockauth": "tochman/j-tockauth#experiment",
     "moment": "^2.24.0",
+    "query-string": "^6.13.5",
     "react": "^16.8.6",
     "react-device-detect": "^1.11.14",
     "react-dom": "^16.8.6",
