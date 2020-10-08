@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment'
 import { Modal, Accordion, AccordionItem } from 'carbon-components-react'
+import { Share16 } from '@carbon/icons-react'
 
 import axios from '../helpers/axios-service'
 import JitsiService from './JitsiService'
@@ -16,16 +17,16 @@ const CourseDetails = ({ course, closeCourseModal }) => {
       <div style={{ position: 'fixed', top: '0px', zIndex: '999' }}>
         <Modal {...modalProps}>
           <img
-            alt="Card cover"
+            alt='Card cover'
             style={{ width: 'auto', minHeight: '50%', objectFit: 'cover' }}
             src={course.coverImage}
           />
-          <p className="bx--modal-content__text">{course.description}</p>
-          <p className="bx--modal-content__text">
+          <p className='bx--modal-content__text'>{course.description}</p>
+          <p className='bx--modal-content__text'>
             {`Host: ${course.owner.firstName} ${course.owner.lastName}`}
           </p>
 
-          <p className="bx--modal-content__text">
+          <p className='bx--modal-content__text'>
             {`${course.events.length} instructor led session${
               course.events.length !== 1 ? 's' : ''
             }`}
@@ -147,11 +148,10 @@ const useCourseDetails = (currentUser, course, closeCourseModal) => {
     secondaryButtonText = 'Cancel'
     primaryButtonDisabled = true
   }
-
   const modalProps = {
     'aria-label': 'Modal',
     // hasScrollingContent: true,
-    modalHeading: course.title,
+    modalHeading: <DisplayCopyIcon course={course} dispatch={dispatch} />,
     iconDescription: 'Close',
     modalAriaLabel: course.title,
     primaryButtonText: primaryButtonText,
@@ -165,4 +165,26 @@ const useCourseDetails = (currentUser, course, closeCourseModal) => {
   }
 
   return [modalProps]
+}
+
+const DisplayCopyIcon = ({ course, dispatch }) => {
+  const onClick = (e) => {
+    const host = window.location.host
+    navigator.clipboard.writeText(`${host}/course/${course.id}`)
+    dispatch({
+      type: 'NOTIFY',
+      payload: {
+        title: 'Link copied',
+        caption: 'Course Link copied to clipboard',
+      },
+    })
+  }
+
+  return (
+    <span>
+      <Share16 onClick={onClick} />
+      {'  '}
+      {course.title}
+    </span>
+  )
 }
