@@ -19,7 +19,6 @@ const Courses = () => {
     if (courseId) {
       setRedirectCourseId(courseId)
     }
-    console.log('handleRedirect hit')
   }
   useEffect(() => {
     const course =courses && courses?.find((c) => c.id == redirectCourseId)

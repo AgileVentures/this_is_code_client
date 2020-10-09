@@ -66,27 +66,4 @@ describe('User Can View Course Details', () => {
         'You need to be logged in to purchase a course'
       )
   })
-  it('Visitor can see course details using shared link', () => {
-    cy.visit('/course/84')
-    cy.location('pathname').should('eq', '/course/84')
-    cy.get('button').click()
-    cy.location('pathname').should('eq', '/')
-    cy.checkText('.bx--modal-header__heading', 'Work The Web - The Beginnings')
-      .checkText(
-        '.bx--modal-content__text',
-        "Code Basics Workshop | HTML/CSS/JavaScript & How the Web Works. We'll be covering basics of HTML, CSS, and JavaScript, and by the end of the session, you'll see the big picture of how internet applications are structured and how you can Work The Web - not only consume it.Host: Thomas Ochman1 instructor led session"
-      )
-      .get('.bx--accordion__title')
-      .should('have.length', 1)
-      .get('.bx--accordion__title')
-      .each((element, index) => {
-        cy.checkText(
-          element[0],
-          `Work The Web - The Beginnings part ${index + 1}`
-        )
-      })
-
-      .checkText('.bx--btn--secondary', 'Cancel')
-      .checkText('.bx--btn--primary', 'You need to be logged in to purchase a course')
-  });
 })

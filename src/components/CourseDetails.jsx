@@ -182,7 +182,7 @@ const DisplayCopyIcon = ({ course, dispatch }) => {
 
   return (
     <span>
-      <Share16 onClick={onClick} />
+      <Share16 id='share-course-link' onClick={onClick} />
       {'  '}
       {course.title}
     </span>

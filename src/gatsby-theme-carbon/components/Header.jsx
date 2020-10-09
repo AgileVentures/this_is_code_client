@@ -56,9 +56,6 @@ const Header = (props) => {
   useEffect(() => {
     verifyUserCredentials()
   }, [])
-  useEffect(() => {
-    console.log('header hit', currentUser.loggedIn)
-  }, [currentUser.loggedIn])
   return (
     <>
       <ShellHeader aria-label="Header" className={header}>
