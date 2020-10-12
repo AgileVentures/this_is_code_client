@@ -755,6 +755,18 @@
   version "10.5.0"
   resolved "https://registry.yarnpkg.com/@carbon/icon-helpers/-/icon-helpers-10.5.0.tgz#dca43b95ead0555d308a583983835804b869f810"
 
+"@carbon/icon-helpers@^10.9.0":
+  version "10.9.0"
+  resolved "https://registry.yarnpkg.com/@carbon/icon-helpers/-/icon-helpers-10.9.0.tgz#5aee08e9d253d3bf6f996bc61f739660c62cbb21"
+  integrity sha512-JtmCXV7iIc+N5RqQQy+MGT8T+5KcF7+BUKADvHnJKZ8o+ncF5gI4hmrP450dQD76mikI4fqQ0dQflaosesdSPw==
+
+"@carbon/icons-react@^10.19.0":
+  version "10.19.0"
+  resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-10.19.0.tgz#f5941db0673a669cdf4cf6602d30f006aa6192eb"
+  integrity sha512-pbAegbVe5geqmz36W//y99W4DV+WRyBvL/3733AgZ4vPuXKLrK9exOUp7C1O/NPWrxIhOppMc3QZRWuicMU31g==
+  dependencies:
+    "@carbon/icon-helpers" "^10.9.0"
+
 "@carbon/icons-react@^10.5.0", "@carbon/icons-react@^10.8.0":
   version "10.8.0"
   resolved "https://registry.yarnpkg.com/@carbon/icons-react/-/icons-react-10.8.0.tgz#f554a6df18e12f3da74eb5cf86820d5b7cb358cc"
@@ -2924,6 +2936,15 @@ clipboardy@^2.1.0:
   dependencies:
     arch "^2.1.1"
     execa "^1.0.0"
+
+clipboardy@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/clipboardy/-/clipboardy-2.3.0.tgz#3c2903650c68e46a91b388985bc2774287dba290"
+  integrity sha512-mKhiIL2DrQIsuXMgBgnfEHOZOryC7kY7YO//TN6c63wlEm3NG5tz+YgY5rVi29KCmq/QQjKYvM7a19+MDOTHOQ==
+  dependencies:
+    arch "^2.1.1"
+    execa "^1.0.0"
+    is-wsl "^2.1.1"
 
 cliui@^3.2.0:
   version "3.2.0"
@@ -9694,6 +9715,15 @@ query-string@^5.0.1:
     decode-uri-component "^0.2.0"
     object-assign "^4.1.0"
     strict-uri-encode "^1.0.0"
+
+query-string@^6.13.5:
+  version "6.13.5"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.13.5.tgz#99e95e2fb7021db90a6f373f990c0c814b3812d8"
+  integrity sha512-svk3xg9qHR39P3JlHuD7g3nRnyay5mHbrPctEBDUxUkHRifPHXJDhBUycdCC0NBjXoDf44Gb+IsOZL1Uwn8M/Q==
+  dependencies:
+    decode-uri-component "^0.2.0"
+    split-on-first "^1.0.0"
+    strict-uri-encode "^2.0.0"
 
 query-string@^6.9.0:
   version "6.9.0"
