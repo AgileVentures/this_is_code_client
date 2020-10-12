@@ -34,8 +34,6 @@ describe('Course has copy link functionality', () => {
       cy.log('this is what was in clipboard', url);
       cy.visit(url);
   });
-    cy.location('pathname').should('eq', '/course/84')
-    cy.get('button').click({force: true})
     cy.location('pathname').should('eq', '/')
     cy.checkText('.bx--modal-header__heading', 'Work The Web - The Beginnings')
       .checkText(
