@@ -169,9 +169,8 @@ const useCourseDetails = (currentUser, course, closeCourseModal) => {
 
 const DisplayCopyIcon = ({ course, dispatch }) => {
   const onClick = (e) => {
-    const host = window.location.host
-    // navigator.clipboard.writeText(`${host}/course/${course.id}`)
-    navigator.clipboard.writeText(`${host}/?id=${course.id}`)
+    const origin = window.location.origin
+    navigator.clipboard.writeText(`${origin}/?id=${course.id}`)
     dispatch({
       type: 'NOTIFY',
       payload: {
