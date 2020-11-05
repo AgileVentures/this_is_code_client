@@ -21,7 +21,7 @@ const CourseDetails = ({ course, closeCourseModal }) => {
             style={{ width: 'auto', minHeight: '50%', objectFit: 'cover' }}
             src={course.coverImage}
           />
-          <p className='bx--modal-content__text'>{course.description}</p>
+          <div data-cy='course-description' dangerouslySetInnerHTML={{ __html: course.description }} />
           <p className='bx--modal-content__text'>
             {`Host: ${course.owner.firstName} ${course.owner.lastName}`}
           </p>
@@ -41,7 +41,7 @@ const CourseDetails = ({ course, closeCourseModal }) => {
                         Date: {moment(event.startDate).format('Do MMM HH:mm')}{' '}
                         to {moment(event.endDate).format('Do MMM HH:mm')}
                       </p>
-                      About: {event.description}
+                      <div data-cy='event-description' dangerouslySetInnerHTML={{ __html: event.description }} />
                       {event.room && (
                         <>
                           {displayJitsi ? (
@@ -169,9 +169,8 @@ const useCourseDetails = (currentUser, course, closeCourseModal) => {
 
 const DisplayCopyIcon = ({ course, dispatch }) => {
   const onClick = (e) => {
-    const host = window.location.host
-    // navigator.clipboard.writeText(`${host}/course/${course.id}`)
-    navigator.clipboard.writeText(`${host}/?id=${course.id}`)
+    const origin = window.location.origin
+    navigator.clipboard.writeText(`${origin}/?id=${course.id}`)
     dispatch({
       type: 'NOTIFY',
       payload: {
