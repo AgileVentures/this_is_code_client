@@ -32,9 +32,9 @@ describe('User is able to join Jitsi Call', () => {
         'contain.text',
         'Connecting ACL2'
       )
-      cy.get('.bx--modal-content__text').should(
+      cy.get('[data-cy=course-description]').should(
         'contain.text',
-        'Use the mobile HTTP firewall, then you can quantify the 1080p panel!Host: undefined undefined3 instructor led sessions'
+        'Use the mobile HTTP firewall, then you can quantify the 1080p panel!'
       )
       cy.get('.bx--accordion__title').should('have.length', 3)
       cy.get('.bx--accordion__title').each((element, index) => {
@@ -97,7 +97,7 @@ describe('User is able to join Jitsi Call', () => {
       )
       trackedConnection.send(message1)
       checkArticleDetails()
-     
+
       cy.get('p').contains('Join Conference Here').click({ force: true })
       cy.wait(2000)
       cy.get('#jitsiConferenceFrame0').should('exist')

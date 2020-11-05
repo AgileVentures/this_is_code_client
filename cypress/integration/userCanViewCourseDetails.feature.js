@@ -23,8 +23,8 @@ describe('User Can View Course Details', () => {
       .click()
     cy.checkText('.bx--modal-header__heading', 'Work The Web - The Beginnings')
       .checkText(
-        '.bx--modal-content__text',
-        "Code Basics Workshop | HTML/CSS/JavaScript & How the Web Works. We'll be covering basics of HTML, CSS, and JavaScript, and by the end of the session, you'll see the big picture of how internet applications are structured and how you can Work The Web - not only consume it.Host: Thomas Ochman1 instructor led session"
+        '[data-cy=course-description]',
+        "Code Basics Workshop | HTML/CSS/JavaScript & How the Web Works. We'll be covering basics of HTML, CSS, and JavaScript, and by the end of the session, you'll see the big picture of how internet applications are structured and how you can Work The Web - not only consume it."
       )
       .get('.bx--accordion__title')
       .should('have.length', 1)
@@ -48,8 +48,8 @@ describe('User Can View Course Details', () => {
       .checkText('.bx--modal-header__heading', 'Work The Web - The Beginnings')
 
       .checkText(
-        '.bx--modal-content__text',
-        "Code Basics Workshop | HTML/CSS/JavaScript & How the Web Works. We'll be covering basics of HTML, CSS, and JavaScript, and by the end of the session, you'll see the big picture of how internet applications are structured and how you can Work The Web - not only consume it.Host: Thomas Ochman1 instructor led session"
+        '[data-cy=course-description]',
+        "Code Basics Workshop | HTML/CSS/JavaScript & How the Web Works. We'll be covering basics of HTML, CSS, and JavaScript, and by the end of the session, you'll see the big picture of how internet applications are structured and how you can Work The Web - not only consume it."
       )
       .get('.bx--accordion__title')
       .should('have.length', 1)
