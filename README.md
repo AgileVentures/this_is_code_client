@@ -1,5 +1,5 @@
 <h1 align="center">
-  This Is Coded
+  This Is Code
 </h1>
 
 Get started using with the Gatsby Carbon theme which includes all configuration you might need to build a beautiful site inspired by the [Carbon Design System](https://www.carbondesignsystem.com).
